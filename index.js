@@ -48,3 +48,16 @@ window.addEventListener('keydown', (event) => {
             break
     }
 })
+
+window.addEventListener('keyup', (event) => {
+    switch (event.key) {
+        case 'a':
+            // move player to the left
+            keys.a.pressed = false
+            break
+        case 'd':
+            // move player to the right
+            keys.d.pressed = false
+            break
+    }
+})
