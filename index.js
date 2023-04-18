@@ -29,3 +29,22 @@ function animate() {
     player.draw()
     player.update()
 }
+
+animate()
+
+window.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'w':
+            if (player.velocity.y === 0) player.velocity.y = -20
+
+            break
+        case 'a':
+            // move player to the left
+            keys.a.pressed = true
+            break
+        case 'd':
+            // move player to the right
+            keys.d.pressed = true
+            break
+    }
+})
