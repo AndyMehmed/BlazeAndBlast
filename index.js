@@ -34,7 +34,7 @@ image.src = './img/Level1.png'
 
 //konstant som gör att man kan ladda in en karaktär
 const playerDownImage = new Image()
-playerDownImage.src = './img/playerDown2.png'
+playerDownImage.src = './img/playerDown.png'
 
 //konstant som laddar in vald bild
 const playerUpImage = new Image()
