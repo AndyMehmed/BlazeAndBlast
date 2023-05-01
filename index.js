@@ -12,16 +12,37 @@ for (let i = 0; i < collisions.length; i+= 70) {
     collisionsMap.push(collisions.slice(i, 70 + i))
 }
 
+//const that looks for the collisionblock in "doors.js".
+const doorsmap = []
+for (let i = 0; i < doorsData.length; i+= 70) {
+    doorsmap.push(doorsData.slice(i, 70 + i))
+}
+
+
 const boundaries = []
 const offset = {
     x: -600,
     y: -1250
 }
 
+// Here the program is looking for a "1", and if the player collides with a "1" from the doors.js then the character should advance to the next stage.
 collisionsMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
         if(symbol === 1)
         boundaries.push(
+            new Boundary({ 
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+        }))
+    })
+})
+
+const doors = []
+
+doorsmap.forEach((row, i) => {
+    row.forEach((symbol, j) => {
+        if(symbol === 1)
+        doors.push(
             new Boundary({ 
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y,
@@ -91,9 +112,10 @@ const keys = {
     }
 }
 
+
 //Konst som gör känner efter ifall en rektangel (karaktären) och rektangel2 (kollisionsblocken) stöter på varandra
 //så ska inte spelaren fastna i blocket, utan den ska enbart stanna vid kanten så man kan flytta sig ifrån igen.
-const movables = [background, ...boundaries ]
+const movables = [background, ...boundaries, ...doors]
 
 function rectangularCollision({rectangle1, rectangle2}) {
     return(
@@ -102,18 +124,60 @@ function rectangularCollision({rectangle1, rectangle2}) {
         rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
         rectangle1.position.y + rectangle1.height >= rectangle2.position.y)
 }
+
+const dooropen = {
+    initiated: false
+}
 //funktion som kör alla commando inom animate.
 function animate(){
-    window.requestAnimationFrame(animate)
+    const animationId = window.requestAnimationFrame(animate)
     background.draw() //Hämtar all information om vår bakgrund och kör den igenom "draw" funktionen, vilket ritar vår bakgrund.
     boundaries.forEach(boundary => {
         boundary.draw()
     })
+    doors.forEach((doors) => {
+        doors.draw()
+    })
     player.draw()
 
+    if (dooropen.initiated) return
+
+    //if sats som kollar ifall vår gubbe går in i en dörr. Och om det händer så kommer gubben till nästa nivå 
+    //med hjälp av en overlay som gör skärmen svart sen fade:ar ut i level 2 istället för level 1.
+    if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+        for (let i = 0; i < doors.length;i++){
+            const door = doors[i] 
+            if (rectangularCollision({
+                rectangle1: player,
+                rectangle2: door 
+            })
+            ) {
+                console.log('level complete')
+                window.cancelAnimationFrame(animationId)
+                dooropen.initiated = true
+                gsap.to('#overlappingDiv', {
+                    opacity: 1,
+                    duration: 2,
+                    onComplete(){
+                        gsap.to('#overlappingDiv', {
+                            opacity: 1,
+                            duration: 1,
+                            onComplete(){
+                                animateNewLevel()
+                                gsap.to('#overlappingDiv', {
+                                    opacity: 0,
+                                    duration: 1,
+                                })
+                            }
+                        })
+                    }
+                })
+                break
+            }
+        }
+    }
     //If sats som gör att vår bakgrund rör sig 1.5 pixlar baserat på vilken knapp vi trycker.
     //If-sats som också gör så att gubben stannar ifall den krockar med något av våra kollisionsblock för A (vänster).
-    //Denna IF-satsen fungerar endas för W så kommer att kopiera samma kod 4 gånger för A,S,D också.
     let moving = true
     player.moving = false
     if (keys.w.pressed) {
@@ -218,6 +282,22 @@ function animate(){
 }
 animate()
 
+//Här skapas level 2 som man kommer till när man går igenom dörren.
+const Level2 = new Image()
+Level2.src = './img/Level2.png'
+const newLevel = new Sprite({
+    position: {
+        x: 0, 
+        y: 0
+    },
+    image: Level2
+})
+//funktion som gör att vi animerar ut den nya leveln
+function animateNewLevel() {
+    window.requestAnimationFrame(animateNewLevel)
+    newLevel.draw()
+}
+
 // funktion som lyssnar efter vilka knappar som trycks ner, detta används för att kunna flytta spelaren.
 // När knappen trycks ner så ändras det från "false" till "true" och då rör sig spelaren.
 window.addEventListener('keydown', (e) => {
@@ -240,7 +320,6 @@ window.addEventListener('keydown', (e) => {
     }
 
 })
-
 
 //funktion som gör att när man släpper knappen så slutar spelaren att röra sig.
 //sätter funktionen i "false" igen.
