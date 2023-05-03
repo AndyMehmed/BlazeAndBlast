@@ -293,6 +293,21 @@ function animate(){
 
 animate()
 
+//Här skapas level 2 som man kommer till när man går igenom dörren.
+const Level2 = new Image()
+Level2.src = './img/Level2.png'
+const newLevel = new Sprite({
+    position: {
+        x: 0, 
+        y: 0
+    },
+    image: Level2
+})
+//funktion som gör att vi animerar ut den nya leveln
+function animateNewLevel() {
+    window.requestAnimationFrame(animateNewLevel)
+    newLevel.draw()
+}
 
 
 // funktion som lyssnar efter vilka knappar som trycks ner, detta används för att kunna flytta spelaren.
