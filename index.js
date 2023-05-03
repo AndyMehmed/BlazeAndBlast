@@ -39,6 +39,12 @@ collisionsMap.forEach((row, i) => {
 
 const doors = []
 
+const enemies = [
+    { x: 100, y: 100, size: 20, speed: 1.5 },
+    { x: 700, y: 100, size: 20, speed: 1.2 },
+    { x: 100, y: 500, size: 20, speed: 1.8 },
+  ]
+
 doorsmap.forEach((row, i) => {
     row.forEach((symbol, j) => {
         if(symbol === 1)
@@ -267,36 +273,27 @@ function animate(){
                     y: boundary.position.y 
                 }}
             })
+            
             ) {
                 console.log('colliding')
                 moving = false
                 break
             }
         }
+        
 
         if (moving)
         movables.forEach((movable) => {
             movable.position.x -= 1.5;
-        });
+        })
+        
     }
+    update()
 }
+
 animate()
 
-//Här skapas level 2 som man kommer till när man går igenom dörren.
-const Level2 = new Image()
-Level2.src = './img/Level2.png'
-const newLevel = new Sprite({
-    position: {
-        x: 0, 
-        y: 0
-    },
-    image: Level2
-})
-//funktion som gör att vi animerar ut den nya leveln
-function animateNewLevel() {
-    window.requestAnimationFrame(animateNewLevel)
-    newLevel.draw()
-}
+
 
 // funktion som lyssnar efter vilka knappar som trycks ner, detta används för att kunna flytta spelaren.
 // När knappen trycks ner så ändras det från "false" till "true" och då rör sig spelaren.
@@ -318,8 +315,9 @@ window.addEventListener('keydown', (e) => {
         keys.d.pressed = true
         break
     }
-
+    
 })
+
 
 //funktion som gör att när man släpper knappen så slutar spelaren att röra sig.
 //sätter funktionen i "false" igen.
@@ -343,3 +341,34 @@ window.addEventListener('keyup', (e) => {
     }
 
 })
+
+function update() {
+    enemies.forEach((enemy) => {
+      const dx = player.position.x - enemy.x;
+      const dy = player.position.y - enemy.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+  
+      if (distance > 0) {
+        enemy.x += (dx / distance) * enemy.speed;
+        enemy.y += (dy / distance) * enemy.speed;
+      }
+    });
+  
+    // clear only the area around the enemies
+    enemies.forEach((enemy) => {
+      c.clearRect(
+        enemy.x - enemy.size / 2 - 1,
+        enemy.y - enemy.size / 2 - 1,
+        enemy.size + 2,
+        enemy.size + 2
+      );
+    });
+  
+    enemies.forEach((enemy) => {
+      c.fillStyle = 'red';
+      c.fillRect(enemy.x - enemy.size / 2, enemy.y - enemy.size / 2, enemy.size, enemy.size);
+    });
+  }
+  
+
+  
