@@ -40,10 +40,11 @@ collisionsMap.forEach((row, i) => {
 const doors = []
 
 const enemies = [
-    { x: 100, y: 100, size: 20, speed: 1.5 },
-    { x: 700, y: 100, size: 20, speed: 1.2 },
-    { x: 100, y: 500, size: 20, speed: 1.8 },
-  ]
+    new Enemy({ x: 100, y: 100, size: 20, speed: 1.5 }),
+    new Enemy({ x: 700, y: 100, size: 20, speed: 1.2 }),
+    new Enemy({ x: 100, y: 500, size: 20, speed: 1.8 }),
+  ];
+  
 
 doorsmap.forEach((row, i) => {
     row.forEach((symbol, j) => {
@@ -359,31 +360,11 @@ window.addEventListener('keyup', (e) => {
 
 function update() {
     enemies.forEach((enemy) => {
-      const dx = player.position.x - enemy.x;
-      const dy = player.position.y - enemy.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-  
-      if (distance > 0) {
-        enemy.x += (dx / distance) * enemy.speed;
-        enemy.y += (dy / distance) * enemy.speed;
-      }
-    });
-  
-    // clear only the area around the enemies
-    enemies.forEach((enemy) => {
-      c.clearRect(
-        enemy.x - enemy.size / 2 - 1,
-        enemy.y - enemy.size / 2 - 1,
-        enemy.size + 2,
-        enemy.size + 2
-      );
-    });
-  
-    enemies.forEach((enemy) => {
-      c.fillStyle = 'red';
-      c.fillRect(enemy.x - enemy.size / 2, enemy.y - enemy.size / 2, enemy.size, enemy.size);
+      enemy.update(player, boundaries);
+      enemy.draw();
     });
   }
+  
   
 
   
