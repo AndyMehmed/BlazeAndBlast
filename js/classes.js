@@ -63,12 +63,15 @@ class Boundary {
 }
 
 class Enemy {
-    constructor({ x, y, size, speed }) {
-      this.x = x;
-      this.y = y;
-      this.size = size;
-      this.speed = speed;
-    }
+  static size = 20;
+  static speed = 1.5;
+
+  constructor({ x, y, size = Enemy.size, speed = Enemy.speed }) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.speed = speed;
+  }
 
     draw() {
       c.fillStyle = 'red';

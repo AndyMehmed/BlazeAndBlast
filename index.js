@@ -18,6 +18,7 @@ for (let i = 0; i < doorsData.length; i+= 70) {
     doorsmap.push(doorsData.slice(i, 70 + i))
 }
 
+const enemies = [];
 
 const boundaries = []
 const offset = {
@@ -28,22 +29,30 @@ const offset = {
 // Here the program is looking for a "1", and if the player collides with a "1" from the doors.js then the character should advance to the next stage.
 collisionsMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
-        if(symbol === 1)
+      if (symbol === 1) {
+        // create a wall boundary at this position
         boundaries.push(
-            new Boundary({ 
+          new Boundary({ 
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y,
-        }))
-    })
-})
+          })
+        );
+      } else if (symbol === 2) {
+        // create an enemy at this position
+        enemies.push(
+          new Enemy({ 
+            x: j * Enemy.size + offset.x,
+            y: i * Enemy.size + offset.y,
+            size: Enemy.size,
+            speed: Enemy.speed
+          })
+        );
+      }
+    });
+  });
 
 const doors = []
 
-const enemies = [
-    new Enemy({ x: 100, y: 100, size: 20, speed: 1.5 }),
-    new Enemy({ x: 700, y: 100, size: 20, speed: 1.2 }),
-    new Enemy({ x: 100, y: 500, size: 20, speed: 1.8 }),
-  ];
   
 
 doorsmap.forEach((row, i) => {
@@ -136,16 +145,14 @@ const dooropen = {
     initiated: false
 }
 //funktion som kör alla commando inom animate.
-function animate(){
-    const animationId = window.requestAnimationFrame(animate)
-    background.draw() //Hämtar all information om vår bakgrund och kör den igenom "draw" funktionen, vilket ritar vår bakgrund.
-    boundaries.forEach(boundary => {
-        boundary.draw()
-    })
-    doors.forEach((doors) => {
-        doors.draw()
-    })
-    player.draw()
+function animate() {
+    const animationId = window.requestAnimationFrame(animate);
+    background.draw();
+    boundaries.forEach(boundary => boundary.draw());
+    doors.forEach(door => door.draw());
+    player.draw();
+    enemies.forEach(enemy => enemy.update(player, boundaries));
+    enemies.forEach(enemy => enemy.draw());
 
     if (dooropen.initiated) return
 
