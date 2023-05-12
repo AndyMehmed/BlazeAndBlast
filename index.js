@@ -241,38 +241,38 @@ function animate(currentTime) {
     // Check if enough time has passed to draw a new frame
     if (elapsedTime > 1000 / fps) {
         camera.x = player.position.x - canvas.width / 2 / camera.scale;  // account for scaling
-        camera.y = player.position.y - canvas.height / 2 / camera.scale;  //    account for scaling
+        camera.y = player.position.y - canvas.height / 2 / camera.scale;  // account for scaling
         camera.scale = 0.9;  // 80% zoom
-        background.draw();
-        //collisionBlocks.forEach(collisionBlock => {
-        //    collisionBlock.draw();
-        //});
-        
+        //background.draw(); Remove this line
+
+        // increase camera scale to zoom in
+        camera.scale = 3;  // 200% zoom
         camera.preRender();
         background.draw();
         doors.forEach((door) => {
-            door.draw()
-        })
+            door.draw();
+        });
 
         enemies.forEach((enemy) => {
             enemy.update(player);
             enemy.draw();
         });
 
-        player.handleInput(keys)
-        player.draw()
-        player.update()
+        player.handleInput(keys);
+        player.draw();
+        player.update();
 
-        c.save()
-        c.globalAlpha = overlay.opacity
-        c.fillStyle = 'black'
-        c.fillRect(0,0, canvas.width, canvas.height)
-        c.restore()
+        c.save();
+        c.globalAlpha = overlay.opacity;
+        c.fillStyle = 'black';
+        c.fillRect(0, 0, canvas.width, canvas.height);
+        c.restore();
 
         lastTime = currentTime;
     }
     camera.postRender();
 }
+
 
 levels[level].init()
 animate()
