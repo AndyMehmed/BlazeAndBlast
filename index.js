@@ -100,13 +100,6 @@ const player = new Player({
     },
 })
 
-const enemies = [];
-
-const enemy1 = new Enemy(400, 300, 20, 20, 'blue');
-const enemy2 = new Enemy(800, 200, 20, 20, 'yellow');
-
-enemies.push(enemy1, enemy2);
-
 let level = 1
 let levels = {
 
