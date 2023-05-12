@@ -74,7 +74,8 @@ handleInput(keys) {
         this.switchSprite('runLeft');
         this.velocity.x = -3;
         this.lastDirection = 'left';
-    } else {
+    }
+     else {
         this.velocity.x = 0;
     }
 
@@ -118,7 +119,7 @@ updateHitbox() {
             y: this.position.y   
         },
         width: 25,
-        height: 20,
+        height: 35,
     };
 }
 

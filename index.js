@@ -22,20 +22,14 @@ let background
 let doors
 
 const player = new Player({
-    imageSrc: './img/king/playerDown.png',
+    imageSrc: './img/king/playerIdle.png',
     frameRate: 11,
     animations: {
         idleRight: {
-            frameRate: 4,
+            frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerDown.png',
-        },
-        idleDown: {
-            frameRate: 4,
-            frameBuffer: 2,
-            loop: true,
-            imageSrc: './img/king/playerDown.png',
+            imageSrc: './img/king/playerIdle.png',
         },
         runRight: {
             frameRate: 4,
@@ -62,16 +56,22 @@ const player = new Player({
             imageSrc: './img/king/playerDown.png'
         },
         idleLeft: {
-            frameRate: 4,
+            frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerDown.png',
+            imageSrc: './img/king/playerIdle.png',
         },
         idleUp: {
-            frameRate: 4,
+            frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerDown.png',
+            imageSrc: './img/king/playerIdle.png',
+        },
+        idleDown: {
+            frameRate: 1,
+            frameBuffer: 2,
+            loop: true,
+            imageSrc: './img/king/playerIdle.png',
         },
         enterDoor: {
             frameRate: 4,
@@ -121,12 +121,11 @@ let levels = {
             imageSrc: './img/Level2.png',
             })
             
-            
             doors = [
                 new Sprite({
                     position: {
-                        x: 80,
-                        y: -50,
+                        x: 120,
+                        y: 35,
                     },
                     imageSrc: './img/doorOpen.png',
                     frameRate: 5,
