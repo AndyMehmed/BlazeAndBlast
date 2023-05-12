@@ -204,7 +204,7 @@ let levels = {
                 x: 0,
                 y: 0,
             },
-            imageSrc: './img/Level2.png',
+            imageSrc: './img/Level3.png',
             })
 
             doors = [
@@ -222,6 +222,7 @@ let levels = {
             ]
         },
     },
+
 }
 
 // Funktion som gör att spelet tror att man inte trycker på tangenterna, 
