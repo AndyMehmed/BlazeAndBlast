@@ -23,9 +23,11 @@ class Enemy {
         const dx = player.position.x - this.position.x;
         const dy = player.position.y - this.position.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        this.velocity.x = (dx / distance) * this.speed;
-        this.velocity.y = (dy / distance) * this.speed;
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
+        if (distance <= 200) { // replace 200 with your desired threshold
+            this.velocity.x = (dx / distance) * this.speed;
+            this.velocity.y = (dy / distance) * this.speed;
+            this.position.x += this.velocity.x;
+            this.position.y += this.velocity.y;
+        }
     }
 }
