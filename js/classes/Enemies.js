@@ -12,6 +12,7 @@ class Enemy {
             y: 0,
         };
         this.speed = 0.3;
+        this.followingPlayer = false;
     }
 
     draw() {
@@ -23,7 +24,10 @@ class Enemy {
         const dx = player.position.x - this.position.x;
         const dy = player.position.y - this.position.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance <= 200) { // replace 200 with your desired threshold
+        if (distance <= 100) {
+            this.followingPlayer = true;
+        }
+        if (this.followingPlayer) {
             this.velocity.x = (dx / distance) * this.speed;
             this.velocity.y = (dy / distance) * this.speed;
             this.position.x += this.velocity.x;
