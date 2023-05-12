@@ -52,14 +52,14 @@ draw() {
 
 update() {
     this.position.x += this.velocity.x;
+    this.updateHitbox();
+    this.checkForHorizontalCollisions();
+
     this.position.y += this.velocity.y;
     this.updateHitbox();
-
-    this.checkForHorizontalCollisions();
-    this.applyGravity();
-    this.updateHitbox();
-
     this.checkForVerticalCollisions();
+
+    this.applyGravity();
 }
 
 handleInput(keys) {
@@ -126,23 +126,25 @@ checkForHorizontalCollisions() {
     for (let i = 0; i < this.collisionBlocks.length; i++) {
         const collisionBlock = this.collisionBlocks[i];
     
-        //if a collision exists
+        // If a collision exists
         if (
             this.hitbox.position.x <= collisionBlock.position.x + collisionBlock.width &&
             this.hitbox.position.x + this.hitbox.width >= collisionBlock.position.x &&
             this.hitbox.position.y + this.hitbox.height >= collisionBlock.position.y &&
             this.hitbox.position.y <= collisionBlock.position.y + collisionBlock.height
         ) {
-            // collision on x-axis going to the left
+            // Collision on x-axis going to the left
             if (this.velocity.x < 0) {
                 const offset = this.hitbox.position.x - this.position.x;
                 this.position.x = collisionBlock.position.x + collisionBlock.width - offset + 0.01;
+                this.velocity.x = 0;  // Reset velocity
                 break;
             }
     
             if (this.velocity.x > 0) {
                 const offset = this.hitbox.position.x - this.position.x + this.hitbox.width;
                 this.position.x = collisionBlock.position.x - offset - 0.01;
+                this.velocity.x = 0;  // Reset velocity
                 break;
             }
         }
@@ -158,22 +160,22 @@ checkForVerticalCollisions() {
     for (let i = 0; i < this.collisionBlocks.length; i++) {
         const collisionBlock = this.collisionBlocks[i];
     
-        //if a collision exists
+        // If a collision exists
         if (
             this.hitbox.position.x <= collisionBlock.position.x + collisionBlock.width &&
             this.hitbox.position.x + this.hitbox.width >= collisionBlock.position.x &&
             this.hitbox.position.y + this.hitbox.height >= collisionBlock.position.y &&
             this.hitbox.position.y <= collisionBlock.position.y + collisionBlock.height
-        ) {                // collision on x-axis going to the left
+        ) {
              if (this.velocity.y < 0) {
-                this.velocity.y = 0;
+                this.velocity.y = 0;  // Reset velocity
                 const offset = this.hitbox.position.y - this.position.y;
                 this.position.y = collisionBlock.position.y + collisionBlock.height - offset + 0.01;
                 break;
-                }
+            }
     
             if (this.velocity.y > 0) {
-                this.velocity.y = 0;
+                this.velocity.y = 0;  // Reset velocity
                 const offset = this.hitbox.position.y - this.position.y + this.hitbox.height;
                 this.position.y = collisionBlock.position.y - offset - 0.01;
                 break;
