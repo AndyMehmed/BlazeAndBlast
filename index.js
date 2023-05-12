@@ -8,6 +8,13 @@ const c = canvas.getContext('2d')
 
 canvas.width = 1200;
 canvas.height = 800;
+
+const enemies = [];
+
+const enemy1 = new Enemy(400, 300, 20, 20, 'blue');
+const enemy2 = new Enemy(800, 200, 20, 20, 'yellow');
+
+enemies.push(enemy1, enemy2);
                     
 let parsedCollisions
 let collisionBlocks
@@ -247,6 +254,11 @@ function animate(currentTime) {
             door.draw()
         })
 
+        enemies.forEach((enemy) => {
+            enemy.update(player);
+            enemy.draw();
+        });
+
         player.handleInput(keys)
         player.draw()
         player.update()
@@ -264,3 +276,4 @@ function animate(currentTime) {
 
 levels[level].init()
 animate()
+
