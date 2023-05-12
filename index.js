@@ -1,24 +1,6 @@
 let fps = 60; // Set the desired frame rate, e.g., 30 FPS
 let lastTime = 0;
 
-class Camera {
-    constructor() {
-        this.x = 0;
-        this.y = 0;
-        this.scale = 1;
-    }
-
-    preRender() {
-        c.save();
-        c.scale(this.scale, this.scale);
-        c.translate(-this.x, -this.y);
-    }
-
-    postRender() {
-        c.restore();
-    }
-}
-
 let camera = new Camera();
 
 const canvas = document.querySelector('canvas')
@@ -251,11 +233,16 @@ function animate(currentTime) {
 
     // Check if enough time has passed to draw a new frame
     if (elapsedTime > 1000 / fps) {
+        camera.x = player.position.x - canvas.width / 2 / camera.scale;  // account for scaling
+        camera.y = player.position.y - canvas.height / 2 / camera.scale;  //    account for scaling
+        camera.scale = 0.9;  // 80% zoom
         background.draw();
         //collisionBlocks.forEach(collisionBlock => {
         //    collisionBlock.draw();
         //});
         
+        camera.preRender();
+        background.draw();
         doors.forEach((door) => {
             door.draw()
         })
@@ -272,7 +259,7 @@ function animate(currentTime) {
 
         lastTime = currentTime;
     }
-
+    camera.postRender();
 }
 
 levels[level].init()
