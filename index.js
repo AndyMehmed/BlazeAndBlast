@@ -30,7 +30,7 @@ collisionsMap.forEach((row, i) => {
 })
 
 const image = new Image()
-image.src = './img/Level1.png'
+image.src = './img/Level3.png'
 
 //konstant som gör att man kan ladda in en karaktär
 const playerDownImage = new Image()
@@ -68,8 +68,8 @@ const player = new Sprite({
 
 //konstant som avgör var bakgrunden ska positioneras på vår canvas.
 const background = new Sprite({ position: {
-    x: -600,
-    y: -1250
+    x: -39,
+    y: -155
     },
     image: image
 })
@@ -125,7 +125,7 @@ function animate(){
                 rectangle1: player,
                 rectangle2: {...boundary, position: {
                     x: boundary.position.x,
-                    y: boundary.position.y + 1.5
+                    y: boundary.position.y + 5
                 }}
             })
             ) {
@@ -137,7 +137,7 @@ function animate(){
     
         if (moving)
         movables.forEach((movable) => {
-            movable.position.y += 1.5;
+            movable.position.y += 5;
         });
     }
     //If-sats som också gör så att gubben stannar ifall den krockar med något av våra kollisionsblock för A (vänster)
@@ -149,7 +149,7 @@ function animate(){
             if (rectangularCollision({
                 rectangle1: player,
                 rectangle2: {...boundary, position: {
-                    x: boundary.position.x + 1.5,
+                    x: boundary.position.x + 5,
                     y: boundary.position.y 
                 }}
             })
@@ -162,7 +162,7 @@ function animate(){
 
         if (moving)
         movables.forEach((movable) => {
-            movable.position.x += 1.5;
+            movable.position.x += 5;
         });
     }
     //If-sats som också gör så att gubben stannar ifall den krockar med något av våra kollisionsblock för S (NER)
@@ -175,7 +175,7 @@ function animate(){
                 rectangle1: player,
                 rectangle2: {...boundary, position: {
                     x: boundary.position.x,
-                    y: boundary.position.y - 1.5
+                    y: boundary.position.y - 5
                 }}
             })
             ) {
@@ -187,7 +187,7 @@ function animate(){
 
         if (moving)
         movables.forEach((movable) => {
-            movable.position.y -= 1.5;
+            movable.position.y -= 5;
         });
     }
     //If-sats som också gör så att gubben stannar ifall den krockar med något av våra kollisionsblock för D (Höger)
@@ -199,7 +199,7 @@ function animate(){
             if (rectangularCollision({
                 rectangle1: player,
                 rectangle2: {...boundary, position: {
-                    x: boundary.position.x - 1.5,
+                    x: boundary.position.x - 5,
                     y: boundary.position.y 
                 }}
             })
@@ -212,7 +212,7 @@ function animate(){
 
         if (moving)
         movables.forEach((movable) => {
-            movable.position.x -= 1.5;
+            movable.position.x -= 5;
         });
     }
 }
