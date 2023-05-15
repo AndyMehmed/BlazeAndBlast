@@ -1,4 +1,4 @@
-class Enemy {
+class Ghost {
     constructor(x, y, width, height, color) {
         this.position = {
             x: x,

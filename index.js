@@ -10,11 +10,16 @@ canvas.width = 1200;
 canvas.height = 800;
 
 const enemies = [];
+const ghosts = [];
 
 const enemy1 = new Enemy(400, 300, 20, 20, 'blue');
 const enemy2 = new Enemy(800, 200, 20, 20, 'yellow');
 
+const ghost1 = new Ghost(200, 300, 20, 20, 'black');
+const ghost2 = new Ghost(600, 200, 20, 20, 'purple');
+
 enemies.push(enemy1, enemy2);
+ghosts.push(ghost1, ghost2);
                     
 let parsedCollisions
 let collisionBlocks
@@ -255,7 +260,10 @@ function animate(currentTime) {
             enemy.draw();
         });
 
-       
+        ghosts.forEach((ghost) => {
+            ghost.update(player);
+            ghost.draw();
+        });
 
         player.handleInput(keys);
         player.draw();
@@ -272,7 +280,5 @@ function animate(currentTime) {
     camera.postRender();
 }
 
-
 levels[level].init()
 animate()
-
