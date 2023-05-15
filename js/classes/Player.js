@@ -92,6 +92,13 @@ handleInput(keys) {
         this.velocity.y = 0;
     }
 
+    // if moving diagonally, reduce speed
+    if ((keys.w.pressed || keys.s.pressed) && (keys.a.pressed || keys.d.pressed)) {
+        player.velocity.x *= 0.75;
+        player.velocity.y *= 0.75;
+    }
+    // Dela upp diagonalen i egna if statements och lägg in sprite animation för varje
+
     // Handle idle state
     if (!keys.d.pressed && !keys.a.pressed && !keys.w.pressed && !keys.s.pressed) {
         if (this.lastDirection === 'left') {
