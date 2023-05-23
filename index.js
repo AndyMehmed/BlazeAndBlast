@@ -185,8 +185,8 @@ let levels = {
             parsedCollisions = collisionsLevel3.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
-            player.position.x = 750
-            player.position.y = 230
+            player.position.x = 45
+            player.position.y = 330
 
             if(player.currentAnimation) player.currentAnimation.isActive = false
 
@@ -221,8 +221,8 @@ let levels = {
             parsedCollisions = collisionsLevel4.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
-            player.position.x = 750
-            player.position.y = 230
+            player.position.x = 57
+            player.position.y = 258
 
             if(player.currentAnimation) player.currentAnimation.isActive = false
 
