@@ -1,4 +1,4 @@
-let fps = 90; // Set the desired frame rate
+let fps = 60; // Set the desired frame rate
 let lastTime = 0;
 
 let camera = new Camera();
@@ -6,14 +6,14 @@ let camera = new Camera();
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-canvas.width = 1200;
-canvas.height = 800;
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
 const enemies = [];
 const ghosts = [];
 
-const enemy1 = new Enemy(400, 300, 20, 20, 'blue');
-const enemy2 = new Enemy(800, 200, 20, 20, 'yellow');
+const enemy1 = new Enemy(400, 300, 20, 20, './img/PLayerSprite/Bat.png');
+const enemy2 = new Enemy(800, 200, 20, 20, './img/PlayerSprite/Bat.png');
 
 const ghost1 = new Ghost(200, 300, 20, 20, 'black');
 const ghost2 = new Ghost(600, 200, 20, 20, 'purple');
@@ -27,36 +27,38 @@ let background
 let doors
 
 const player = new Player({
+
     imageSrc: './img/PlayerSprite/playerIdle.png',
+
     frameRate: 11,
     animations: {
         idleRight: {
             frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/PlayerSprite/playerIdle.png',
+            imageSrc: './img/PlayerSprite/idleRight.png',
         },
         runRight: {
             frameRate: 4,
-            frameBuffer: 7,
+            frameBuffer: 8,
             loop: true,
             imageSrc: './img/PlayerSprite/playerRight.png',
         },
         runLeft: {
             frameRate: 4,
-            frameBuffer: 7,
+            frameBuffer: 8,
             loop: true,
             imageSrc: './img/PlayerSprite/playerLeft.png',
         },
         runUp: {
             frameRate: 4,
-            frameBuffer: 7,
+            frameBuffer: 8,
             loop: true,
             imageSrc: './img/PlayerSprite/playerUp.png'
         },
         runDown: {
             frameRate: 4,
-            frameBuffer: 7,
+            frameBuffer: 8,
             loop: true,
             imageSrc: './img/PlayerSprite/playerDown.png'
         },
@@ -64,13 +66,13 @@ const player = new Player({
             frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/PlayerSprite/playerIdle.png',
+            imageSrc: './img/PlayerSprite/idleLeft.png',
         },
         idleUp: {
             frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/PlayerSprite/playerIdle.png',
+            imageSrc: './img/PlayerSprite/idleUp.png',
         },
         idleDown: {
             frameRate: 1,
@@ -78,6 +80,7 @@ const player = new Player({
             loop: true,
             imageSrc: './img/PlayerSprite/playerIdle.png',
         },
+        
         enterDoor: {
             frameRate: 4,
             frameBuffer: 4,
@@ -105,6 +108,8 @@ const player = new Player({
     },
 })
 
+const healthBar = new HealthBar(player, 100); // 100 is the max health
+
 let level = 1
 let levels = {
 
@@ -129,10 +134,10 @@ let levels = {
             doors = [
                 new Sprite({
                     position: {
-                        x: 120,
-                        y: 35,
+                        x: 96,
+                        y: 18,
                     },
-                    imageSrc: './img/DoorSprite/doorOpen.png',
+                    imageSrc: './img/DoorSprite/door2.png',
                     frameRate: 5,
                     frameBuffer: 5,
                     loop: false,
@@ -148,8 +153,8 @@ let levels = {
             parsedCollisions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
-            player.position.x = 96
-            player.position.y = 140
+            player.position.x = 1000
+            player.position.y = 65
 
             if(player.currentAnimation) player.currentAnimation.isActive = false
 
@@ -166,10 +171,10 @@ let levels = {
             doors = [
                 new Sprite({
                     position: {
-                        x: 772,
-                        y: 336,
+                        x: 96,
+                        y: 18,
                     },
-                    imageSrc: './img/DoorSprite/doorOpen.png',
+                    imageSrc: './img/DoorSprite/door2.png',
                     frameRate: 5,
                     frameBuffer: 5,
                     loop: false,
@@ -204,7 +209,7 @@ let levels = {
                         x: 175,
                         y: 336,
                     },
-                    imageSrc: './img/DoorSprite/doorOpen.png',
+                    imageSrc: './img/DoorSprite/door2.png',
                     frameRate: 5,
                     frameBuffer: 5,
                     loop: false,
@@ -240,7 +245,7 @@ let levels = {
                         x: 175,
                         y: 336,
                     },
-                    imageSrc: './img/doorOpen.png',
+                    imageSrc: './img/door2.png',
                     frameRate: 5,
                     frameBuffer: 5,
                     loop: false,
@@ -273,7 +278,25 @@ const overlay = {
     opacity: 0,
 }
 
+function gameOver() {
+    // Load the game over image
+    const gameOverImage = new Image();
+    gameOverImage.src = './img/game.over.png';
+
+    gameOverImage.onload = function() {
+        // Draw the game over image
+        c.drawImage(gameOverImage, 0, 0, canvas.width, canvas.height);
+    }
+
+    // You could add more game over logic here, such as a button to restart the game.
+}
+
+
 function animate(currentTime) {
+    if (player.health <= 0) {
+        gameOver();
+        return;
+    }
     window.requestAnimationFrame(animate);
     let elapsedTime = currentTime - lastTime;
 
@@ -303,6 +326,7 @@ function animate(currentTime) {
         player.handleInput(keys);
         player.draw();
         player.update();
+        
 
         c.save();
         c.globalAlpha = overlay.opacity;
@@ -313,6 +337,7 @@ function animate(currentTime) {
         lastTime = currentTime;
     }
     camera.postRender();
+    healthBar.draw();
 }
 
 levels[level].init()

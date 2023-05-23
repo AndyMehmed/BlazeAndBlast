@@ -1,13 +1,17 @@
 // The class representing an Enemy in the game
 class Enemy {
-    constructor(x, y, width, height, color) {
+    constructor(x, y, width, height, imageSrc) {
         this.position = {
             x: x,
             y: y,
         };
         this.width = width;
         this.height = height;
-        this.color = color;
+        this.image = new Image();
+        this.image.onload = () => {
+            this.imageLoaded = true;
+        };
+        this.image.src = imageSrc;
         this.velocity = {
             x: 0,
             y: 0,
@@ -17,8 +21,9 @@ class Enemy {
     }
 
     draw() {
-        c.fillStyle = this.color;
-        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        if (this.imageLoaded) {
+            c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        }
     }
 
     // Updates the enemy position based on the player
@@ -31,7 +36,18 @@ class Enemy {
         if (distance <= 200) {
             this.followingPlayer = true;
         }
+
+
+        if (
+            player.position.x < this.position.x + this.width &&
+            player.position.x + player.width > this.position.x &&
+            player.position.y + player.height > this.position.y &&
+            player.position.y < this.position.y + this.height
+        ) {
+            player.health -= 1;  // Player takes damage when colliding with an enemy
+        }
         
+    
 
         if (this.followingPlayer) {
             let newVelocityX = (dx / distance) * this.speed;
