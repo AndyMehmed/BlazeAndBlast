@@ -11,13 +11,13 @@ window.addEventListener('keydown', (event) => {
             // move player to the left
             keys.a.pressed = true;
             break;
-        case 'd':
-            // move player to the right
-            keys.d.pressed = true;
-            break;
         case 's':
             // move player down
             keys.s.pressed = true;
+            break;
+        case 'd':
+            // move player to the right
+            keys.d.pressed = true;
             break;
         case 'e':
             // makes the player able to walk through a door when pressing "e"

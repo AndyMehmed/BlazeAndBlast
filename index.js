@@ -224,10 +224,10 @@ const keys = {
     a: {
         pressed: false,
     },
-    d: {
+    s: {
         pressed: false,
     },
-    s: {
+    d: {
         pressed: false,
     },
 }
