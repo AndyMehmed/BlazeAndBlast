@@ -1,4 +1,4 @@
-// Funktion som "lyssnar" efter vilka tangenter man trycker för att sedan göra det som man ber dem om.
+// Function which checks wich keys are being pressed to do what the function wants.
 
 window.addEventListener('keydown', (event) => {
     if (player.preventInput) return;
@@ -7,7 +7,20 @@ window.addEventListener('keydown', (event) => {
             // move player up
             keys.w.pressed = true;
             break;
+        case 'a':
+            // move player to the left
+            keys.a.pressed = true;
+            break;
+        case 'd':
+            // move player to the right
+            keys.d.pressed = true;
+            break;
+        case 's':
+            // move player down
+            keys.s.pressed = true;
+            break;
         case 'e':
+            // makes the player able to walk through a door when pressing "e"
             for (let i = 0; i < doors.length; i++) {
                 const door = doors[i];
 
@@ -26,21 +39,9 @@ window.addEventListener('keydown', (event) => {
                 }
             }
             break;
-        case 'a':
-            // move player to the left
-            keys.a.pressed = true;
-            break;
-        case 'd':
-            // move player to the right
-            keys.d.pressed = true;
-            break;
-        case 's':
-            // move player down
-            keys.s.pressed = true;
-            break;
     }
 });
-
+//When releasing the key the player stops moving
 window.addEventListener('keyup', (event) => {
     switch (event.key) {
         case 'w':

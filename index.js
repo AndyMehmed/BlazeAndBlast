@@ -215,8 +215,8 @@ let levels = {
     },
 }
 
-// Funktion som gör att spelet tror att man inte trycker på tangenterna, 
-// detta för att man ska kunna klicka på en tangent samtidigt som en annan utan att den första tangenten ska sluta fungera.
+// Function that makes the game think that you are not pressing the keys, 
+// this is to be able to click on one key at the same time as another without the first key stop working
 const keys = {
     w: {
         pressed: false,
