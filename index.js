@@ -274,6 +274,29 @@ function animate(currentTime) {
         c.restore();
 
         lastTime = currentTime;
+
+        addEventListener('click', function (event) {
+            const angle = Math.atan2(
+              event.clientY - canvas.height / 2,
+              event.clientX - canvas.width / 2
+            );
+          
+            const velocity = {
+              x: Math.cos(angle) * 5, // Adjust the speed of the projectiles by changing the multiplier
+              y: Math.sin(angle) * 5 // Adjust the speed of the projectiles by changing the multiplier
+            };
+          
+            projectiles.push(
+              new Projectile(
+                player.position.x,
+                player.position.y,
+                5,
+                'red',
+                velocity
+              )
+            );
+          });
+          
     }
     camera.postRender();
 }
