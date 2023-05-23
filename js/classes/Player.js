@@ -68,20 +68,20 @@ handleInput(keys) {
 // Handle horizontal movement
 let horizontalVelocity = 0;
 if (keys.d.pressed) {
-    horizontalVelocity = 3;
+    horizontalVelocity = 2;
     this.lastDirection = 'right';
 } else if (keys.a.pressed) {
-    horizontalVelocity = -3;
+    horizontalVelocity = -2;
     this.lastDirection = 'left';
 }
 
 // Handle vertical movement
 let verticalVelocity = 0;
 if (keys.w.pressed) {
-    verticalVelocity = -3; // moving up
+    verticalVelocity = -2; // moving up
     this.lastDirection = 'up';
 } else if (keys.s.pressed) {
-    verticalVelocity = 3; // moving down
+    verticalVelocity = 2; // moving down
     this.lastDirection = 'down';
 }
 

@@ -38,25 +38,25 @@ const player = new Player({
         },
         runRight: {
             frameRate: 4,
-            frameBuffer: 7,
+            frameBuffer: 8,
             loop: true,
             imageSrc: './img/PlayerSprite/playerRight.png',
         },
         runLeft: {
             frameRate: 4,
-            frameBuffer: 7,
+            frameBuffer: 8,
             loop: true,
             imageSrc: './img/PlayerSprite/playerLeft.png',
         },
         runUp: {
             frameRate: 4,
-            frameBuffer: 7,
+            frameBuffer: 8,
             loop: true,
             imageSrc: './img/PlayerSprite/playerUp.png'
         },
         runDown: {
             frameRate: 4,
-            frameBuffer: 7,
+            frameBuffer: 8,
             loop: true,
             imageSrc: './img/PlayerSprite/playerDown.png'
         },
