@@ -27,62 +27,62 @@ let background
 let doors
 
 const player = new Player({
-    imageSrc: './img/king/playerIdle.png',
+    imageSrc: './img/PlayerSprite/playerIdle.png',
     frameRate: 11,
     animations: {
         idleRight: {
             frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerIdle.png',
+            imageSrc: './img/PlayerSprite/playerIdle.png',
         },
         runRight: {
             frameRate: 4,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerRight.png',
+            imageSrc: './img/PlayerSprite/playerRight.png',
         },
         runLeft: {
             frameRate: 4,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerLeft.png',
+            imageSrc: './img/PlayerSprite/playerLeft.png',
         },
         runUp: {
             frameRate: 4,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerUp.png'
+            imageSrc: './img/PlayerSprite/playerUp.png'
         },
         runDown: {
             frameRate: 4,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerDown.png'
+            imageSrc: './img/PlayerSprite/playerDown.png'
         },
         idleLeft: {
             frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerIdle.png',
+            imageSrc: './img/PlayerSprite/playerIdle.png',
         },
         idleUp: {
             frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerIdle.png',
+            imageSrc: './img/PlayerSprite/playerIdle.png',
         },
         idleDown: {
             frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/king/playerIdle.png',
+            imageSrc: './img/PlayerSprite/playerIdle.png',
         },
         enterDoor: {
             frameRate: 4,
             frameBuffer: 4,
             loop: false,
-            imageSrc: './img/king/playerUp.png',
+            imageSrc: './img/PlayerSprite/playerUp.png',
             onComplete: () => {
                 console.log('completed animation')
                 gsap.to(overlay, {
@@ -123,7 +123,7 @@ let levels = {
                 x: 0,
                 y: 0,
             },
-            imageSrc: './img/Level2.png',
+            imageSrc: './img/Maps/Level2.png',
             })
             
             doors = [
@@ -158,7 +158,7 @@ let levels = {
                 x: 0,
                 y: 0,
             },
-            imageSrc: './img/Level2.png',
+            imageSrc: './img/Maps/Level2.png',
             })
 
 
@@ -195,7 +195,7 @@ let levels = {
                 x: 0,
                 y: 0,
             },
-            imageSrc: './img/Level2.png',
+            imageSrc: './img/Maps/Level2.png',
             })
 
             doors = [
@@ -204,7 +204,7 @@ let levels = {
                         x: 175,
                         y: 336,
                     },
-                    imageSrc: './img/doorOpen.png',
+                    imageSrc: './img/DoorSprite/doorOpen.png',
                     frameRate: 5,
                     frameBuffer: 5,
                     loop: false,
@@ -240,15 +240,13 @@ function animate(currentTime) {
     window.requestAnimationFrame(animate);
     let elapsedTime = currentTime - lastTime;
 
-    // Check if enough time has passed to draw a new frame
+    // Checking if there has been enought time to draw a new frame.  
     if (elapsedTime > 1000 / fps) {
-        camera.x = player.position.x - canvas.width / 2 / camera.scale;  // account for scaling
-        camera.y = player.position.y - canvas.height / 2 / camera.scale;  // account for scaling
-        camera.scale = 0.9;  // 80% zoom
-        //background.draw(); Remove this line
+        camera.x = player.position.x - canvas.width / 2 / camera.scale;  
+        camera.y = player.position.y - canvas.height / 2 / camera.scale;  
 
         // increase camera scale to zoom in
-        camera.scale = 3;  // 200% zoom
+        camera.scale = 3;  // 200% zoom (The higher the more zoomed in)
         camera.preRender();
         background.draw();
         doors.forEach((door) => {
