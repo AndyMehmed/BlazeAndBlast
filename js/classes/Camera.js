@@ -1,3 +1,4 @@
+// Class to create a "camera" angle. 
 class Camera {
     constructor() {
         this.x = 0;
