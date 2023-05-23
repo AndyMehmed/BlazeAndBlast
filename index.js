@@ -1,4 +1,4 @@
-let fps = 60; // Set the desired frame rate
+let fps = 90; // Set the desired frame rate
 let lastTime = 0;
 
 let camera = new Camera();
@@ -195,7 +195,7 @@ let levels = {
                 x: 0,
                 y: 0,
             },
-            imageSrc: './img/Maps/Level2.png',
+            imageSrc: './img/Maps/Level3.png',
             })
 
             doors = [
@@ -231,7 +231,7 @@ let levels = {
                 x: 0,
                 y: 0,
             },
-            imageSrc: './img/Level4.png',
+            imageSrc: './img/Maps/Level4.png',
             })
 
             doors = [
