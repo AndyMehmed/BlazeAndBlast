@@ -6,10 +6,12 @@ let camera = new Camera();
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-canvas.width = 1200;
-canvas.height = 800;
+canvas.width = 1800;
+canvas.height = 1200;
 
+const projectiles = [];
 const enemies = [];
+
 
 const enemy1 = new Enemy(400, 300, 20, 20, 'blue');
 const enemy2 = new Enemy(800, 200, 20, 20, 'yellow');
@@ -244,7 +246,7 @@ function animate(currentTime) {
         //background.draw(); Remove this line
 
         // increase camera scale to zoom in
-        camera.scale = 3;  // 200% zoom
+        camera.scale = 4;  // 200% zoom
         camera.preRender();
         background.draw();
         doors.forEach((door) => {
@@ -256,7 +258,10 @@ function animate(currentTime) {
             enemy.draw();
         });
 
-       
+        projectiles.forEach(projectile => {
+            projectile.update()
+    
+        });
 
         player.handleInput(keys);
         player.draw();
