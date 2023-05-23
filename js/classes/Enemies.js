@@ -1,12 +1,16 @@
 class Enemy {
-    constructor(x, y, width, height, color) {
+    constructor(x, y, width, height, imageSrc) {
         this.position = {
             x: x,
             y: y,
         };
         this.width = width;
         this.height = height;
-        this.color = color;
+        this.image = new Image();
+        this.image.onload = () => {
+            this.imageLoaded = true;
+        };
+        this.image.src = imageSrc;
         this.velocity = {
             x: 0,
             y: 0,
@@ -16,8 +20,9 @@ class Enemy {
     }
 
     draw() {
-        c.fillStyle = this.color;
-        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        if (this.imageLoaded) {
+            c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        }
     }
 
     update(player) {
@@ -27,7 +32,6 @@ class Enemy {
     
         if (distance <= 200) {
             this.followingPlayer = true;
-            
         }
 
         if (

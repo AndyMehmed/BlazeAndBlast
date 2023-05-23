@@ -12,8 +12,8 @@ canvas.height = 800;
 const enemies = [];
 const ghosts = [];
 
-const enemy1 = new Enemy(400, 300, 20, 20, 'blue');
-const enemy2 = new Enemy(800, 200, 20, 20, 'yellow');
+const enemy1 = new Enemy(400, 300, 20, 20, './img/king/Bat.png');
+const enemy2 = new Enemy(800, 200, 20, 20, './img/king/Bat.png');
 
 const ghost1 = new Ghost(200, 300, 20, 20, 'black');
 const ghost2 = new Ghost(600, 200, 20, 20, 'purple');
@@ -108,7 +108,7 @@ const player = new Player({
     },
 })
 
-const healthBar = new HealthBar(player, 100); // Assuming 100 is the max health
+const healthBar = new HealthBar(player, 100); // 100 is the max health
 
 let level = 1
 let levels = {
@@ -242,13 +242,18 @@ const overlay = {
 }
 
 function gameOver() {
-    // Display a game over message
-    c.fillStyle = "red";
-    c.font = "50px Arial";
-    c.fillText("Game Over", canvas.width / 2, canvas.height / 2);
+    // Load the game over image
+    const gameOverImage = new Image();
+    gameOverImage.src = './img/game.over.png';
+
+    gameOverImage.onload = function() {
+        // Draw the game over image
+        c.drawImage(gameOverImage, 0, 0, canvas.width, canvas.height);
+    }
 
     // You could add more game over logic here, such as a button to restart the game.
 }
+
 
 function animate(currentTime) {
     if (player.health <= 0) {
