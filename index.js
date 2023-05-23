@@ -148,8 +148,8 @@ let levels = {
             parsedCollisions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
-            player.position.x = 96
-            player.position.y = 140
+            player.position.x = 1000
+            player.position.y = 65
 
             if(player.currentAnimation) player.currentAnimation.isActive = false
 
@@ -166,8 +166,8 @@ let levels = {
             doors = [
                 new Sprite({
                     position: {
-                        x: 772,
-                        y: 336,
+                        x: 96,
+                        y: 18,
                     },
                     imageSrc: './img/DoorSprite/door2.png',
                     frameRate: 5,
