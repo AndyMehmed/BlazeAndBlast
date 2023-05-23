@@ -15,7 +15,6 @@ class Player extends Sprite {
         this.sides = {
             bottom: this.position.y + this.height,
         };
-        this.gravity = 1;
 
         this.collisionBlocks = collisionBlocks;
     }
@@ -28,7 +27,7 @@ draw() {
             y: 0,
         },
         width: this.width,
-           height: this.height,
+        height: this.height,
     };
 
     // Scale factors
@@ -58,8 +57,6 @@ update() {
     this.position.y += this.velocity.y;
     this.updateHitbox();
     this.checkForVerticalCollisions();
-
-    this.applyGravity();
 }
 
 handleInput(keys) {
@@ -157,11 +154,6 @@ checkForHorizontalCollisions() {
             }
         }
     }
-}
-    
-applyGravity() {
-    //this.velocity.y += this.gravity
-    //this.position.y += this.velocity.y
 }
     
 checkForVerticalCollisions() {

@@ -1,4 +1,4 @@
-let fps = 60; // Set the desired frame rate, e.g., 30 FPS
+let fps = 60; // Set the desired frame rate
 let lastTime = 0;
 
 let camera = new Camera();
@@ -20,7 +20,7 @@ const ghost2 = new Ghost(600, 200, 20, 20, 'purple');
 
 enemies.push(enemy1, enemy2);
 ghosts.push(ghost1, ghost2);
-                    
+
 let parsedCollisions
 let collisionBlocks
 let background

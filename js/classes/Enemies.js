@@ -1,3 +1,4 @@
+// The class representing an Enemy in the game
 class Enemy {
     constructor(x, y, width, height, color) {
         this.position = {
@@ -20,20 +21,23 @@ class Enemy {
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
 
+    // Updates the enemy position based on the player
     update(player) {
         const dx = player.position.x - this.position.x;
         const dy = player.position.y - this.position.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
     
+        //followingplayer makes the Enemies follow the player if within a certain distance
         if (distance <= 200) {
             this.followingPlayer = true;
         }
-    
+        
+
         if (this.followingPlayer) {
             let newVelocityX = (dx / distance) * this.speed;
             let newVelocityY = (dy / distance) * this.speed;
     
-            // First, handle movement and collision in the x-direction
+            // Movement and collision in the x-direction
             this.velocity.x = newVelocityX;
             this.position.x += this.velocity.x;
             for (let i = 0; i < collisionBlocks.length; i++) {
@@ -57,7 +61,7 @@ class Enemy {
                 }
             }
     
-            // Then, handle movement and collision in the y-direction
+            // Movement and collision in the y-direction
             this.velocity.y = newVelocityY;
             this.position.y += this.velocity.y;
             for (let i = 0; i < collisionBlocks.length; i++) {
