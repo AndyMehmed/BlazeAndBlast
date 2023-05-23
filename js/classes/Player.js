@@ -12,10 +12,13 @@ class Player extends Sprite {
             y: 0,
         };
 
+        this.speed = 1.5
+
+        //this.sides, row 16-18 is not needed
         this.sides = {
             bottom: this.position.y + this.height,
         };
-
+        //this.collisionBlocks, row 20 is not needed
         this.collisionBlocks = collisionBlocks;
     }
 
@@ -50,11 +53,11 @@ draw() {
 }
 
 update() {
-    this.position.x += this.velocity.x;
+    this.position.x += this.velocity.x * this.speed
     this.updateHitbox();
     this.checkForHorizontalCollisions();
 
-    this.position.y += this.velocity.y;
+    this.position.y += this.velocity.y * this.speed
     this.updateHitbox();
     this.checkForVerticalCollisions();
 }
@@ -62,31 +65,33 @@ update() {
 handleInput(keys) {
     if (this.preventInput) return;
 
+    player.velocity.x = 0;
+    player.velocity.y = 0;
+
     // Handle horizontal movement
     if (keys.d.pressed) {
         this.switchSprite('runRight');
-        this.velocity.x = 3;
+        player.velocity.x += player.speed;
         this.lastDirection = 'right';
-    } else if (keys.a.pressed) {
+    };
+    
+    if (keys.a.pressed) {
         this.switchSprite('runLeft');
-        this.velocity.x = -3;
+        player.velocity.x -= player.speed;
         this.lastDirection = 'left';
-    }
-     else {
-        this.velocity.x = 0;
-    }
+    };
 
     // Handle vertical movement
     if (keys.w.pressed) {
         this.switchSprite('runUp');
-        this.velocity.y = -3; // moving up
+        player.velocity.y -= player.speed; // moving up
         this.lastDirection = 'up';
-    } else if (keys.s.pressed) {
+    }
+    
+    if (keys.s.pressed) {
         this.switchSprite('runDown');
-        this.velocity.y = 3; // moving down
+        player.velocity.y += player.speed; // moving down
         this.lastDirection = 'down';
-    } else {
-        this.velocity.y = 0;
     }
 
     // if moving diagonally, reduce speed
