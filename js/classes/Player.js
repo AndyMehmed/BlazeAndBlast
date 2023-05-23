@@ -12,8 +12,6 @@ class Player extends Sprite {
             y: 0,
         };
 
-        this.speed = 1.5
-
         //this.sides, row 16-18 is not needed
         this.sides = {
             bottom: this.position.y + this.height,
@@ -53,46 +51,65 @@ draw() {
 }
 
 update() {
-    this.position.x += this.velocity.x * this.speed
+    this.position.x += this.velocity.x;
     this.updateHitbox();
     this.checkForHorizontalCollisions();
 
-    this.position.y += this.velocity.y * this.speed
+    this.position.y += this.velocity.y;
     this.updateHitbox();
     this.checkForVerticalCollisions();
+    this.updateFrames();
 }
 
+// all the movement is for the player is handled here, also the sprite returns to the same state if key is released.
 handleInput(keys) {
     if (this.preventInput) return;
 
-    player.velocity.x = 0;
-    player.velocity.y = 0;
+// Handle horizontal movement
+let horizontalVelocity = 0;
+if (keys.d.pressed) {
+    horizontalVelocity = 3;
+    this.lastDirection = 'right';
+} else if (keys.a.pressed) {
+    horizontalVelocity = -3;
+    this.lastDirection = 'left';
+}
 
-    // Handle horizontal movement
-    if (keys.d.pressed) {
-        this.switchSprite('runRight');
-        player.velocity.x += player.speed;
-        this.lastDirection = 'right';
-    };
-    
-    if (keys.a.pressed) {
-        this.switchSprite('runLeft');
-        player.velocity.x -= player.speed;
-        this.lastDirection = 'left';
-    };
+// Handle vertical movement
+let verticalVelocity = 0;
+if (keys.w.pressed) {
+    verticalVelocity = -3; // moving up
+    this.lastDirection = 'up';
+} else if (keys.s.pressed) {
+    verticalVelocity = 3; // moving down
+    this.lastDirection = 'down';
+}
 
-    // Handle vertical movement
-    if (keys.w.pressed) {
+// Update velocity
+this.velocity.x = horizontalVelocity;
+this.velocity.y = verticalVelocity;
+
+
+// Update sprite animation based on the last pressed key
+if (this.velocity.x !== 0 || this.velocity.y !== 0) {
+    if (this.velocity.y < 0) {
         this.switchSprite('runUp');
-        player.velocity.y -= player.speed; // moving up
-        this.lastDirection = 'up';
-    }
-    
-    if (keys.s.pressed) {
+    } else if (this.velocity.y > 0) {
         this.switchSprite('runDown');
-        player.velocity.y += player.speed; // moving down
-        this.lastDirection = 'down';
+    } else if (this.velocity.x < 0) {
+        this.switchSprite('runLeft');
+    } else if (this.velocity.x > 0) {
+        this.switchSprite('runRight');
     }
+} else {
+    // Handle idle state
+    if (this.lastDirection === 'left') {
+        this.switchSprite('idleLeft');
+    } else {
+        this.switchSprite('idleDown');
+    }
+}
+
 
     // if moving diagonally, reduce speed
     if ((keys.w.pressed || keys.s.pressed) && (keys.a.pressed || keys.d.pressed)) {
@@ -105,8 +122,12 @@ handleInput(keys) {
     if (!keys.d.pressed && !keys.a.pressed && !keys.w.pressed && !keys.s.pressed) {
         if (this.lastDirection === 'left') {
             this.switchSprite('idleLeft');
-        } else {
+        } else if (this.lastDirection === 'right') {
             this.switchSprite('idleRight');
+        } else if (this.lastDirection === 'up') {
+            this.switchSprite('idleUp');
+        } else if (this.lastDirection === 'down') {
+            this.switchSprite('idleDown');
         }
     }
 }

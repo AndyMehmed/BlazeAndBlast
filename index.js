@@ -1,4 +1,4 @@
-let fps = 90; // Set the desired frame rate
+let fps = 70; // Set the desired frame rate
 let lastTime = 0;
 
 let camera = new Camera();
@@ -34,7 +34,7 @@ const player = new Player({
             frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/PlayerSprite/playerIdle.png',
+            imageSrc: './img/PlayerSprite/idleRight.png',
         },
         runRight: {
             frameRate: 4,
@@ -64,13 +64,13 @@ const player = new Player({
             frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/PlayerSprite/playerIdle.png',
+            imageSrc: './img/PlayerSprite/idleLeft.png',
         },
         idleUp: {
             frameRate: 1,
             frameBuffer: 2,
             loop: true,
-            imageSrc: './img/PlayerSprite/playerIdle.png',
+            imageSrc: './img/PlayerSprite/idleUp.png',
         },
         idleDown: {
             frameRate: 1,
