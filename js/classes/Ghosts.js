@@ -43,6 +43,15 @@ class Ghost {
             this.followingPlayer = true;
         }
 
+        if (
+            player.position.x < this.position.x + this.width &&
+            player.position.x + player.width > this.position.x &&
+            player.position.y + player.height > this.position.y &&
+            player.position.y < this.position.y + this.height
+        ) {
+            player.health -= 1;  // Player takes damage when colliding with an enemy
+        }
+
         // If the ghost is following the player, update its velocity and position.
         if (this.followingPlayer) {
 

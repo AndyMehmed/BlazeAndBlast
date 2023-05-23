@@ -12,8 +12,8 @@ canvas.height = innerHeight;
 const enemies = [];
 const ghosts = [];
 
-const enemy1 = new Enemy(400, 300, 20, 20, 'blue');
-const enemy2 = new Enemy(800, 200, 20, 20, 'yellow');
+const enemy1 = new Enemy(400, 300, 20, 20, './img/king/Bat.png');
+const enemy2 = new Enemy(800, 200, 20, 20, './img/king/Bat.png');
 
 const ghost1 = new Ghost(200, 300, 20, 20, 'black');
 const ghost2 = new Ghost(600, 200, 20, 20, 'purple');
@@ -27,7 +27,9 @@ let background
 let doors
 
 const player = new Player({
+
     imageSrc: './img/PlayerSprite/playerIdle.png',
+
     frameRate: 11,
     animations: {
         idleRight: {
@@ -78,6 +80,7 @@ const player = new Player({
             loop: true,
             imageSrc: './img/PlayerSprite/playerIdle.png',
         },
+        
         enterDoor: {
             frameRate: 4,
             frameBuffer: 4,
@@ -104,6 +107,8 @@ const player = new Player({
         },
     },
 })
+
+const healthBar = new HealthBar(player, 100); // 100 is the max health
 
 let level = 1
 let levels = {
@@ -273,7 +278,25 @@ const overlay = {
     opacity: 0,
 }
 
+function gameOver() {
+    // Load the game over image
+    const gameOverImage = new Image();
+    gameOverImage.src = './img/game.over.png';
+
+    gameOverImage.onload = function() {
+        // Draw the game over image
+        c.drawImage(gameOverImage, 0, 0, canvas.width, canvas.height);
+    }
+
+    // You could add more game over logic here, such as a button to restart the game.
+}
+
+
 function animate(currentTime) {
+    if (player.health <= 0) {
+        gameOver();
+        return;
+    }
     window.requestAnimationFrame(animate);
     let elapsedTime = currentTime - lastTime;
 
@@ -303,6 +326,7 @@ function animate(currentTime) {
         player.handleInput(keys);
         player.draw();
         player.update();
+        
 
         c.save();
         c.globalAlpha = overlay.opacity;
@@ -313,6 +337,7 @@ function animate(currentTime) {
         lastTime = currentTime;
     }
     camera.postRender();
+    healthBar.draw();
 }
 
 levels[level].init()
