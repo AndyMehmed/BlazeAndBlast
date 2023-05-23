@@ -1,4 +1,4 @@
-let fps = 70; // Set the desired frame rate
+let fps = 60; // Set the desired frame rate
 let lastTime = 0;
 
 let camera = new Camera();
@@ -6,8 +6,8 @@ let camera = new Camera();
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-canvas.width = 1200;
-canvas.height = 800;
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
 const enemies = [];
 const ghosts = [];
