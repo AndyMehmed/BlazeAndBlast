@@ -1,4 +1,4 @@
-let fps = 60; // Set the desired frame rate
+let fps = 90; // Set the desired frame rate
 let lastTime = 0;
 
 let camera = new Camera();
@@ -38,25 +38,25 @@ const player = new Player({
         },
         runRight: {
             frameRate: 4,
-            frameBuffer: 2,
+            frameBuffer: 7,
             loop: true,
             imageSrc: './img/PlayerSprite/playerRight.png',
         },
         runLeft: {
             frameRate: 4,
-            frameBuffer: 2,
+            frameBuffer: 7,
             loop: true,
             imageSrc: './img/PlayerSprite/playerLeft.png',
         },
         runUp: {
             frameRate: 4,
-            frameBuffer: 2,
+            frameBuffer: 7,
             loop: true,
             imageSrc: './img/PlayerSprite/playerUp.png'
         },
         runDown: {
             frameRate: 4,
-            frameBuffer: 2,
+            frameBuffer: 7,
             loop: true,
             imageSrc: './img/PlayerSprite/playerDown.png'
         },
@@ -91,7 +91,7 @@ const player = new Player({
                         level++
 
                         //REMOVE BEFORE ADDING MORE LEVELS
-                        if (level ===4) level = 1
+                        if (level ===5) level = 1
                         levels[level].init()
                         player.switchSprite('idleRight')
                         player.preventInput = false
@@ -195,7 +195,7 @@ let levels = {
                 x: 0,
                 y: 0,
             },
-            imageSrc: './img/Maps/Level2.png',
+            imageSrc: './img/Maps/Level3.png',
             })
 
             doors = [
@@ -213,6 +213,43 @@ let levels = {
             ]
         },
     },
+
+
+    //-----LEVEL 4-----//
+    4: {
+        init: () => {
+            parsedCollisions = collisionsLevel4.parse2D()
+            collisionBlocks = parsedCollisions.createObjectsFrom2D()
+            player.collisionBlocks = collisionBlocks
+            player.position.x = 750
+            player.position.y = 230
+
+            if(player.currentAnimation) player.currentAnimation.isActive = false
+
+            background = new Sprite({
+                position: {
+                x: 0,
+                y: 0,
+            },
+            imageSrc: './img/Maps/Level4.png',
+            })
+
+            doors = [
+                new Sprite({
+                    position: {
+                        x: 175,
+                        y: 336,
+                    },
+                    imageSrc: './img/doorOpen.png',
+                    frameRate: 5,
+                    frameBuffer: 5,
+                    loop: false,
+                    autoplay: false,
+                }),
+            ]
+        },
+    },
+    
 }
 
 // Function that makes the game think that you are not pressing the keys, 
