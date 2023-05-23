@@ -241,7 +241,20 @@ const overlay = {
     opacity: 0,
 }
 
+function gameOver() {
+    // Display a game over message
+    c.fillStyle = "red";
+    c.font = "50px Arial";
+    c.fillText("Game Over", canvas.width / 2, canvas.height / 2);
+
+    // You could add more game over logic here, such as a button to restart the game.
+}
+
 function animate(currentTime) {
+    if (player.health <= 0) {
+        gameOver();
+        return;
+    }
     window.requestAnimationFrame(animate);
     let elapsedTime = currentTime - lastTime;
 
