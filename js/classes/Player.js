@@ -18,6 +18,7 @@ class Player extends Sprite {
         };
         //this.collisionBlocks, row 20 is not needed
         this.collisionBlocks = collisionBlocks;
+        this.health = 100;
     }
 
 draw() {
@@ -181,6 +182,12 @@ checkForHorizontalCollisions() {
         }
     }
 }
+
+takeDamage(amount) {
+        this.health -= amount;
+        // Ensure health doesn't go below 0
+        if (this.health < 0) this.health = 0;
+    }
     
 checkForVerticalCollisions() {
     for (let i = 0; i < this.collisionBlocks.length; i++) {
