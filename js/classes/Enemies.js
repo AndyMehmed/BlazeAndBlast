@@ -27,8 +27,18 @@ class Enemy {
     
         if (distance <= 200) {
             this.followingPlayer = true;
-            player.health -= 1;
+            
         }
+
+        if (
+            player.position.x < this.position.x + this.width &&
+            player.position.x + player.width > this.position.x &&
+            player.position.y + player.height > this.position.y &&
+            player.position.y < this.position.y + this.height
+        ) {
+            player.health -= 1;  // Player takes damage when colliding with an enemy
+        }
+        
     
         if (this.followingPlayer) {
             let newVelocityX = (dx / distance) * this.speed;
