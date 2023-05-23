@@ -27,6 +27,8 @@ let background
 let doors
 
 const player = new Player({
+    health: 100,
+
     imageSrc: './img/king/playerIdle.png',
     frameRate: 11,
     animations: {
@@ -78,6 +80,7 @@ const player = new Player({
             loop: true,
             imageSrc: './img/king/playerIdle.png',
         },
+        
         enterDoor: {
             frameRate: 4,
             frameBuffer: 4,
@@ -104,6 +107,8 @@ const player = new Player({
         },
     },
 })
+
+const healthBar = new HealthBar(player, 100); // Assuming 100 is the max health
 
 let level = 1
 let levels = {
@@ -268,6 +273,7 @@ function animate(currentTime) {
         player.handleInput(keys);
         player.draw();
         player.update();
+        
 
         c.save();
         c.globalAlpha = overlay.opacity;
@@ -278,6 +284,7 @@ function animate(currentTime) {
         lastTime = currentTime;
     }
     camera.postRender();
+    healthBar.draw();
 }
 
 levels[level].init()

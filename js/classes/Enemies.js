@@ -27,6 +27,7 @@ class Enemy {
     
         if (distance <= 200) {
             this.followingPlayer = true;
+            player.health -= 1;
         }
     
         if (this.followingPlayer) {
