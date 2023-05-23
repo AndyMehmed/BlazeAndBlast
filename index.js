@@ -12,8 +12,8 @@ canvas.height = innerHeight;
 const enemies = [];
 const ghosts = [];
 
-const enemy1 = new Enemy(400, 300, 20, 20, './img/king/Bat.png');
-const enemy2 = new Enemy(800, 200, 20, 20, './img/king/Bat.png');
+const enemy1 = new Enemy(400, 300, 20, 20, './img/PLayerSprite/Bat.png');
+const enemy2 = new Enemy(800, 200, 20, 20, './img/PlayerSprite/Bat.png');
 
 const ghost1 = new Ghost(200, 300, 20, 20, 'black');
 const ghost2 = new Ghost(600, 200, 20, 20, 'purple');
