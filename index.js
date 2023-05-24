@@ -104,8 +104,6 @@ const player = new Player({
     },
 })
 
-const healthBar = new HealthBar(player, 100); // 100 is the max health
-
 let level = 1
 let levels = {
 
@@ -327,7 +325,6 @@ function animate() {
     c.restore();
 
     camera.postRender();
-    healthBar.draw();
 }
 
 levels[level].init()

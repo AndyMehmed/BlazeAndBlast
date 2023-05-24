@@ -21,7 +21,7 @@ class Enemy {
 
         //Added a timer to make the player take damages every X seconds
         this.damageTimer = null;
-        this.damageInterval = 1000;
+        this.damageInterval = 500;
     }
 
     draw() {
@@ -49,8 +49,12 @@ class Enemy {
         ) {
 
         if (!this.damageTimer) {
+            player.health -= 20; // Player takes damage
+            document.querySelector('#playerHealth').style.width = player.health + '%';
+
+            //Start the damage timer after first hit
             this.damageTimer = setInterval(() => {
-                player.health -= 20; // Player takes damage
+                player.health -= 20;
                 document.querySelector('#playerHealth').style.width = player.health + '%';
             }, this.damageInterval);
         }
