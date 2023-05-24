@@ -322,14 +322,32 @@ function animate() {
     });
     projectiles.forEach((projectile, index) => {
         projectile.update();
+    
+        for (let i = 0; i < collisionBlocks.length; i++) {
+            const collisionBlock = collisionBlocks[i];
+            
+            if (
+                projectile.x - projectile.radius < collisionBlock.position.x + collisionBlock.width &&
+                projectile.x + projectile.radius > collisionBlock.position.x &&
+                projectile.y + projectile.radius > collisionBlock.position.y &&
+                projectile.y - projectile.radius < collisionBlock.position.y + collisionBlock.height
+            ) {
+                // Projectile has hit a collisionBlock (wall), remove it
+                projectiles.splice(index, 1);
+                break;  // Exit the loop early since we've removed the projectile
+            }
+        }
+    
+        // Check if the projectile is outside of the canvas
         if (projectile.x + projectile.radius < 0 || 
             projectile.x - projectile.radius > canvas.width ||
             projectile.y + projectile.radius < 0 ||
-            projectile.y - projectile.radius > canvas.height ) {
-            setTimeout(() => {
-            projectiles.splice(index, 1)
-            }, 0)}
-    })
+            projectile.y - projectile.radius > canvas.height) {
+            projectiles.splice(index, 1);
+        }
+    });
+    
+    
     
   
     player.handleInput(keys);
