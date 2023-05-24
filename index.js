@@ -6,6 +6,7 @@ const c = canvas.getContext('2d')
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
+const projectiles = [];
 const enemies = [];
 const ghosts = [];
 
@@ -319,7 +320,18 @@ function animate() {
         ghost.update(player);
         ghost.draw();
     });
-
+    projectiles.forEach((projectile, index) => {
+        projectile.update();
+        if (projectile.x + projectile.radius < 0 || 
+            projectile.x - projectile.radius > canvas.width ||
+            projectile.y + projectile.radius < 0 ||
+            projectile.y - projectile.radius > canvas.height ) {
+            setTimeout(() => {
+            projectiles.splice(index, 1)
+            }, 0)}
+    })
+    
+  
     player.handleInput(keys);
     player.draw();
     player.update();
