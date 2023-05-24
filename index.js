@@ -1,6 +1,3 @@
-let fps = 60; // Set the desired frame rate
-let lastTime = 0;
-
 let camera = new Camera();
 
 const canvas = document.querySelector('canvas')
@@ -16,7 +13,7 @@ const enemy1 = new Enemy(400, 300, 20, 20, './img/PLayerSprite/Bat.png');
 const enemy2 = new Enemy(800, 200, 20, 20, './img/PlayerSprite/Bat.png');
 
 const ghost1 = new Ghost(200, 300, 20, 20, 'black');
-const ghost2 = new Ghost(600, 200, 20, 20, 'purple');
+const ghost2 = new Ghost(600, 200, 20, 20, 'purple')
 
 enemies.push(enemy1, enemy2);
 ghosts.push(ghost1, ghost2);
@@ -30,7 +27,6 @@ const player = new Player({
 
     imageSrc: './img/PlayerSprite/playerIdle.png',
 
-    frameRate: 11,
     animations: {
         idleRight: {
             frameRate: 1,
@@ -40,25 +36,25 @@ const player = new Player({
         },
         runRight: {
             frameRate: 4,
-            frameBuffer: 8,
+            frameBuffer: 30,
             loop: true,
             imageSrc: './img/PlayerSprite/playerRight.png',
         },
         runLeft: {
             frameRate: 4,
-            frameBuffer: 8,
+            frameBuffer: 30,
             loop: true,
             imageSrc: './img/PlayerSprite/playerLeft.png',
         },
         runUp: {
             frameRate: 4,
-            frameBuffer: 8,
+            frameBuffer: 30,
             loop: true,
             imageSrc: './img/PlayerSprite/playerUp.png'
         },
         runDown: {
             frameRate: 4,
-            frameBuffer: 8,
+            frameBuffer: 30,
             loop: true,
             imageSrc: './img/PlayerSprite/playerDown.png'
         },
@@ -292,50 +288,45 @@ function gameOver() {
 }
 
 
-function animate(currentTime) {
+function animate() {
     if (player.health <= 0) {
         gameOver();
         return;
     }
     window.requestAnimationFrame(animate);
-    let elapsedTime = currentTime - lastTime;
 
-    // Checking if there has been enought time to draw a new frame.  
-    if (elapsedTime > 1000 / fps) {
-        camera.x = player.position.x - canvas.width / 2 / camera.scale;  
-        camera.y = player.position.y - canvas.height / 2 / camera.scale;  
+    camera.x = player.position.x - canvas.width / 2 / camera.scale;  
+    camera.y = player.position.y - canvas.height / 2 / camera.scale;  
 
-        // increase camera scale to zoom in
-        camera.scale = 3;  // 200% zoom (The higher the more zoomed in)
-        camera.preRender();
-        background.draw();
-        doors.forEach((door) => {
-            door.draw();
-        });
+    // increase camera scale to zoom in
+    camera.scale = 3;  // 200% zoom (The higher the more zoomed in)
+    camera.preRender();
+    background.draw();
+    doors.forEach((door) => {
+        door.draw();
+    });
 
-        enemies.forEach((enemy) => {
-            enemy.update(player);
-            enemy.draw();
-        });
+    enemies.forEach((enemy) => {
+        enemy.update(player);
+        enemy.draw();
+    });
 
-        ghosts.forEach((ghost) => {
-            ghost.update(player);
-            ghost.draw();
-        });
+    ghosts.forEach((ghost) => {
+        ghost.update(player);
+        ghost.draw();
+    });
 
-        player.handleInput(keys);
-        player.draw();
-        player.update();
-        
+    player.handleInput(keys);
+    player.draw();
+    player.update();
+    
 
-        c.save();
-        c.globalAlpha = overlay.opacity;
-        c.fillStyle = 'black';
-        c.fillRect(0, 0, canvas.width, canvas.height);
-        c.restore();
+    c.save();
+    c.globalAlpha = overlay.opacity;
+    c.fillStyle = 'black';
+    c.fillRect(0, 0, canvas.width, canvas.height);
+    c.restore();
 
-        lastTime = currentTime;
-    }
     camera.postRender();
     healthBar.draw();
 }
