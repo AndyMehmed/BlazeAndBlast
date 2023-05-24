@@ -319,7 +319,6 @@ function animate() {
     player.handleInput(keys);
     player.draw();
     player.update();
-    
 
     c.save();
     c.globalAlpha = overlay.opacity;

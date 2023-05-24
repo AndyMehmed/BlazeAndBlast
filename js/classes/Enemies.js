@@ -18,6 +18,10 @@ class Enemy {
         };
         this.speed = 0.3;
         this.followingPlayer = false;
+
+        //Added a timer to make the player take damages every X seconds
+        this.damageTimer = null;
+        this.damageInterval = 1000;
     }
 
     draw() {
@@ -43,10 +47,20 @@ class Enemy {
             player.position.y + player.height > this.position.y &&
             player.position.y < this.position.y + this.height
         ) {
-            player.health -= 1;  // Player takes damage when colliding with an enemy
+
+        if (!this.damageTimer) {
+            this.damageTimer = setInterval(() => {
+                player.health -= 20; // Player takes damage
+                document.querySelector('#playerHealth').style.width = player.health + '%';
+            }, this.damageInterval);
         }
-        
-    
+        } else {
+        //Clear the damage timer if player is not colliding
+        if (this.damageTimer) {
+            clearInterval(this.damageTimer);
+            this.damageTimer = null;
+            }
+        }
 
         if (this.followingPlayer) {
             let newVelocityX = (dx / distance) * this.speed;

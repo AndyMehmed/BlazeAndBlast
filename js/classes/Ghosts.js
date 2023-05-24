@@ -16,10 +16,14 @@ class Ghost {
             x: 0,
             y: 0,
         };
-        this.speed = 0.3;
+        this.speed = 0.03;
 
         // Set the initial state of not following the player.
         this.followingPlayer = false;
+
+        //Added a timer to make the player take damages every X seconds
+        this.damageTimer = null;
+        this.damageInterval = 500;
     }
 
     // Draw the ghost on the canvas.
@@ -39,7 +43,7 @@ class Ghost {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         // Check if the distance is less than or equal to 100, indicating that the ghost should start following the player.
-        if (distance <= 100) {
+        if (distance <= 150) {
             this.followingPlayer = true;
         }
 
@@ -49,7 +53,19 @@ class Ghost {
             player.position.y + player.height > this.position.y &&
             player.position.y < this.position.y + this.height
         ) {
-            player.health -= 1;  // Player takes damage when colliding with an enemy
+
+        if (!this.damageTimer) {
+            this.damageTimer = setInterval(() => {
+                player.health -= 20; // Player takes damage
+                document.querySelector('#playerHealth').style.width = player.health + '%';
+            }, this.damageInterval);
+        }
+        } else {
+        //Clear the damage timer if player is not colliding
+        if (this.damageTimer) {
+            clearInterval(this.damageTimer);
+            this.damageTimer = null;
+            }
         }
 
         // If the ghost is following the player, update its velocity and position.
