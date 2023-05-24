@@ -60,6 +60,8 @@ update() {
     this.updateHitbox();
     this.checkForVerticalCollisions();
     this.updateFrames();
+    //Ritar ut hitbox, ta bort sen!
+    this.drawHitbox();
 }
 
 // all the movement is for the player is handled here, also the sprite returns to the same state if key is released.
@@ -69,20 +71,20 @@ handleInput(keys) {
 // Handle horizontal movement
 let horizontalVelocity = 0;
 if (keys.d.pressed) {
-    horizontalVelocity = 3;
+    horizontalVelocity = 1;
     this.lastDirection = 'right';
 } else if (keys.a.pressed) {
-    horizontalVelocity = -3;
+    horizontalVelocity = -1;
     this.lastDirection = 'left';
 }
 
 // Handle vertical movement
 let verticalVelocity = 0;
 if (keys.w.pressed) {
-    verticalVelocity = -3; // moving up
+    verticalVelocity = -1; // moving up
     this.lastDirection = 'up';
 } else if (keys.s.pressed) {
-    verticalVelocity = 3; // moving down
+    verticalVelocity = 1; // moving down
     this.lastDirection = 'down';
 }
 
@@ -152,6 +154,14 @@ updateHitbox() {
         width: 25,
         height: 35,
     };
+}
+
+drawHitbox() {
+    c.beginPath();
+    c.strokeStyle = 'red'; // Change color according to your preference
+    c.lineWidth = 2; // Adjust line width according to your preference
+    c.strokeRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height);
+    c.closePath();
 }
 
 checkForHorizontalCollisions() {

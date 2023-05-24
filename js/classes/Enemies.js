@@ -37,7 +37,6 @@ class Enemy {
             this.followingPlayer = true;
         }
 
-
         if (
             player.position.x < this.position.x + this.width &&
             player.position.x + player.width > this.position.x &&
