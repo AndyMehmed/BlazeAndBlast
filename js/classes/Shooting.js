@@ -40,12 +40,14 @@ class Projectile {
 }
 
 addEventListener('click', (event) => {
+  console.log('Player position:', player.position.x, player.position.y);
+  console.log('Mouse coordinates:', event.clientX, event.clientY);
+
   const angle = Math.atan2(
     event.clientY - canvas.height / 2,
     event.clientX - canvas.width / 2
   );
 
-  //Projectile speed
   const velocity = {
     x: Math.cos(angle) * 1,
     y: Math.sin(angle) * 1

@@ -73,7 +73,7 @@ const player = new Player({
             loop: true,
             imageSrc: './img/PlayerSprite/playerIdle.png',
         },
-        
+
         enterDoor: {
             frameRate: 4,
             frameBuffer: 4,
@@ -123,7 +123,6 @@ let levels = {
             },
             imageSrc: './img/Maps/Level2.png',
             })
-
 
             item = new Sprite({
                 position: {
@@ -176,7 +175,6 @@ let levels = {
                 frameBuffer: 100,
             });
 
-
         // Create enemy instances
         const enemy1 = new Enemy(900, 380, 20, 20, './img/enemies/spiritDown.png', {
             // Animation configurations for enemy1
@@ -205,7 +203,6 @@ let levels = {
             loop: true
             }
         });
-
 
         const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
             // Animation configurations for enemy2
