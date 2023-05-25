@@ -1,4 +1,3 @@
-// The class representing an Enemy in the game
 class Enemy {
     constructor(x, y, width, height, imageSrc) {
         this.position = {
@@ -23,14 +22,19 @@ class Enemy {
         this.damageTimer = null;
         this.damageInterval = 500;
     }
-
+  
     draw() {
-        if (this.imageLoaded) {
-            c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
-        }
+      if (this.imageLoaded) {
+        c.drawImage(
+          this.image,
+          this.position.x,
+          this.position.y,
+          this.width,
+          this.height
+        );
+      }
     }
-
-    // Updates the enemy position based on the player
+  
     update(player) {
         const dx = player.position.x - this.position.x;
         const dy = player.position.y - this.position.y;
