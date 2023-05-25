@@ -2,3 +2,37 @@ body {
     margin: 0;
     background-color: black;
 }
+
+#container {
+    position: relative;
+    display: inline-block;
+}
+
+#healthoverlay  {
+    position: absolute;
+    display: flex;
+    width: 33%;
+    align-items: center;
+    padding: 20px;
+}
+
+#healthbar   {
+    position: relative;
+    height: 30px;
+    width: 100%;
+}
+
+#healthbackground   {
+    background-color: rgb(121, 1, 1);
+    height: 30px;
+}
+
+#playerHealth    {
+    position: absolute;
+    background: rgb(0, 167, 0);
+    border-right: 2px solid white;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}

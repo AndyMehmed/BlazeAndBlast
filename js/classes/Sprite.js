@@ -35,6 +35,7 @@ class Sprite {
             console.log(this.animations)
         }
     }
+
 draw() {
     if (!this.loaded) return
     const cropbox = {

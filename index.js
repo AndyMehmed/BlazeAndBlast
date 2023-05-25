@@ -9,15 +9,6 @@ canvas.height = innerHeight;
 const enemies = [];
 const ghosts = [];
 
-const enemy1 = new Enemy(400, 300, 20, 20, './img/PLayerSprite/Bat.png');
-const enemy2 = new Enemy(800, 200, 20, 20, './img/PlayerSprite/Bat.png');
-
-const ghost1 = new Ghost(200, 300, 20, 20, 'black');
-const ghost2 = new Ghost(600, 200, 20, 20, 'purple')
-
-enemies.push(enemy1, enemy2);
-ghosts.push(ghost1, ghost2);
-
 let parsedCollisions
 let collisionBlocks
 let background
@@ -124,6 +115,15 @@ let levels = {
             },
             imageSrc: './img/Maps/Level2.png',
             })
+
+            const enemy1 = new Enemy(100, 100, 20, 20, './img/PLayerSprite/Bat.png');
+            const enemy2 = new Enemy(200, 200, 20, 20, './img/PlayerSprite/Bat.png');
+
+            const ghost1 = new Ghost(300, 300, 20, 20, 'black');
+            const ghost2 = new Ghost(400, 400, 20, 20, 'purple')
+
+            enemies.push(enemy1, enemy2);
+            ghosts.push(ghost1, ghost2);
             
             doors = [
                 new Sprite({
@@ -160,7 +160,14 @@ let levels = {
             imageSrc: './img/Maps/Level2.png',
             })
 
+            const enemy1 = new Enemy(400, 300, 20, 20, './img/PLayerSprite/Bat.png');
+            const enemy2 = new Enemy(800, 200, 20, 20, './img/PlayerSprite/Bat.png');
 
+            const ghost1 = new Ghost(200, 300, 20, 20, 'black');
+            const ghost2 = new Ghost(600, 200, 20, 20, 'purple')
+
+            enemies.push(enemy1, enemy2);
+            ghosts.push(ghost1, ghost2);
 
             doors = [
                 new Sprite({

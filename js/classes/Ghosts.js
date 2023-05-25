@@ -16,7 +16,7 @@ class Ghost {
             x: 0,
             y: 0,
         };
-        this.speed = 0.03;
+        this.speed = 0.3;
 
         // Set the initial state of not following the player.
         this.followingPlayer = false;
@@ -49,8 +49,8 @@ class Ghost {
 
         if (
             player.position.x < this.position.x + this.width &&
-            player.position.x + player.width > this.position.x &&
-            player.position.y + player.height > this.position.y &&
+            player.position.x + player.width * 0.475 > this.position.x &&
+            player.position.y + player.height * 0.475 > this.position.y &&
             player.position.y < this.position.y + this.height
         ) {
 

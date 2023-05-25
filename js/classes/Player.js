@@ -60,8 +60,6 @@ update() {
     this.updateHitbox();
     this.checkForVerticalCollisions();
     this.updateFrames();
-    //Ritar ut hitbox, ta bort sen!
-    this.drawHitbox();
 }
 
 // all the movement is for the player is handled here, also the sprite returns to the same state if key is released.
@@ -154,14 +152,6 @@ updateHitbox() {
         width: 25,
         height: 35,
     };
-}
-
-drawHitbox() {
-    c.beginPath();
-    c.strokeStyle = 'red'; // Change color according to your preference
-    c.lineWidth = 2; // Adjust line width according to your preference
-    c.strokeRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height);
-    c.closePath();
 }
 
 checkForHorizontalCollisions() {
