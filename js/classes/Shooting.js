@@ -1,11 +1,27 @@
 class Projectile {
     constructor(x, y, radius, color, velocity) {
-        this.x = x;
-        this.y = y;
-        this.radius = radius;
-        this.color = color;
-        this.velocity = velocity;
+      this.x = x;
+      this.y = y;
+      this.radius = radius;
+      this.color = color;
+      this.velocity = velocity;
+      this.enemyHit = null; // Track the enemy being hit
     }
+
+    checkCollision(enemy) {
+      if (
+        this.x < enemy.position.x + enemy.width &&
+        this.x + this.radius > enemy.position.x &&
+        this.y + this.radius > enemy.position.y &&
+        this.y < enemy.position.y + enemy.height
+      ) {
+        // Projectile has hit the enemy
+        this.enemyHit = enemy; // Store the enemy being hit
+        return true;
+      }
+      return false;
+    }
+
 
     draw() {
         c.beginPath();
@@ -16,31 +32,31 @@ class Projectile {
 
     update() {
         this.draw();
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
+        this.x = this.x + this.velocity.x;
+        this.y = this.y + this.velocity.y;
     }
 }
 
-// Event listener for the "click" event
-addEventListener('click', function (event) {
-    // Calculate the angle between the center of the canvas and the clicked position
+addEventListener('click', (event) => {
     const angle = Math.atan2(
-        event.clientY - canvas.height / 2,
-        event.clientX - canvas.width / 2
+      event.clientY - canvas.height / 2,
+      event.clientX - canvas.width / 2
     );
 
-    // Calculate the velocity vector based on the angle
     const velocity = {
-        x: Math.cos(angle),
-        y: Math.sin(angle)
+        x: Math.cos(angle) * 5, // Adjust the speed of the projectiles by changing the multiplier
+        y: Math.sin(angle) * 5 // Adjust the speed of the projectiles by changing the multiplier
     };
 
-    // Create a new Projectile object with the initial position at the center of the canvas,
-    // a radius of 5, color red, and the calculated velocity vector
     projectiles.push(
-        new Projectile(canvas.width / 2, canvas.height / 2, 5, 'red', velocity)
-    );
-});
+        new Projectile(
+        player.position.x,
+        player.position.y,
+        5,
+        'red',
+        velocity
+        ))
+        })
 
 // Animation function (assumed to be defined elsewhere)
 function animate() {
@@ -53,5 +69,3 @@ function animate() {
 
 // Call the "animate()" function to start the animation loop
 animate();
-
-
