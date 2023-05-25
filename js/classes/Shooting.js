@@ -52,7 +52,7 @@ addEventListener('click', (event) => {
         new Projectile(
         player.position.x + player.width / 4,
         player.position.y + player.width / 4,
-        5,
+        3,
         'red',
         velocity
         ))
