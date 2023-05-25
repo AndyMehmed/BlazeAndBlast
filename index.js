@@ -22,8 +22,6 @@ const player = new Player({
 
     health: 100,
 
-
-    frameRate: 11,
     animations: {
         idleRight: {
             frameRate: 1,
@@ -107,6 +105,8 @@ let levels = {
     //-----LEVEL 1-----//
     1: {
         init: () => {
+            enemies.length = 0;
+            ghosts.length = 0;
             parsedCollisions = collisionsLevel1.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -241,15 +241,11 @@ let levels = {
         },
     },
 
-
-
-
-
     //-----LEVEL 2-----//
     2: {
         init: () => {
-            enemies.splice(0);
-            ghosts.splice(0);
+            enemies.length = 0;
+            ghosts.length = 0;
             parsedCollisions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -354,8 +350,8 @@ let levels = {
     //-----LEVEL 3-----//
     3: {
         init: () => {
-            enemies.splice(0);
-            ghosts.splice(0);
+            enemies.length = 0;
+            ghosts.length = 0;
             parsedCollisions = collisionsLevel3.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -387,7 +383,6 @@ let levels = {
             ]
         },
     },
-
 
     //-----LEVEL 4-----//
     4: {
@@ -423,7 +418,6 @@ let levels = {
             ]
         },
     },
-    
 }
 
 // Function that makes the game think that you are not pressing the keys, 
@@ -457,9 +451,8 @@ function gameOver() {
         c.drawImage(gameOverImage, 0, 0, canvas.width, canvas.height);
     }
 
-    // You could add more game over logic here, such as a button to restart the game.
+    // You could add more Game-Over logic here, such as a button to restart the game.
 }
-
 
 function animate() {
     if (player.health <= 0) {
