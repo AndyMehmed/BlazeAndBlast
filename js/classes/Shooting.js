@@ -40,25 +40,28 @@ class Projectile {
 }
 
 addEventListener('click', (event) => {
-    const angle = Math.atan2(
-      event.clientY - canvas.height / 2,
-      event.clientX - canvas.width / 2,
-    );
-  
-    const velocity = {
-        x: Math.cos(angle) * 5, // Adjust the speed of the projectiles by changing the multiplier
-        y: Math.sin(angle) * 5 // Adjust the speed of the projectiles by changing the multiplier
-    };
+  const angle = Math.atan2(
+    event.clientY - canvas.height / 2,
+    event.clientX - canvas.width / 2
+  );
 
-    projectiles.push(
-        new Projectile(
-        player.position.x + player.width / 4,
-        player.position.y + player.width / 4,
-        3,
-        'red',
-        velocity
-        ))
-        })
+  //Projectile speed
+  const velocity = {
+    x: Math.cos(angle) * 1,
+    y: Math.sin(angle) * 1
+  };
+
+  projectiles.push(
+    new Projectile(
+      player.position.x,
+      player.position.y,
+      2,
+      'red',
+      velocity
+    )
+  );
+});
+
 
 // Animation function (assumed to be defined elsewhere)
 function animate() {

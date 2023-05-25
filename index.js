@@ -107,6 +107,8 @@ let levels = {
     //-----LEVEL 1-----//
     1: {
         init: () => {
+            enemies.length = 0;
+            ghosts.length = 0;
             parsedCollisions = collisionsLevel1.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -181,13 +183,11 @@ let levels = {
             idle: {
             imageSrc: './img/enemies/spiritDown.png',
             frameRate: 4,
-            frameBuffer: 2,
             loop: true
             },
             run: {
             imageSrc: './img/enemies/spiritDown.png',
             frameRate: 4,
-            frameBuffer: 30,
             loop: true
             }
         });
@@ -197,13 +197,11 @@ let levels = {
             idle: {
             imageSrc: './img/enemies/spiritDown.png',
             frameRate: 4,
-            frameBuffer: 2,
-            loop: true
+            loop: false
             },
             run: {
             imageSrc: './img/enemies/spiritDown.png',
             frameRate: 4,
-            frameBuffer: 30,
             loop: true
             }
         });
@@ -214,13 +212,11 @@ let levels = {
             idle: {
             imageSrc: './img/enemies/ghost.png',
             frameRate: 4,
-            frameBuffer: 2,
-            loop: true
+            loop: false
             },
             run: {
             imageSrc: './img/enemies/ghost.png',
             frameRate: 4,
-            frameBuffer: 30,
             loop: true
             }
         });
@@ -230,13 +226,11 @@ let levels = {
             idle: {
             imageSrc: './img/enemies/ghost.png',
             frameRate: 4,
-            frameBuffer: 2,
             loop: true
             },
             run: {
             imageSrc: './img/enemies/ghost.png',
             frameRate: 4,
-            frameBuffer: 30,
             loop: true
             }
         });
@@ -268,8 +262,8 @@ let levels = {
     //-----LEVEL 2-----//
     2: {
         init: () => {
-            enemies.splice(0);
-            ghosts.splice(0);
+            enemies.length = 0;
+            ghosts.length = 0;
             parsedCollisions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks

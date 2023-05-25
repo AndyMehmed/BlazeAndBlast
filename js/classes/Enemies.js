@@ -1,5 +1,5 @@
 class Enemy {
-    constructor(x, y, width, height, imageSrc, animations, frameBuffer, frameRate) {
+    constructor(x, y, width, height, imageSrc, animations, frameRate) {
         this.position = {
             x: x,
             y: y,
@@ -9,6 +9,7 @@ class Enemy {
         this.image = new Image();
         this.image.onload = () => {
             this.imageLoaded = true;
+            this.frameWidth = this.image.width / this.frameCount; // Width of each frame
         };
         this.image.src = imageSrc;
         this.velocity = {
@@ -19,18 +20,15 @@ class Enemy {
         this.followingPlayer = false;
         this.damageTimer = null;
         this.damageInterval = 500;
-        this.loaded = false;
         this.animations = animations;
         this.currentAnimation = null;
-        this.frameRate = 1;
-        this.frameBuffer = 2;
-        this.currentFrame = 0;
+        this.frameRate = 2;
+        this.currentFrame = 1;
         this.elapserFrames = 0;
 
         // Animation properties
-        this.currentFrame = 0;
+        this.currentFrame = 1;
         this.frameCount = 4; // Number of frames in the animation
-        this.frameWidth = this.image.width / this.frameCount; // Width of each frame
     }
 
     drawAnimation() {
