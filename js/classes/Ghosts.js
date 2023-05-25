@@ -1,37 +1,87 @@
-// The class representing a Ghost in the game.
 class Ghost {
-    constructor(x, y, width, height, color) {
-
-        // Store the initial position, size, and color of the ghost.
+    constructor(x, y, width, height, imageSrc, animations, frameBuffer, frameRate) {
         this.position = {
             x: x,
             y: y,
         };
         this.width = width;
         this.height = height;
-        this.color = color;
-
-        // Initialize the velocity and speed of the ghost.
+        this.image = new Image();
+        this.image.onload = () => {
+            this.imageLoaded = true;
+        };
+        this.image.src = imageSrc;
         this.velocity = {
             x: 0,
             y: 0,
         };
         this.speed = 0.3;
-
-        // Set the initial state of not following the player.
         this.followingPlayer = false;
-
-        //Added a timer to make the player take damages every X seconds
         this.damageTimer = null;
         this.damageInterval = 500;
+        this.loaded = false;
+        this.animations = animations;
+        this.currentAnimation = null;
+        this.frameRate = 1;
+        this.frameBuffer = 2;
+        this.currentFrame = 0;
+        this.elapserFrames = 0;
+
+        // Animation properties
+        this.currentFrame = 0;
+        this.frameCount = 4; // Number of frames in the animation
+        this.frameWidth = this.image.width / this.frameCount; // Width of each frame
     }
 
-    // Draw the ghost on the canvas.
-    draw() {
+    drawAnimation() {
+        if (!this.imageLoaded) return;
 
-        // Set the color and size of the ghost.
-        c.fillStyle = this.color;
-        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        const cropbox = {
+            position: {
+                x: this.frameWidth * this.currentFrame,
+                y: 0,
+            },
+            width: this.frameWidth,
+            height: this.image.height,
+        };
+
+        c.drawImage(
+            this.image,
+            cropbox.position.x,
+            cropbox.position.y,
+            cropbox.width,
+            cropbox.height,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        );
+
+        this.updateFrames();
+    }
+
+    updateFrames() {
+        this.elapserFrames++; // Increment the frame counter
+    
+        if (this.elapserFrames % (10 * this.frameRate) === 0) {
+            this.currentFrame = (this.currentFrame + 1) % this.frameCount;
+        }
+    }
+
+    draw() {
+        if (this.imageLoaded) {
+            if (this.currentAnimation) {
+                this.drawAnimation();
+            } else {
+                c.drawImage(
+                    this.image,
+                    this.position.x,
+                    this.position.y,
+                    this.width,
+                    this.height
+                );
+            }
+        }
     }
 
     // Update the ghost's position based on the player's position.
@@ -43,7 +93,7 @@ class Ghost {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         // Check if the distance is less than or equal to 100, indicating that the ghost should start following the player.
-        if (distance <= 150) {
+        if (distance <= 100) {
             this.followingPlayer = true;
         }
 
@@ -85,4 +135,3 @@ class Ghost {
         }
     }
 }
-
