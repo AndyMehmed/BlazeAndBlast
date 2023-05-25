@@ -37,7 +37,7 @@ class Enemy {
         const distance = Math.sqrt(dx * dx + dy * dy);
     
         //followingplayer makes the Enemies follow the player if within a certain distance
-        if (distance <= 200) {
+        if (distance <= 150) {
             this.followingPlayer = true;
         }
 

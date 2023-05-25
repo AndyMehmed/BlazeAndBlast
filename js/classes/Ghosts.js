@@ -1,4 +1,4 @@
-// The Ghost class represents a ghost character in a game.
+// The class representing a Ghost in the game.
 class Ghost {
     constructor(x, y, width, height, color) {
 

@@ -297,7 +297,7 @@ function animate() {
     camera.y = player.position.y - canvas.height / 2 / camera.scale;  
 
     // increase camera scale to zoom in
-    camera.scale = 3;  // 200% zoom (The higher the more zoomed in)
+    camera.scale = 4;  // 300% zoom (The higher the more zoomed in)
     camera.preRender();
     background.draw();
     doors.forEach((door) => {
