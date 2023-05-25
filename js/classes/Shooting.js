@@ -22,7 +22,9 @@ class Projectile {
       return false;
     }
       
-    
+
+
+
     draw() {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
@@ -40,7 +42,7 @@ class Projectile {
 addEventListener('click', (event) => {
     const angle = Math.atan2(
       event.clientY - canvas.height / 2,
-      event.clientX - canvas.width / 2
+      event.clientX - canvas.width / 2,
     );
   
     const velocity = {

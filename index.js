@@ -139,6 +139,23 @@ let levels = {
                 frameRate: 4, // Specify the total number of frames in the animation
                 frameBuffer: 16,
             });
+
+            item3 = new Sprite({
+                position: {
+                    x: 1040,
+                    y: 25,
+                },
+                imageSrc: './img/Items/Torch.png',
+                animations: {
+                    defaultAnimation: {
+                        imageSrc: './img/Items/Torch.png',
+                        frameRate: 4,
+                        
+                    },
+                },
+                frameRate: 4, // Specify the total number of frames in the animation
+                frameBuffer: 16,
+            });
             
             item2 = new Sprite({
                 position: {
@@ -487,9 +504,10 @@ function animate() {
     });
   
     // Draw the items
-    if (level === 1) {
+    if (level === 1,2) {
       item.draw();
       item2.draw();
+      item3.draw();
     }
   
     // Draw the enemies
