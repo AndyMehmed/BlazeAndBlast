@@ -67,7 +67,7 @@ class Enemy {
             this.currentFrame = (this.currentFrame + 1) % this.frameCount;
         }
     }
-
+  
     draw() {
         if (this.imageLoaded) {
             if (this.currentAnimation) {
@@ -83,8 +83,7 @@ class Enemy {
             }
         }
     }
-
-    // Updates the enemy position based on the player
+  
     update(player) {
         const dx = player.position.x - this.position.x;
         const dy = player.position.y - this.position.y;
@@ -97,8 +96,8 @@ class Enemy {
     
         if (
             player.position.x < this.position.x + this.width &&
-            player.position.x + player.width * 0.475 > this.position.x &&
-            player.position.y + player.height * 0.475 > this.position.y &&
+            player.position.x + player.width * 0.47 > this.position.x &&
+            player.position.y + player.height * 0.47 > this.position.y &&
             player.position.y < this.position.y + this.height
         ) {
             if (!this.damageTimer) {

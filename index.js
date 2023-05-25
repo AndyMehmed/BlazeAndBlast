@@ -6,6 +6,7 @@ const c = canvas.getContext('2d')
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
+const projectiles = [];
 const enemies = [];
 const ghosts = [];
 
@@ -19,6 +20,10 @@ const player = new Player({
 
     imageSrc: './img/PlayerSprite/playerIdle.png',
 
+    health: 100,
+
+
+    frameRate: 11,
     animations: {
         idleRight: {
             frameRate: 1,
@@ -498,8 +503,69 @@ function animate() {
       ghost.update(player);
       ghost.drawAnimation();
     });
+    projectiles.forEach((projectile, index) => {
+        projectile.update();
+    
+        for (let i = 0; i < collisionBlocks.length; i++) {
+            const collisionBlock = collisionBlocks[i];
+            
+            if (
+                projectile.x - projectile.radius < collisionBlock.position.x + collisionBlock.width &&
+                projectile.x + projectile.radius > collisionBlock.position.x &&
+                projectile.y + projectile.radius > collisionBlock.position.y &&
+                projectile.y - projectile.radius < collisionBlock.position.y + collisionBlock.height
+            ) {
+                // Projectile has hit a collisionBlock (wall), remove it
+                projectiles.splice(index, 1);
+                break;  // Exit the loop early since we've removed the projectile
+            }
+        }
+    
+        enemies.forEach((enemy, enemyIndex) => {
+            if (projectile.checkCollision(enemy)) {
+                // Projectile has hit the enemy
+                // Do something with enemy radius here
+                if (enemy.radius - 10 > 10) {
+                    gsap.to(enemy, {
+                        radius: enemy.radius - 10
+                    })
+                    setTimeout(() => {
+                        // Remove the projectile
+                        projectiles.splice(index, 1)
+                    }, 0)
+                } else {
+                    setTimeout(() => {
+                        // Remove the enemy and the projectile
+                        enemies.splice(enemyIndex, 1)
+                        projectiles.splice(index, 1)
+                    }, 0)
+                }
+            }
+        });
+    
+        ghosts.forEach((ghost, ghostIndex) => {
+            if (projectile.checkCollision(ghost)) {
+                // Projectile has hit the ghost, remove them
+                projectiles.splice(index, 1);
+                ghosts.splice(ghostIndex, 1);
+                // Perform any other necessary actions (e.g., reduce ghost health)
+            }
+        });
+    
+        // Check if the projectile is outside of the canvas
+        if (
+            projectile.x + projectile.radius < 0 || 
+            projectile.x - projectile.radius > canvas.width ||
+            projectile.y + projectile.radius < 0 ||
+            projectile.y - projectile.radius > canvas.height
+        ) {
+            projectiles.splice(index, 1);
+        }
+    });
+    
+    
+    
   
-    // Draw the player
     player.handleInput(keys);
     player.draw();
     player.update();

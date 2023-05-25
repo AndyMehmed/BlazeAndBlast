@@ -90,7 +90,6 @@ if (keys.w.pressed) {
 this.velocity.x = horizontalVelocity;
 this.velocity.y = verticalVelocity;
 
-
 // Update sprite animation based on the last pressed key
 if (this.velocity.x !== 0 || this.velocity.y !== 0) {
     if (this.velocity.y < 0) {
