@@ -386,8 +386,8 @@ let levels = {
             doors = [
                 new Sprite({
                     position: {
-                        x: 175,
-                        y: 336,
+                        x: 985,
+                        y: 570,
                     },
                     imageSrc: './img/DoorSprite/door2.png',
                     frameRate: 5,
@@ -422,14 +422,14 @@ let levels = {
             doors = [
                 new Sprite({
                     position: {
-                        x: 175,
-                        y: 336,
+                        x: 1035,
+                        y: 250,
                     },
-                    imageSrc: './img/door2.png',
+                    imageSrc: './img/DoorSprite/door2.png',
                     frameRate: 5,
                     frameBuffer: 5,
                     loop: false,
-                    autoplay: false,
+                    autoplay: true,
                 }),
             ]
         },
