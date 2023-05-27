@@ -44,19 +44,19 @@ addEventListener('click', (event) => {
   console.log('Mouse coordinates:', event.clientX, event.clientY);
 
   const angle = Math.atan2(
-    event.clientY - canvas.height / 2,
-    event.clientX - canvas.width / 2
+    event.clientY - canvas.height / 1.8,
+    event.clientX - canvas.width / 1.9
   );
 
   const velocity = {
-    x: Math.cos(angle) * 1,
-    y: Math.sin(angle) * 1
+    x: Math.cos(angle) * 3,
+    y: Math.sin(angle) * 3
   };
 
   projectiles.push(
     new Projectile(
-      player.position.x,
-      player.position.y,
+      player.position.x + 12.5,
+      player.position.y + 17.5,
       2,
       'red',
       velocity
@@ -65,15 +65,5 @@ addEventListener('click', (event) => {
 });
 
 
-// Animation function (assumed to be defined elsewhere)
-function animate() {
-    // Clear the canvas
 
-    // Update and render each projectile in the "projectiles" array
-
-    // Call the "animate()" function again for the next frame
-}
-
-// Call the "animate()" function to start the animation loop
-animate();
 

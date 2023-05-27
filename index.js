@@ -112,8 +112,8 @@ let levels = {
             parsedCollisions = collisionsLevel1.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
-            player.position.x = 1000
-            player.position.y = 65
+            player.position.x = 45
+            player.position.y = 330
             if(player.currentAnimation) player.currentAnimation.isActive = false
 
             background = new Sprite({
@@ -121,59 +121,9 @@ let levels = {
                 x: 0,
                 y: 0,
             },
-            imageSrc: './img/Maps/Level2.png',
+            imageSrc: './img/Maps/Level1.png',
             })
 
-            item = new Sprite({
-                position: {
-                    x: 976,
-                    y: 25,
-                },
-                imageSrc: './img/Items/Torch.png',
-                animations: {
-                    defaultAnimation: {
-                        imageSrc: './img/Items/Torch.png',
-                        frameRate: 4,
-                        
-                    },
-                },
-                frameRate: 4, // Specify the total number of frames in the animation
-                frameBuffer: 16,
-            });
-
-            item3 = new Sprite({
-                position: {
-                    x: 1040,
-                    y: 25,
-                },
-                imageSrc: './img/Items/Torch.png',
-                animations: {
-                    defaultAnimation: {
-                        imageSrc: './img/Items/Torch.png',
-                        frameRate: 4,
-                        
-                    },
-                },
-                frameRate: 4, // Specify the total number of frames in the animation
-                frameBuffer: 16,
-            });
-            
-            item2 = new Sprite({
-                position: {
-                    x: 840,
-                    y: 100,
-                },
-                imageSrc: './img/Items/Spike_trap.png',
-                animations: {
-                    defaultAnimation: {
-                        imageSrc: './img/Items/Spike_trap.png',
-                        frameRate: 4,
-                        
-                    },
-                },
-                frameRate: 3, // Specify the total number of frames in the animation
-                frameBuffer: 100,
-            });
 
         // Create enemy instances
         const enemy1 = new Enemy(900, 380, 20, 20, './img/enemies/spiritDown.png', {
@@ -239,8 +189,8 @@ let levels = {
             doors = [
                 new Sprite({
                     position: {
-                        x: 96,
-                        y: 18,
+                        x: 985,
+                        y: 570,
                     },
                     imageSrc: './img/DoorSprite/door2.png',
                     frameRate: 5,
@@ -254,8 +204,6 @@ let levels = {
 
 
 
-
-
     //-----LEVEL 2-----//
     2: {
         init: () => {
@@ -264,8 +212,8 @@ let levels = {
             parsedCollisions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
-            player.position.x = 1000
-            player.position.y = 65
+            player.position.x = 57
+            player.position.y = 258
 
             if(player.currentAnimation) player.currentAnimation.isActive = false
 
@@ -276,6 +224,8 @@ let levels = {
             },
             imageSrc: './img/Maps/Level2.png',
             })
+
+
 
             // Create enemy instances
         const enemy1 = new Enemy(100, 100, 20, 20, './img/enemies/spiritDown.png', {
@@ -349,14 +299,14 @@ let levels = {
             doors = [
                 new Sprite({
                     position: {
-                        x: 96,
-                        y: 18,
+                        x: 1035,
+                        y: 250,
                     },
                     imageSrc: './img/DoorSprite/door2.png',
                     frameRate: 5,
                     frameBuffer: 5,
                     loop: false,
-                    autoplay: false,
+                    autoplay: true,
                 }),
             ]
         },
@@ -365,13 +315,13 @@ let levels = {
     //-----LEVEL 3-----//
     3: {
         init: () => {
-            enemies.splice(0);
-            ghosts.splice(0);
+            enemies.length = 0;
+            ghosts.length = 0;
             parsedCollisions = collisionsLevel3.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
-            player.position.x = 45
-            player.position.y = 330
+            player.position.x = 1000
+            player.position.y = 65
 
             if(player.currentAnimation) player.currentAnimation.isActive = false
 
@@ -383,11 +333,231 @@ let levels = {
             imageSrc: './img/Maps/Level3.png',
             })
 
+
+            item = new Sprite({
+                position: {
+                    x: 976,
+                    y: 25,
+                },
+                imageSrc: './img/Items/Torch.png',
+                animations: {
+                    defaultAnimation: {
+                        imageSrc: './img/Items/Torch.png',
+                        frameRate: 4,
+                        
+                    },
+                },
+                frameRate: 4, // Specify the total number of frames in the animation
+                frameBuffer: 16,
+            });
+
+            item3 = new Sprite({
+                position: {
+                    x: 1040,
+                    y: 25,
+                },
+                imageSrc: './img/Items/Torch.png',
+                animations: {
+                    defaultAnimation: {
+                        imageSrc: './img/Items/Torch.png',
+                        frameRate: 4,
+                        
+                    },
+                },
+                frameRate: 4, // Specify the total number of frames in the animation
+                frameBuffer: 16,
+            });
+            
+            item2 = new Sprite({
+                position: {
+                    x: 840,
+                    y: 100,
+                },
+                imageSrc: './img/Items/Spike_trap.png',
+                animations: {
+                    defaultAnimation: {
+                        imageSrc: './img/Items/Spike_trap.png',
+                        frameRate: 4,
+                        
+                    },
+                },
+                frameRate: 3, // Specify the total number of frames in the animation
+                frameBuffer: 100,
+            });
+
+            const enemy1 = new Enemy(100, 100, 20, 20, './img/enemies/spiritDown.png', {
+                // Animation configurations for enemy1
+                idle: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+      
+            const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/spiritDown.png', {
+                // Animation configurations for enemy2
+                idle: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+    
+    
+            const enemy3 = new Enemy(900, 380, 20, 20, './img/enemies/spiritDown.png', {
+                // Animation configurations for enemy1
+                idle: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+
+            const enemy4 = new Enemy(920, 380, 20, 20, './img/enemies/spiritDown.png', {
+                // Animation configurations for enemy1
+                idle: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+
+            const enemy5 = new Enemy(940, 380, 20, 20, './img/enemies/spiritDown.png', {
+                // Animation configurations for enemy1
+                idle: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+
+            const enemy6 = new Enemy(900, 360, 20, 20, './img/enemies/spiritDown.png', {
+                // Animation configurations for enemy1
+                idle: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+            const enemy7 = new Enemy(920, 360, 20, 20, './img/enemies/spiritDown.png', {
+                // Animation configurations for enemy1
+                idle: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+            const enemy8 = new Enemy(940, 360, 20, 20, './img/enemies/spiritDown.png', {
+                // Animation configurations for enemy1
+                idle: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+            const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
+                // Animation configurations for enemy2
+                idle: {
+                imageSrc: './img/enemies/ghost.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/ghost.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+    
+            const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/ghost.png', {
+                // Animation configurations for enemy2
+                idle: {
+                imageSrc: './img/enemies/ghost.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/ghost.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+    
+                enemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8);
+                ghosts.push(ghost1, ghost2);
+
+
             doors = [
                 new Sprite({
                     position: {
-                        x: 985,
-                        y: 570,
+                        x: 96,
+                        y: 18,
                     },
                     imageSrc: './img/DoorSprite/door2.png',
                     frameRate: 5,
@@ -403,11 +573,13 @@ let levels = {
     //-----LEVEL 4-----//
     4: {
         init: () => {
+            enemies.length = 0;
+            ghosts.length = 0;
             parsedCollisions = collisionsLevel4.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
-            player.position.x = 57
-            player.position.y = 258
+            player.position.x = 1067
+            player.position.y = 520
 
             if(player.currentAnimation) player.currentAnimation.isActive = false
 
@@ -419,17 +591,85 @@ let levels = {
             imageSrc: './img/Maps/Level4.png',
             })
 
+
+            const enemy1 = new Enemy(500, 200, 20, 20, './img/enemies/spiritDown.png', {
+                // Animation configurations for enemy1
+                idle: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+      
+            const enemy2 = new Enemy(400, 200, 20, 20, './img/enemies/spiritDown.png', {
+                // Animation configurations for enemy2
+                idle: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/spiritDown.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+    
+    
+            const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
+                // Animation configurations for enemy2
+                idle: {
+                imageSrc: './img/enemies/ghost.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/ghost.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+    
+            const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/ghost.png', {
+                // Animation configurations for enemy2
+                idle: {
+                imageSrc: './img/enemies/ghost.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/ghost.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+
+
             doors = [
                 new Sprite({
                     position: {
-                        x: 1035,
-                        y: 250,
+                        x: 16,
+                        y: 17,
                     },
-                    imageSrc: './img/DoorSprite/door2.png',
+                    imageSrc: './img/DoorSprite/Doorboss.png',
                     frameRate: 5,
                     frameBuffer: 5,
                     loop: false,
-                    autoplay: true,
+                    autoplay: false,
                 }),
             ]
         },
@@ -495,7 +735,7 @@ function animate() {
     });
   
     // Draw the items
-    if (level === 1,2) {
+    if (level === 3) {
       item.draw();
       item2.draw();
       item3.draw();
