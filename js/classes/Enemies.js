@@ -20,7 +20,7 @@ class Enemy {
         this.followingPlayer = false;
 
         this.damageTimer = null;
-        this.damageInterval = 500;
+        this.damageInterval = 800;
         
         this.frameRate = 1;
         this.elapserFrames = 0;

@@ -71,6 +71,10 @@ const player = new Player({
             loop: true,
             imageSrc: './img/PlayerSprite/playerIdle.png',
         },
+        // takeHit: {
+        //     imageSrc: './img/enemies/Take Hit - white silhoutte.png'
+        //     frameRate: 4,
+        // },
 
         enterDoor: {
             frameRate: 4,

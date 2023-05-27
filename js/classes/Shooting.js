@@ -61,17 +61,3 @@ addEventListener('click', (event) => {
     )
   );
 });
-
-
-// Animation function (assumed to be defined elsewhere)
-function animate() {
-    // Clear the canvas
-
-    // Update and render each projectile in the "projectiles" array
-
-    // Call the "animate()" function again for the next frame
-}
-
-// Call the "animate()" function to start the animation loop
-animate();
-
