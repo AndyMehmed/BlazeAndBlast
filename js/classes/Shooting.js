@@ -47,8 +47,8 @@ addEventListener('click', (event) => {
   );
 
   const velocity = {
-    x: Math.cos(angle) * 1,
-    y: Math.sin(angle) * 1
+    x: Math.cos(angle) * 2,
+    y: Math.sin(angle) * 2
   };
 
   projectiles.push(
