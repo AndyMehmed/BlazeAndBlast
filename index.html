@@ -1,99 +1,104 @@
-<head><meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="container">
-        <div id="healthoverlay">
-            <!-- player health -->
-            <div id="healthbar">
-                <div id="healthbackground"></div>
-                <div id="playerHealth"></div>
-            </div>
-        </div>
-        <canvas id="myCanvas"></canvas>
+  <div id="container">
+    <div id="menu">
+      <h1>Controls</h1>
+      <img src="img/explanation_controls.png" alt="explanation controls">
+      <button id="start-button">Start Game</button>
     </div>
+    <div id="healthoverlay">
+      <!-- player health -->
+      <div id="healthbar">
+        <div id="healthbackground"></div>
+        <div id="playerHealth"></div>
+      </div>
+    </div>
+    <canvas id="myCanvas"></canvas>
+  </div>
 
 
-    <script>
-        // Create an AudioContext instance
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      
-        // Load the gunshot sound
-        const gunshotSound = 'gunshot.mp3dd';
-        let gunshotBuffer = null; // Stores the audio buffer
-      
-        // Function to load and play the gunshot sound
-        function loadGunshotSound() {
-          const request = new XMLHttpRequest();
-          request.open('GET', gunshotSound, true);
-          request.responseType = 'arraybuffer';
-      
-          // Decode the audio data and play the sound
-          request.onload = function () {
-            audioContext.decodeAudioData(request.response, function (buffer) {
-              gunshotBuffer = buffer;
-              playGunshotSound();
-            });
-          };
-      
-          request.send();
-        }
-      
-        // Function to play the gunshot sound with adjustable volume
-        function playGunshotSound(volume = 1) {
-          if (!gunshotBuffer) {
-            return; // Audio buffer not yet loaded
-          }
-      
-          const source = audioContext.createBufferSource();
-          source.buffer = gunshotBuffer;
-      
-          // Create a gain node to control the volume
-          const gainNode = audioContext.createGain();
-          gainNode.gain.value = volume;
-      
-          // Connect the nodes
-          source.connect(gainNode);
-          gainNode.connect(audioContext.destination);
-      
-          // Start the audio playback
-          source.start(0);
-        }
-      
-        // Add event listener for mouse click
-        addEventListener('click', () => {
-          playGunshotSound(0.1); // Adjust the volume here (0.5 = 50% volume)
+  <script>
+    // Create an AudioContext instance
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Load the gunshot sound
+    const gunshotSound = 'gunshot.mp3dd';
+    let gunshotBuffer = null; // Stores the audio buffer
+
+    // Function to load and play the gunshot sound
+    function loadGunshotSound() {
+      const request = new XMLHttpRequest();
+      request.open('GET', gunshotSound, true);
+      request.responseType = 'arraybuffer';
+
+      // Decode the audio data and play the sound
+      request.onload = function () {
+        audioContext.decodeAudioData(request.response, function (buffer) {
+          gunshotBuffer = buffer;
+          playGunshotSound();
         });
-      
-        // Call the function to load the gunshot sound
-        loadGunshotSound();
-      </script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js" 
-    integrity="sha512-Mf/xUqfWvDIr+1B6zfnIDIiG7XHzyP/guXUWgV6PgaQoIFeXkJQR5XWh9fqAiCiRCpemabt3naV4jhDWVnuYDQ==" 
-    crossorigin="anonymous" 
-    referrerpolicy="no-referrer"></script>
+      };
 
-    <script src="js/classes/Camera.js"></script>
+      request.send();
+    }
 
-    <script src="js/utils.js"></script>
+    // Function to play the gunshot sound with adjustable volume
+    function playGunshotSound(volume = 1) {
+      if (!gunshotBuffer) {
+        return; // Audio buffer not yet loaded
+      }
 
-    <script src="js/data/collisions.js"></script>
+      const source = audioContext.createBufferSource();
+      source.buffer = gunshotBuffer;
 
-    <script src="js/classes/Sprite.js"></script>
+      // Create a gain node to control the volume
+      const gainNode = audioContext.createGain();
+      gainNode.gain.value = volume;
 
-    <script src="js/classes/Player.js"></script>
+      // Connect the nodes
+      source.connect(gainNode);
+      gainNode.connect(audioContext.destination);
 
-    <script src="js/classes/Enemies.js"></script>
+      // Start the audio playback
+      source.start(0);
+    }
 
-    <script src="js/classes/Ghosts.js"></script>
+    // Add event listener for mouse click
+    addEventListener('click', () => {
+      playGunshotSound(0.1); // Adjust the volume here (0.5 = 50% volume)
+    });
 
-    <script src="js/classes/Shooting.js"></script>
+    // Call the function to load the gunshot sound
+    loadGunshotSound();
+  </script>
 
-    <script src="js/eventlisteners.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"
+    integrity="sha512-Mf/xUqfWvDIr+1B6zfnIDIiG7XHzyP/guXUWgV6PgaQoIFeXkJQR5XWh9fqAiCiRCpemabt3naV4jhDWVnuYDQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="index.js"></script>
+  <script src="js/classes/Camera.js"></script>
 
-    
+  <script src="js/utils.js"></script>
+
+  <script src="js/data/collisions.js"></script>
+
+  <script src="js/classes/Sprite.js"></script>
+
+  <script src="js/classes/Player.js"></script>
+
+  <script src="js/classes/Enemies.js"></script>
+
+  <script src="js/classes/Ghosts.js"></script>
+
+  <script src="js/classes/Shooting.js"></script>
+
+  <script src="js/eventlisteners.js"></script>
+
+  <script src="index.js"></script>
+
+
 </body>

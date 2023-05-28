@@ -7,6 +7,27 @@ body {
     background-color: black;
 }
 
+#menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 9999;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+#start-button {
+    font-size: 24px; 
+    padding: 12px 24px; 
+    color: white;
+    background-color: black;
+}
+  
+#game-canvas {
+    display: none;
+}
+
 #container {
     position: relative;
     display: inline-block;

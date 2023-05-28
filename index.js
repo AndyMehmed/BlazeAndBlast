@@ -1,3 +1,14 @@
+//Function for the menu in beginning
+function startGame() {
+    const menu = document.getElementById('menu');
+    menu.style.display = 'none';
+  
+}
+  
+  // Event listener for the start button
+const startButton = document.getElementById('start-button');
+startButton.addEventListener('click', startGame);
+
 let camera = new Camera();
 
 const canvas = document.querySelector('canvas')
