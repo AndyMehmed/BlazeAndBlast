@@ -160,12 +160,12 @@ let levels = {
         const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy2
             idle: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             loop: false
             },
             run: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             loop: true
             }
@@ -218,32 +218,32 @@ let levels = {
 
 
             // Create enemy instances
-        const enemy1 = new Enemy(100, 100, 20, 20, './img/enemies/spiritDown.png', {
+        const enemy1 = new Enemy(100, 100, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy1
             idle: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 2,
             loop: true
             },
             run: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 30,
             loop: true
             }
         });
   
-        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/spiritDown.png', {
+        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy2
             idle: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 2,
             loop: true
             },
             run: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 30,
             loop: true
@@ -251,32 +251,32 @@ let levels = {
         });
 
 
-        const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
+        const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy2
             idle: {
-            imageSrc: './img/enemies/ghost.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 2,
             loop: true
             },
             run: {
-            imageSrc: './img/enemies/ghost.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 30,
             loop: true
             }
         });
 
-        const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/ghost.png', {
+        const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy2
             idle: {
-            imageSrc: './img/enemies/ghost.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 2,
             loop: true
             },
             run: {
-            imageSrc: './img/enemies/ghost.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 30,
             loop: true
