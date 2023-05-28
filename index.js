@@ -807,7 +807,6 @@ function animate() {
           projectile.active = false;
         }
     });
-      
 
     player.handleInput(keys);
     player.draw();
