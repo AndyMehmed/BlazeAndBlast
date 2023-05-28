@@ -1,5 +1,5 @@
 class Ghost {
-    constructor(x, y, width, height, imageSrc, animations, frameRate) {
+    constructor(x, y, width, height, imageSrc) {
       this.position = {
         x: x,
         y: y,
@@ -18,12 +18,11 @@ class Ghost {
       };
       this.speed = 0.3;
       this.followingPlayer = false;
+
       this.damageTimer = null;
       this.damageInterval = 500;
-      this.animations = animations;
-      this.currentAnimation = null;
+
       this.frameRate = 2;
-      this.currentFrame = 1;
       this.elapserFrames = 0;
   
       // Animation properties
@@ -137,14 +136,6 @@ class Ghost {
         // Draw the remaining health bar based on the health percentage
         c.fillStyle = healthBarColor;
         c.fillRect(healthBarX, healthBarY, remainingHealthBarWidth, healthBarHeight);
-      
-  
-      if (this.health <= 0) {
-        clearInterval(this.damageTimer);
-        this.damageTimer = null;
-        // Perform any necessary actions when the ghost is defeated
-        // e.g., remove it from the ghosts array
-      }
   
       if (this.followingPlayer) {
         this.velocity.x = (dx / distance) * this.speed;

@@ -1,5 +1,5 @@
 class Enemy {
-    constructor(x, y, width, height, imageSrc, animations, frameRate) {
+    constructor(x, y, width, height, imageSrc) {
       this.position = {
         x: x,
         y: y,
@@ -21,10 +21,8 @@ class Enemy {
   
       this.damageTimer = null;
       this.damageInterval = 500;
-      this.animations = animations;
-      this.currentAnimation = null;
+
       this.frameRate = 2;
-      this.currentFrame = 1;
       this.elapserFrames = 0;
   
       // Animation properties
@@ -120,7 +118,6 @@ class Enemy {
                 this.damageTimer = null;
             }
         }
-
 
         // Calculate health bar width
         const healthPercentage = this.health / this.maxHealth;
