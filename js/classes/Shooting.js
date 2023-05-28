@@ -41,7 +41,7 @@ class Projectile {
 
 addEventListener('click', (event) => {
   const angle = Math.atan2(
-    event.clientY - canvas.height / 1.8,
+    event.clientY - canvas.height / 1.75,
     event.clientX - canvas.width / 1.9
   );
 
