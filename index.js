@@ -497,7 +497,7 @@ function animate() {
       ghost.update(player);
       ghost.drawAnimation();
     });
-
+    
     projectiles.forEach((projectile, index) => {
         projectile.update();
     
@@ -529,14 +529,13 @@ function animate() {
                         projectiles.splice(index, 1)
                     }, 0)
                 } else {
-                    setTimeout(() => {
                         // Remove the enemy and the projectile
                         enemies.splice(enemyIndex, 1)
                         projectiles.splice(index, 1)
-                    }, 0)
+                        clearInterval(enemy.damageTimer); // Reset the damageTimer
+                    }
                 }
-            }
-        });
+            });
     
         ghosts.forEach((ghost, ghostIndex) => {
             if (projectile.checkCollision(ghost)) {
