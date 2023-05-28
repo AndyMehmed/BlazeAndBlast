@@ -38,9 +38,6 @@ class Projectile {
 }
 
 addEventListener('click', (event) => {
-  console.log('Player position:', player.position.x, player.position.y);
-  console.log('Mouse coordinates:', event.clientX, event.clientY);
-
   const angle = Math.atan2(
     event.clientY - canvas.height / 2,
     event.clientX - canvas.width / 2

@@ -98,7 +98,7 @@ class Enemy {
                 this.damageTimer = null;
             }
         }
-    
+
         if (this.followingPlayer) {
             const newVelocityX = (dx / distance) * this.speed;
             const newVelocityY = (dy / distance) * this.speed;
