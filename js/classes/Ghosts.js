@@ -16,20 +16,18 @@ class Ghost {
             x: 0,
             y: 0,
         };
-        this.speed = 0.3;
+        this.speed = 0.5;
         this.followingPlayer = false;
+
         this.damageTimer = null;
-        this.damageInterval = 500;
-        this.animations = animations;
-        this.currentAnimation = null;
-        this.frameRate = 2;
-        this.currentFrame = 1;
+        this.damageInterval = 800;
+
+        this.frameRate = 1;
         this.elapserFrames = 0;
 
         // Animation properties
         this.currentFrame = 0;
         this.frameCount = 4; // Number of frames in the animation
-        
     }
 
     drawAnimation() {
@@ -67,22 +65,6 @@ class Ghost {
         }
     }
 
-    draw() {
-        if (this.imageLoaded) {
-            if (this.currentAnimation) {
-                this.drawAnimation();
-            } else {
-                c.drawImage(
-                    this.image,
-                    this.position.x,
-                    this.position.y,
-                    this.width,
-                    this.height
-                );
-            }
-        }
-    }
-
     // Update the ghost's position based on the player's position.
     update(player) {
 
@@ -92,7 +74,7 @@ class Ghost {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         // Check if the distance is less than or equal to 100, indicating that the ghost should start following the player.
-        if (distance <= 100) {
+        if (distance <= 200) {
             this.followingPlayer = true;
         }
 

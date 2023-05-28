@@ -38,24 +38,24 @@ body {
     display: flex;
     width: 33%;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
 }
 
 #healthbar   {
     position: relative;
-    height: 30px;
     width: 100%;
+    border: 3px solid white;
 }
 
-#healthbackground   {
-    background-color: rgb(120, 0, 0);
+#background-bar   {
+    background-color: #DC2626;
     height: 30px;
 }
 
 #playerHealth    {
     position: absolute;
-    background: rgb(0, 170, 0);
-    border-right: 2px solid white;
+    background: #34D399;
+    border-right: 1px solid white;
     top: 0;
     right: 0;
     bottom: 0;

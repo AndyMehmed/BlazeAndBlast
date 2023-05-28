@@ -1,5 +1,4 @@
 // Function which checks wich keys are being pressed to do what the function wants.
-
 window.addEventListener('keydown', (event) => {
     if (player.preventInput) return;
     switch (event.key) {
@@ -41,6 +40,7 @@ window.addEventListener('keydown', (event) => {
             break;
     }
 });
+
 //When releasing the key the player stops moving
 window.addEventListener('keyup', (event) => {
     switch (event.key) {

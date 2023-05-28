@@ -1,5 +1,5 @@
 class Enemy {
-    constructor(x, y, width, height, imageSrc, animations, frameRate) {
+    constructor(x, y, width, height, imageSrc) {
         this.position = {
             x: x,
             y: y,
@@ -16,14 +16,13 @@ class Enemy {
             x: 0,
             y: 0,
         };
-        this.speed = 0.3;
+        this.speed = 0.5;
         this.followingPlayer = false;
+
         this.damageTimer = null;
-        this.damageInterval = 500;
-        this.animations = animations;
-        this.currentAnimation = null;
-        this.frameRate = 2;
-        this.currentFrame = 1;
+        this.damageInterval = 800;
+        
+        this.frameRate = 1;
         this.elapserFrames = 0;
 
         // Animation properties
@@ -65,23 +64,7 @@ class Enemy {
             this.currentFrame = (this.currentFrame + 1) % this.frameCount;
         }
     }
-  
-    draw() {
-        if (this.imageLoaded) {
-            if (this.currentAnimation) {
-                this.drawAnimation();
-            } else {
-                c.drawImage(
-                    this.image,
-                    this.position.x,
-                    this.position.y,
-                    this.width,
-                    this.height
-                );
-            }
-        }
-    }
-  
+
     update(player) {
         const dx = player.position.x - this.position.x;
         const dy = player.position.y - this.position.y;
@@ -115,7 +98,7 @@ class Enemy {
                 this.damageTimer = null;
             }
         }
-    
+
         if (this.followingPlayer) {
             const newVelocityX = (dx / distance) * this.speed;
             const newVelocityY = (dy / distance) * this.speed;
