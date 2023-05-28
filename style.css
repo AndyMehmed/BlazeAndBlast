@@ -16,6 +16,7 @@ body {
     z-index: 9999;
     color: black;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
 }
 #start-button {
     font-size: 24px; 
