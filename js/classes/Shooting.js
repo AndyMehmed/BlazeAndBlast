@@ -63,7 +63,3 @@ addEventListener('click', (event) => {
     )
   );
 });
-
-
-
-

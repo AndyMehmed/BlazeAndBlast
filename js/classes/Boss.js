@@ -1,11 +1,11 @@
-class Enemy {
+class Boss{
     constructor(x, y, width, height, imageSrc, animations, frameRate) {
       this.position = {
         x: x,
         y: y,
       };
-      this.width = width;
-      this.height = height;
+      this.width = 60;
+      this.height = 60;
       this.image = new Image();
       this.image.onload = () => {
         this.imageLoaded = true;
@@ -29,9 +29,9 @@ class Enemy {
   
       // Animation properties
       this.currentFrame = 1;
-      this.frameCount = 4; // Number of frames in the animation
+      this.frameCount = 8; // Number of frames in the animation
   
-      this.health = 100; // Starting health value
+      this.health = 200; // Starting health value
     }
   
     drawAnimation() {
@@ -98,28 +98,28 @@ class Enemy {
         }
       
         if (
-    player.position.x < this.position.x + this.width &&
-    player.position.x + player.width * 0.47 > this.position.x &&
-    player.position.y + player.height * 0.47 > this.position.y &&
-    player.position.y < this.position.y + this.height
-  ) {
-    if (!this.damageTimer) {
-      player.health -= 20; // Player takes damage
-      document.querySelector('#playerHealth').style.width = player.health + '%';
-
-      // Start the damage timer after the first hit
-      this.damageTimer = setInterval(() => {
-        player.health -= 20;
-        document.querySelector('#playerHealth').style.width = player.health + '%';
-      }, this.damageInterval);
-    }
-  } else {
-    // Clear the damage timer if the player is not colliding
-    if (this.damageTimer) {
-      clearInterval(this.damageTimer);
-      this.damageTimer = null;
-    }
-  }
+            player.position.x < this.position.x + this.width &&
+            player.position.x + player.width * 0.47 > this.position.x &&
+            player.position.y + player.height * 0.47 > this.position.y &&
+            player.position.y < this.position.y + this.height
+          ) {
+            if (!this.damageTimer) {
+              player.health -= 20; // Player takes damage
+              document.querySelector('#playerHealth').style.width = player.health + '%';
+        
+              // Start the damage timer after the first hit
+              this.damageTimer = setInterval(() => {
+                player.health -= 20;
+                document.querySelector('#playerHealth').style.width = player.health + '%';
+              }, this.damageInterval);
+            }
+          } else {
+            // Clear the damage timer if the player is not colliding
+            if (this.damageTimer) {
+              clearInterval(this.damageTimer);
+              this.damageTimer = null;
+            }
+          }
       
         // Calculate health bar width
         const healthPercentage = this.health / this.maxHealth;
