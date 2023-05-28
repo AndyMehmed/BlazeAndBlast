@@ -20,6 +20,7 @@ canvas.height = innerHeight;
 const projectiles = [];
 const enemies = [];
 const ghosts = [];
+const bosses = [];
 
 let parsedCollisions
 let collisionBlocks
@@ -122,6 +123,7 @@ let levels = {
         init: () => {
             enemies.length = 0;
             ghosts.length = 0;
+            bosses.lenght = 0;
             parsedCollisions = collisionsLevel1.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -138,8 +140,10 @@ let levels = {
             })
 
 
+
+
         // Create enemy instances
-        const enemy1 = new Enemy(900, 380, 20, 20, './img/enemies/spiritDown.png', {
+        const enemy1 = new Enemy(900, 350, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy1
             idle: {
             imageSrc: './img/enemies/spiritDown.png',
@@ -153,52 +157,24 @@ let levels = {
             }
         });
   
-        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/spiritDown.png', {
+        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy2
             idle: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             loop: false
             },
             run: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             loop: true
             }
         });
 
-        const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
-            // Animation configurations for enemy2
-            idle: {
-            imageSrc: './img/enemies/ghost.png',
-            frameRate: 4,
-            loop: false
-            },
-            run: {
-            imageSrc: './img/enemies/ghost.png',
-            frameRate: 4,
-            loop: true
-            }
-        });
-
-        const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/ghost.png', {
-            // Animation configurations for enemy2
-            idle: {
-            imageSrc: './img/enemies/ghost.png',
-            frameRate: 4,
-            loop: true
-            },
-            run: {
-            imageSrc: './img/enemies/ghost.png',
-            frameRate: 4,
-            loop: true
-            }
-        });
 
             enemies.push(enemy1, enemy2);
-            ghosts.push(ghost1, ghost2);
             
-            
+    
             doors = [
                 new Sprite({
                     position: {
@@ -222,6 +198,7 @@ let levels = {
         init: () => {
             enemies.length = 0;
             ghosts.length = 0;
+            bosses.lenght = 0;0;
             parsedCollisions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -241,32 +218,32 @@ let levels = {
 
 
             // Create enemy instances
-        const enemy1 = new Enemy(100, 100, 20, 20, './img/enemies/spiritDown.png', {
+        const enemy1 = new Enemy(100, 100, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy1
             idle: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 2,
             loop: true
             },
             run: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 30,
             loop: true
             }
         });
   
-        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/spiritDown.png', {
+        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy2
             idle: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 2,
             loop: true
             },
             run: {
-            imageSrc: './img/enemies/spiritDown.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 30,
             loop: true
@@ -274,32 +251,32 @@ let levels = {
         });
 
 
-        const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
+        const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy2
             idle: {
-            imageSrc: './img/enemies/ghost.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 2,
             loop: true
             },
             run: {
-            imageSrc: './img/enemies/ghost.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 30,
             loop: true
             }
         });
 
-        const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/ghost.png', {
+        const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy2
             idle: {
-            imageSrc: './img/enemies/ghost.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 2,
             loop: true
             },
             run: {
-            imageSrc: './img/enemies/ghost.png',
+            imageSrc: './img/enemies/slime.png',
             frameRate: 4,
             frameBuffer: 30,
             loop: true
@@ -330,6 +307,7 @@ let levels = {
         init: () => {
             enemies.length = 0;
             ghosts.length = 0;
+            bosses.lenght = 0;
             parsedCollisions = collisionsLevel3.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -364,7 +342,7 @@ let levels = {
                 frameBuffer: 16,
             });
 
-            item3 = new Sprite({
+            item2 = new Sprite({
                 position: {
                     x: 1040,
                     y: 25,
@@ -381,7 +359,7 @@ let levels = {
                 frameBuffer: 16,
             });
             
-            item2 = new Sprite({
+            item3 = new Sprite({
                 position: {
                     x: 840,
                     y: 100,
@@ -587,6 +565,7 @@ let levels = {
         init: () => {
             enemies.length = 0;
             ghosts.length = 0;
+            bosses.lenght = 0;
             parsedCollisions = collisionsLevel4.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -652,22 +631,29 @@ let levels = {
                 loop: true
                 }
             });
-    
-            const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/ghost.png', {
-                // Animation configurations for enemy2
+
+
+            const boss = new Boss(500, 300, 20, 20, './img/enemies/boss.png', {
+                // Animation configurations for Boss
                 idle: {
-                imageSrc: './img/enemies/ghost.png',
-                frameRate: 4,
+                imageSrc: './img/enemies/boss.png',
+                frameRate: 8,
                 frameBuffer: 2,
                 loop: true
                 },
                 run: {
-                imageSrc: './img/enemies/ghost.png',
-                frameRate: 4,
+                imageSrc: './img/enemies/boss.png',
+                frameRate: 8,
                 frameBuffer: 30,
                 loop: true
                 }
             });
+
+
+
+            enemies.push(enemy1, enemy2);
+            ghosts.push(ghost1,);
+            bosses.push(boss);
 
 
 
@@ -751,6 +737,12 @@ function animate() {
       item3.draw();
     }
   
+    // Draw the boss
+    bosses.forEach((boss) => {
+        boss.update(player);
+        boss.drawAnimation();
+    });
+
     // Draw the enemies
     enemies.forEach((enemy) => {
       enemy.update(player);
