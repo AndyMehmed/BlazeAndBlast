@@ -1,8 +1,8 @@
 * {
     box-sizing: border-box;
-}
-
-body {
+  }
+  
+  body {
     margin: 0;
     background-color: black;
 }
@@ -25,13 +25,12 @@ body {
     background-color: black;
 }
 
-
 #container {
     position: relative;
     display: inline-block;
-}
-
-#healthoverlay  {
+  }
+  
+  #healthoverlay {
     position: absolute;
     display: flex;
     width: 33%;
@@ -48,9 +47,9 @@ body {
 #background-bar   {
     background-color: #DC2626;
     height: 30px;
-}
-
-#playerHealth    {
+  }
+  
+  #playerHealth{
     position: absolute;
     background: #34D399;
     border-right: 1px solid white;
@@ -58,4 +57,4 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-}
+  }

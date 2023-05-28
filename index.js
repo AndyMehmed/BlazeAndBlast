@@ -20,6 +20,7 @@ canvas.height = innerHeight;
 const projectiles = [];
 const enemies = [];
 const ghosts = [];
+const bosses = [];
 
 let parsedCollisions
 let collisionBlocks
@@ -122,6 +123,7 @@ let levels = {
         init: () => {
             enemies.length = 0;
             ghosts.length = 0;
+            bosses.lenght = 0;
             parsedCollisions = collisionsLevel1.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -136,6 +138,8 @@ let levels = {
             },
             imageSrc: './img/Maps/Level1.png',
             })
+
+
 
 
         // Create enemy instances
@@ -198,7 +202,7 @@ let levels = {
             enemies.push(enemy1, enemy2);
             ghosts.push(ghost1, ghost2);
             
-            
+    
             doors = [
                 new Sprite({
                     position: {
@@ -222,6 +226,7 @@ let levels = {
         init: () => {
             enemies.length = 0;
             ghosts.length = 0;
+            bosses.lenght = 0;0;
             parsedCollisions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -330,6 +335,7 @@ let levels = {
         init: () => {
             enemies.length = 0;
             ghosts.length = 0;
+            bosses.lenght = 0;
             parsedCollisions = collisionsLevel3.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -364,7 +370,7 @@ let levels = {
                 frameBuffer: 16,
             });
 
-            item3 = new Sprite({
+            item2 = new Sprite({
                 position: {
                     x: 1040,
                     y: 25,
@@ -381,7 +387,7 @@ let levels = {
                 frameBuffer: 16,
             });
             
-            item2 = new Sprite({
+            item3 = new Sprite({
                 position: {
                     x: 840,
                     y: 100,
@@ -587,6 +593,7 @@ let levels = {
         init: () => {
             enemies.length = 0;
             ghosts.length = 0;
+            bosses.lenght = 0;
             parsedCollisions = collisionsLevel4.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -652,22 +659,29 @@ let levels = {
                 loop: true
                 }
             });
-    
-            const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/ghost.png', {
-                // Animation configurations for enemy2
+
+
+            const boss = new Boss(500, 300, 20, 20, './img/enemies/boss.png', {
+                // Animation configurations for Boss
                 idle: {
-                imageSrc: './img/enemies/ghost.png',
-                frameRate: 4,
+                imageSrc: './img/enemies/boss.png',
+                frameRate: 8,
                 frameBuffer: 2,
                 loop: true
                 },
                 run: {
-                imageSrc: './img/enemies/ghost.png',
-                frameRate: 4,
+                imageSrc: './img/enemies/boss.png',
+                frameRate: 8,
                 frameBuffer: 30,
                 loop: true
                 }
             });
+
+
+
+            enemies.push(enemy1, enemy2);
+            ghosts.push(ghost1,);
+            bosses.push(boss);
 
 
 
@@ -751,6 +765,12 @@ function animate() {
       item3.draw();
     }
   
+    // Draw the boss
+    bosses.forEach((boss) => {
+        boss.update(player);
+        boss.drawAnimation();
+    });
+
     // Draw the enemies
     enemies.forEach((enemy) => {
       enemy.update(player);
@@ -765,51 +785,81 @@ function animate() {
     
     projectiles.forEach((projectile, index) => {
         projectile.update();
-    
+      
         for (let i = 0; i < collisionBlocks.length; i++) {
-            const collisionBlock = collisionBlocks[i];
-            
-            if (
-                projectile.x - projectile.radius < collisionBlock.position.x + collisionBlock.width &&
-                projectile.x + projectile.radius > collisionBlock.position.x &&
-                projectile.y + projectile.radius > collisionBlock.position.y &&
-                projectile.y - projectile.radius < collisionBlock.position.y + collisionBlock.height
-            ) {
-                // Projectile has hit a collisionBlock (wall), remove it
-                projectiles.splice(index, 1);
-                break;  // Exit the loop early since we've removed the projectile
-            }
+          const collisionBlock = collisionBlocks[i];
+                  
+          if (
+            projectile.x - projectile.radius < collisionBlock.position.x + collisionBlock.width &&
+            projectile.x + projectile.radius > collisionBlock.position.x &&
+            projectile.y + projectile.radius > collisionBlock.position.y &&
+            projectile.y - projectile.radius < collisionBlock.position.y + collisionBlock.height
+          ) {
+            // Projectile has hit a collisionBlock (wall), remove it
+            projectiles.splice(index, 1);
+            break;  // Exit the loop early since we've removed the projectile
+          }
         }
     
         enemies.forEach((enemy, enemyIndex) => {
             if (projectile.checkCollision(enemy)) {
-                // Projectile has hit the enemy
-                // Do something with enemy radius here
-                if (enemy.radius - 10 > 10) {
-                    gsap.to(enemy, {
-                        radius: enemy.radius - 10
-                    })
-                    setTimeout(() => {
-                        // Remove the projectile
-                        projectiles.splice(index, 1)
-                    }, 0)
-                } else {
-                        // Remove the enemy and the projectile
-                        enemies.splice(enemyIndex, 1)
-                        projectiles.splice(index, 1)
-                        clearInterval(enemy.damageTimer); // Reset the damageTimer
-                    }
-                }
-            });
-    
-        ghosts.forEach((ghost, ghostIndex) => {
-            if (projectile.checkCollision(ghost)) {
-                // Projectile has hit the ghost, remove them
-                projectiles.splice(index, 1);
-                ghosts.splice(ghostIndex, 1);
-                // Perform any other necessary actions (e.g., reduce ghost health)
+              // Projectile has hit the enemy
+              enemy.health -= 50; // Reduce enemy's health by a certain amount
+          
+              if (enemy.health <= 0) {
+                setTimeout(() => {
+                  // Remove the enemy and the projectile
+                  enemies.splice(enemyIndex, 1);
+                  projectiles.splice(index, 1);
+                }, 0);
+              } else {
+                setTimeout(() => {
+                  // Remove the projectile
+                  projectiles.splice(index, 1);
+                }, 0);
+              }
             }
-        });
+          });
+
+          bosses.forEach((boss, bossIndex) => {
+            if (projectile.checkCollision(boss)) {
+              // Projectile has hit the enemy
+              boss.health -= 5; // Reduce bosse's health by a certain amount
+          
+              if (boss.health <= 0) {
+                setTimeout(() => {
+                  // Remove the enemy and the projectile
+                  bosses.splice(bossIndex, 1);
+                  projectiles.splice(index, 1);
+                }, 0);
+              } else {
+                setTimeout(() => {
+                  // Remove the projectile
+                  projectiles.splice(index, 1);
+                }, 0);
+              }
+            }
+          });
+          
+          ghosts.forEach((ghost, ghostIndex) => {
+            if (projectile.checkCollision(ghost)) {
+              // Projectile has hit the ghost
+              ghost.health -= 50; // Reduce ghost's health by a certain amount
+          
+              if (ghost.health <= 0) {
+                setTimeout(() => {
+                  // Remove the ghost and the projectile
+                  ghosts.splice(ghostIndex, 1);
+                  projectiles.splice(index, 1);
+                }, 0);
+              } else {
+                setTimeout(() => {
+                  // Remove the projectile
+                  projectiles.splice(index, 1);
+                }, 0);
+              }
+            }
+          });
     
         // Check if the projectile is outside of the canvas
         if (
