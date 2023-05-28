@@ -765,66 +765,58 @@ function animate() {
     
     projectiles.forEach((projectile, index) => {
         projectile.update();
-    
-        for (let i = 0; i < collisionBlocks.length; i++) {
-            const collisionBlock = collisionBlocks[i];
-            
-            if (
-                projectile.x - projectile.radius < collisionBlock.position.x + collisionBlock.width &&
-                projectile.x + projectile.radius > collisionBlock.position.x &&
-                projectile.y + projectile.radius > collisionBlock.position.y &&
-                projectile.y - projectile.radius < collisionBlock.position.y + collisionBlock.height
-            ) {
-                // Projectile has hit a collisionBlock (wall), remove it
-                projectiles.splice(index, 1);
-                break;  // Exit the loop early since we've removed the projectile
-            }
+        
+        if (!projectile.active) {
+          projectiles.splice(index, 1);
+          return;
         }
-    
+      
+        for (let i = 0; i < collisionBlocks.length; i++) {
+          const collisionBlock = collisionBlocks[i];
+      
+          if (
+            projectile.x - projectile.radius < collisionBlock.position.x + collisionBlock.width &&
+            projectile.x + projectile.radius > collisionBlock.position.x &&
+            projectile.y + projectile.radius > collisionBlock.position.y &&
+            projectile.y - projectile.radius < collisionBlock.position.y + collisionBlock.height
+          ) {
+            // Projectile has hit a collisionBlock (wall), remove it
+            projectile.active = false;
+            break; // Exit the loop early since we've removed the projectile
+          }
+        }
+      
         enemies.forEach((enemy, enemyIndex) => {
-            if (projectile.checkCollision(enemy)) {
-                // Projectile has hit the enemy
-                // Do something with enemy radius here
-                if (enemy.radius - 10 > 10) {
-                    gsap.to(enemy, {
-                        radius: enemy.radius - 10
-                    })
-                    setTimeout(() => {
-                        // Remove the projectile
-                        projectiles.splice(index, 1)
-                    }, 0)
-                } else {
-                        // Remove the enemy and the projectile
-                        enemies.splice(enemyIndex, 1)
-                        projectiles.splice(index, 1)
-                        clearInterval(enemy.damageTimer); // Reset the damageTimer
-                    }
-                }
-            });
-    
-        ghosts.forEach((ghost, ghostIndex) => {
-            if (projectile.checkCollision(ghost)) {
-                // Projectile has hit the ghost, remove them
-                projectiles.splice(index, 1);
-                ghosts.splice(ghostIndex, 1);
-                // Perform any other necessary actions (e.g., reduce ghost health)
-            }
+          if (projectile.checkCollision(enemy)) {
+            // Projectile has hit the enemy, remove them
+            projectile.active = false;
+            enemies.splice(enemyIndex, 1);
+            clearInterval(enemy.damageTimer); // Reset the damageTimer
+          }
         });
-    
-        // Check if the projectile is outside of the canvas
-        if (
-            projectile.x + projectile.radius < 0 || 
-            projectile.x - projectile.radius > canvas.width ||
-            projectile.y + projectile.radius < 0 ||
-            projectile.y - projectile.radius > canvas.height
-        ) {
-            projectiles.splice(index, 1);
+      
+        ghosts.forEach((ghost, ghostIndex) => {
+          if (projectile.checkCollision(ghost)) {
+            // Projectile has hit the ghost, remove them
+            projectile.active = false;
+            ghosts.splice(ghostIndex, 1);
+            clearInterval(ghost.damageTimer); // Reset the damageTimer
+          }
+        });
+      
+        // Calculate the distance traveled by the projectile
+        const distanceTraveled = Math.sqrt(
+          Math.pow(projectile.x - player.position.x, 2) +
+          Math.pow(projectile.y - player.position.y, 2)
+        );
+      
+        // Check if the projectile has traveled beyond the maximum distance
+        if (distanceTraveled > 500) {
+          projectile.active = false;
         }
     });
-    
-    
-    
-  
+      
+
     player.handleInput(keys);
     player.draw();
     player.update();
