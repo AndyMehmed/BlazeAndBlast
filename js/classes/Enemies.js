@@ -98,35 +98,36 @@ class Enemy {
         }
       
         if (
-    player.position.x < this.position.x + this.width &&
-    player.position.x + player.width * 0.47 > this.position.x &&
-    player.position.y + player.height * 0.47 > this.position.y &&
-    player.position.y < this.position.y + this.height
-  ) {
-    if (!this.damageTimer) {
-      player.health -= 20; // Player takes damage
-      document.querySelector('#playerHealth').style.width = player.health + '%';
+            player.position.x < this.position.x + this.width &&
+            player.position.x + player.width * 0.47 > this.position.x &&
+            player.position.y + player.height * 0.47 > this.position.y &&
+            player.position.y < this.position.y + this.height
+        ) {
+            if (!this.damageTimer) {
+                player.health -= 20; // Player takes damage
+                document.querySelector('#playerHealth').style.width = player.health + '%';
+    
+                //Start the damage timer after first hit
+                this.damageTimer = setInterval(() => {
+                    player.health -= 20;
+                    document.querySelector('#playerHealth').style.width = player.health + '%';
+                }, this.damageInterval);
+            }
+        } else {
+            //Clear the damage timer if player is not colliding
+            if (this.damageTimer) {
+                clearInterval(this.damageTimer);
+                this.damageTimer = null;
+            }
+        }
 
-      // Start the damage timer after the first hit
-      this.damageTimer = setInterval(() => {
-        player.health -= 20;
-        document.querySelector('#playerHealth').style.width = player.health + '%';
-      }, this.damageInterval);
-    }
-  } else {
-    // Clear the damage timer if the player is not colliding
-    if (this.damageTimer) {
-      clearInterval(this.damageTimer);
-      this.damageTimer = null;
-    }
-  }
-      
+
         // Calculate health bar width
         const healthPercentage = this.health / this.maxHealth;
         const healthBarWidth = this.width;
         const remainingHealthBarWidth = healthBarWidth * healthPercentage;
       
-        // Draw enemy health bar
+        // Draw ghost health bar
         const healthBarHeight = 5;
         const healthBarX = this.position.x;
         const healthBarY = this.position.y + this.height + 5;
@@ -139,59 +140,58 @@ class Enemy {
         // Draw the remaining health bar based on the health percentage
         c.fillStyle = healthBarColor;
         c.fillRect(healthBarX, healthBarY, remainingHealthBarWidth, healthBarHeight);
-      
-  
-      if (this.followingPlayer) {
-        const newVelocityX = (dx / distance) * this.speed;
-        const newVelocityY = (dy / distance) * this.speed;
-  
-        // Movement and collision in the x-direction
-        this.velocity.x = newVelocityX;
-        this.position.x += this.velocity.x;
-        for (let i = 0; i < collisionBlocks.length; i++) {
-          const collisionBlock = collisionBlocks[i];
-          if (
-            this.position.x < collisionBlock.position.x + collisionBlock.width &&
-            this.position.x + this.width > collisionBlock.position.x &&
-            this.position.y + this.height > collisionBlock.position.y &&
-            this.position.y < collisionBlock.position.y + collisionBlock.height
-          ) {
-            if (this.velocity.x < 0) {
-              this.position.x = collisionBlock.position.x + collisionBlock.width + 0.01;
-              this.velocity.x = 0; // Reset velocity
-              break;
+
+        if (this.followingPlayer) {
+            const newVelocityX = (dx / distance) * this.speed;
+            const newVelocityY = (dy / distance) * this.speed;
+    
+            // Movement and collision in the x-direction
+            this.velocity.x = newVelocityX;
+            this.position.x += this.velocity.x;
+            for (let i = 0; i < collisionBlocks.length; i++) {
+                const collisionBlock = collisionBlocks[i];
+                if (
+                    this.position.x < collisionBlock.position.x + collisionBlock.width &&
+                    this.position.x + this.width > collisionBlock.position.x &&
+                    this.position.y + this.height > collisionBlock.position.y &&
+                    this.position.y < collisionBlock.position.y + collisionBlock.height
+                ) {
+                    if (this.velocity.x < 0) {
+                        this.position.x = collisionBlock.position.x + collisionBlock.width + 0.01;
+                        this.velocity.x = 0; // Reset velocity
+                        break;
+                    }
+                    if (this.velocity.x > 0) {
+                        this.position.x = collisionBlock.position.x - this.width - 0.01;
+                        this.velocity.x = 0; // Reset velocity
+                        break;
+                    }
+                }
             }
-            if (this.velocity.x > 0) {
-              this.position.x = collisionBlock.position.x - this.width - 0.01;
-              this.velocity.x = 0; // Reset velocity
-              break;
+    
+            // Movement and collision in the y-direction
+            this.velocity.y = newVelocityY;
+            this.position.y += this.velocity.y;
+            for (let i = 0; i < collisionBlocks.length; i++) {
+                const collisionBlock = collisionBlocks[i];
+                if (
+                    this.position.x < collisionBlock.position.x + collisionBlock.width &&
+                    this.position.x + this.width > collisionBlock.position.x &&
+                    this.position.y + this.height > collisionBlock.position.y &&
+                    this.position.y < collisionBlock.position.y + collisionBlock.height
+                ) {
+                    if (this.velocity.y < 0) {
+                        this.position.y = collisionBlock.position.y + collisionBlock.height + 0.01;
+                        this.velocity.y = 0; // Reset velocity
+                        break;
+                    }
+                    if (this.velocity.y > 0) {
+                        this.position.y = collisionBlock.position.y - this.height
+                        this.velocity.y = 0; // Reset velocity
+                    break;
+                }
             }
-          }
         }
-  
-        // Movement and collision in the y-direction
-        this.velocity.y = newVelocityY;
-        this.position.y += this.velocity.y;
-        for (let i = 0; i < collisionBlocks.length; i++) {
-          const collisionBlock = collisionBlocks[i];
-          if (
-            this.position.x < collisionBlock.position.x + collisionBlock.width &&
-            this.position.x + this.width > collisionBlock.position.x &&
-            this.position.y + this.height > collisionBlock.position.y &&
-            this.position.y < collisionBlock.position.y + collisionBlock.height
-          ) {
-            if (this.velocity.y < 0) {
-              this.position.y = collisionBlock.position.y + collisionBlock.height + 0.01;
-              this.velocity.y = 0; // Reset velocity
-              break;
-            }
-            if (this.velocity.y > 0) {
-              this.position.y = collisionBlock.position.y - this.height;
-              this.velocity.y = 0; // Reset velocity
-              break;
-            }
-          }
-        }
-      }
     }
-  }
+}
+}

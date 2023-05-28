@@ -1,3 +1,14 @@
+//Function for the menu in beginning
+function startGame() {
+    const menu = document.getElementById('menu');
+    menu.style.display = 'none';
+  
+}
+  
+  // Event listener for the start button
+const startButton = document.getElementById('start-button');
+startButton.addEventListener('click', startGame);
+
 let camera = new Camera();
 
 const canvas = document.querySelector('canvas')
@@ -23,8 +34,6 @@ const player = new Player({
 
     health: 100,
 
-
-    frameRate: 11,
     animations: {
         idleRight: {
             frameRate: 1,
@@ -73,6 +82,10 @@ const player = new Player({
             frameBuffer: 2,
             loop: true,
             imageSrc: './img/PlayerSprite/playerIdle.png',
+        },
+        playerDownHit: {
+            imageSrc: './img/PlayerSprite/playerDownHit.png',
+            frameRate: 4,
         },
 
         enterDoor: {
@@ -575,7 +588,6 @@ let levels = {
         },
     },
 
-
     //-----LEVEL 4-----//
     4: {
         init: () => {
@@ -688,7 +700,6 @@ let levels = {
             ]
         },
     },
-    
 }
 
 // Function that makes the game think that you are not pressing the keys, 
@@ -722,9 +733,8 @@ function gameOver() {
         c.drawImage(gameOverImage, 0, 0, canvas.width, canvas.height);
     }
 
-    // You could add more game over logic here, such as a button to restart the game.
+    // You could add more Game-Over logic here, such as a button to restart the game.
 }
-
 
 function animate() {
     if (player.health <= 0) {
@@ -772,6 +782,7 @@ function animate() {
       ghost.update(player);
       ghost.drawAnimation();
     });
+    
     projectiles.forEach((projectile, index) => {
         projectile.update();
       
