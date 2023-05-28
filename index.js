@@ -143,7 +143,7 @@ let levels = {
 
 
         // Create enemy instances
-        const enemy1 = new Enemy(900, 380, 20, 20, './img/enemies/spiritDown.png', {
+        const enemy1 = new Enemy(900, 350, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy1
             idle: {
             imageSrc: './img/enemies/spiritDown.png',
@@ -157,7 +157,7 @@ let levels = {
             }
         });
   
-        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/spiritDown.png', {
+        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy2
             idle: {
             imageSrc: './img/enemies/spiritDown.png',
@@ -171,36 +171,8 @@ let levels = {
             }
         });
 
-        const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
-            // Animation configurations for enemy2
-            idle: {
-            imageSrc: './img/enemies/ghost.png',
-            frameRate: 4,
-            loop: false
-            },
-            run: {
-            imageSrc: './img/enemies/ghost.png',
-            frameRate: 4,
-            loop: true
-            }
-        });
-
-        const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/ghost.png', {
-            // Animation configurations for enemy2
-            idle: {
-            imageSrc: './img/enemies/ghost.png',
-            frameRate: 4,
-            loop: true
-            },
-            run: {
-            imageSrc: './img/enemies/ghost.png',
-            frameRate: 4,
-            loop: true
-            }
-        });
 
             enemies.push(enemy1, enemy2);
-            ghosts.push(ghost1, ghost2);
             
     
             doors = [
