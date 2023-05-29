@@ -18,6 +18,11 @@
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 30px;
 }
+
+img {
+  width: 50vw;
+}
+
 #start-button {
     font-size: 24px; 
     padding: 12px 24px; 
