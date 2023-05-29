@@ -14,10 +14,11 @@
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 9999;
-    color: black;
+    color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 30px;
+    font-size: 22px;
 }
+
 #start-button {
     font-size: 24px; 
     padding: 12px 24px; 
@@ -30,7 +31,7 @@
     display: inline-block;
   }
   
-  #healthoverlay {
+#healthoverlay {
     position: absolute;
     display: flex;
     width: 33%;
@@ -49,7 +50,7 @@
     height: 30px;
   }
   
-  #playerHealth{
+#playerHealth {
     position: absolute;
     background: #34D399;
     border-right: 1px solid white;
