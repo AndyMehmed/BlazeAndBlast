@@ -779,22 +779,64 @@ function animate() {
         }
       
         enemies.forEach((enemy, enemyIndex) => {
-          if (projectile.checkCollision(enemy)) {
-            // Projectile has hit the enemy, remove them
-            projectile.active = false;
-            enemies.splice(enemyIndex, 1);
-            clearInterval(enemy.damageTimer); // Reset the damageTimer
-          }
-        });
-      
-        ghosts.forEach((ghost, ghostIndex) => {
-          if (projectile.checkCollision(ghost)) {
-            // Projectile has hit the ghost, remove them
-            projectile.active = false;
-            ghosts.splice(ghostIndex, 1);
-            clearInterval(ghost.damageTimer); // Reset the damageTimer
-          }
-        });
+            if (projectile.checkCollision(enemy)) {
+              // Projectile has hit the enemy
+              enemy.health -= 50; // Reduce enemy's health by a certain amount
+
+              if (enemy.health <= 0) {
+                setTimeout(() => {
+                  // Remove the enemy and the projectile
+                  enemies.splice(enemyIndex, 1);
+                  projectiles.splice(index, 1);
+                }, 0);
+              } else {
+                setTimeout(() => {
+                  // Remove the projectile
+                  projectiles.splice(index, 1);
+                }, 0);
+              }
+            }
+          });
+
+          bosses.forEach((boss, bossIndex) => {
+            if (projectile.checkCollision(boss)) {
+              // Projectile has hit the enemy
+              boss.health -= 5; // Reduce bosse's health by a certain amount
+
+              if (boss.health <= 0) {
+                setTimeout(() => {
+                  // Remove the enemy and the projectile
+                  bosses.splice(bossIndex, 1);
+                  projectiles.splice(index, 1);
+                }, 0);
+              } else {
+                setTimeout(() => {
+                  // Remove the projectile
+                  projectiles.splice(index, 1);
+                }, 0);
+              }
+            }
+          });
+
+          ghosts.forEach((ghost, ghostIndex) => {
+            if (projectile.checkCollision(ghost)) {
+              // Projectile has hit the ghost
+              ghost.health -= 50; // Reduce ghost's health by a certain amount
+
+              if (ghost.health <= 0) {
+                setTimeout(() => {
+                  // Remove the ghost and the projectile
+                  ghosts.splice(ghostIndex, 1);
+                  projectiles.splice(index, 1);
+                }, 0);
+              } else {
+                setTimeout(() => {
+                  // Remove the projectile
+                  projectiles.splice(index, 1);
+                }, 0);
+              }
+            }
+          });
       
         // Calculate the distance traveled by the projectile
         const distanceTraveled = Math.sqrt(
