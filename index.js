@@ -534,7 +534,6 @@ let levels = {
                 loop: true
                 }
             });
-    
                 enemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8);
                 ghosts.push(ghost1, ghost2);
 
@@ -778,6 +777,7 @@ function animate() {
                   // Remove the enemy and the projectile
                   enemies.splice(enemyIndex, 1);
                   projectiles.splice(index, 1);
+                  clearInterval(enemy.damageTimer); // Reset the damageTimer
                 }, 0);
               } else {
                 setTimeout(() => {
@@ -798,6 +798,7 @@ function animate() {
                   // Remove the enemy and the projectile
                   bosses.splice(bossIndex, 1);
                   projectiles.splice(index, 1);
+                  clearInterval(boss.damageTimer); // Reset the damageTimer
                 }, 0);
               } else {
                 setTimeout(() => {
@@ -818,6 +819,7 @@ function animate() {
                   // Remove the ghost and the projectile
                   ghosts.splice(ghostIndex, 1);
                   projectiles.splice(index, 1);
+                  clearInterval(ghost.damageTimer); // Reset the damageTimer
                 }, 0);
               } else {
                 setTimeout(() => {
