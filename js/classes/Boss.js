@@ -4,8 +4,8 @@ class Boss{
         x: x,
         y: y,
       };
-      this.width = 60;
-      this.height = 60;
+      this.width = 80;
+      this.height = 80;
       this.image = new Image();
       this.image.onload = () => {
         this.imageLoaded = true;
@@ -16,11 +16,11 @@ class Boss{
         x: 0,
         y: 0,
       };
-      this.speed = 0.3;
+      this.speed = 0.6;
       this.followingPlayer = false;
   
       this.damageTimer = null;
-      this.damageInterval = 500;
+      this.damageInterval = 800;
       this.animations = animations;
       this.currentAnimation = null;
       this.frameRate = 2;
@@ -93,7 +93,7 @@ class Boss{
         const distance = Math.sqrt(dx * dx + dy * dy);
       
         // followingplayer makes the Enemies follow the player if within a certain distance
-        if (distance <= 100) {
+        if (distance <= 400) {
           this.followingPlayer = true;
         }
       
