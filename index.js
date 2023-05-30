@@ -610,7 +610,6 @@ let levels = {
                 }
             });
     
-    
             const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
                 // Animation configurations for enemy2
                 idle: {
@@ -626,7 +625,6 @@ let levels = {
                 loop: true
                 }
             });
-
 
             const boss = new Boss(500, 300, 20, 20, './img/enemies/boss.png', {
                 // Animation configurations for Boss
@@ -644,13 +642,9 @@ let levels = {
                 }
             });
 
-
-
             enemies.push(enemy1, enemy2);
             ghosts.push(ghost1,);
             bosses.push(boss);
-
-
 
             doors = [
                 new Sprite({
@@ -777,7 +771,7 @@ function animate() {
             if (projectile.checkCollision(enemy)) {
               // Projectile has hit the enemy
               
-              enemy.health -= 50; // Reduce enemy's health by a certain amount
+              enemy.health -= 35; // Reduce enemy's health by a certain amount
 
               if (enemy.health <= 0) {
                 setTimeout(() => {
