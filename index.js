@@ -764,7 +764,7 @@ function animate() {
         enemies.forEach((enemy, enemyIndex) => {
             if (projectile.checkCollision(enemy)) {
               // Projectile has hit the enemy
-              
+              enemy.handleHit();
               enemy.health -= 35; // Reduce enemy's health by a certain amount
 
               if (enemy.health <= 0) {
@@ -786,6 +786,7 @@ function animate() {
           bosses.forEach((boss, bossIndex) => {
             if (projectile.checkCollision(boss)) {
               // Projectile has hit the enemy
+              boss.handleHit();
               boss.health -= 5; // Reduce bosse's health by a certain amount
 
               if (boss.health <= 0) {
@@ -807,6 +808,7 @@ function animate() {
           ghosts.forEach((ghost, ghostIndex) => {
             if (projectile.checkCollision(ghost)) {
               // Projectile has hit the ghost
+              ghost.handleHit();
               ghost.health -= 50; // Reduce ghost's health by a certain amount
 
               if (ghost.health <= 0) {

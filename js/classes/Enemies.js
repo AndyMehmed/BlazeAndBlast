@@ -28,9 +28,22 @@ class Enemy {
       // Animation properties
       this.currentFrame = 1;
       this.frameCount = 4; // Number of frames in the animation
+
+      this.originalSprite = imageSrc;  // save the original sprite 
+      this.isHit = false;
   
       this.health = 100; // Starting health value
     }
+
+    handleHit() {
+      // If we're already playing the hit animation, ignore this
+      if (this.isHit) return;
+  
+      this.isHit = true;  // set the hit flag
+      this.image.src = './img/enemies/slimeHit.png';  // switch to the hit sprite
+      this.currentFrame = 0;  // start at the first frame
+  }
+  
 
     drawAnimation() {
       if (!this.imageLoaded) return;
@@ -62,10 +75,19 @@ class Enemy {
     updateFrames() {
       this.elapserFrames++; // Increment the frame counter
   
-      if (this.elapserFrames % (10 * this.frameRate) === 0) {
-        this.currentFrame = (this.currentFrame + 1) % this.frameCount;
+      if (this.isHit) {
+          // If we're playing the hit animation and we've reached the last frame
+          if (this.elapserFrames % (10 * this.frameRate) === 0) {
+              this.currentFrame = (this.currentFrame + 1) % this.frameCount;
+              if (this.currentFrame == 0) {
+                  this.isHit = false;  // Reset the hit flag
+                  this.image.src = this.originalSprite;  // switch back to the original sprite
+              }
+          }
+      } else if (this.elapserFrames % (10 * this.frameRate) === 0) {
+          this.currentFrame = (this.currentFrame + 1) % this.frameCount;
       }
-    }
+  }
   
     draw() {
         if (this.imageLoaded) {
