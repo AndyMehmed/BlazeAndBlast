@@ -27,7 +27,6 @@ let collisionBlocks
 let background
 let doors
 
-
 const player = new Player({
 
     imageSrc: './img/PlayerSprite/playerIdle.png',
@@ -777,6 +776,7 @@ function animate() {
         enemies.forEach((enemy, enemyIndex) => {
             if (projectile.checkCollision(enemy)) {
               // Projectile has hit the enemy
+              
               enemy.health -= 50; // Reduce enemy's health by a certain amount
 
               if (enemy.health <= 0) {
@@ -836,12 +836,12 @@ function animate() {
       
         // Calculate the distance traveled by the projectile
         const distanceTraveled = Math.sqrt(
-          Math.pow(projectile.x - player.position.x, 2) +
-          Math.pow(projectile.y - player.position.y, 2)
+          Math.pow(projectile.x - player.position.x - 12.5, 2) +
+          Math.pow(projectile.y - player.position.y - 17.5, 2)
         );
       
         // Check if the projectile has traveled beyond the maximum distance
-        if (distanceTraveled > 500) {
+        if (distanceTraveled > 120) {
           projectile.active = false;
         }
     });
