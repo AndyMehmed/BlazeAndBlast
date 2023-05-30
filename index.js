@@ -171,9 +171,7 @@ let levels = {
             }
         });
 
-
             enemies.push(enemy1, enemy2);
-            
     
             doors = [
                 new Sprite({
@@ -190,8 +188,6 @@ let levels = {
             ]
         },
     },
-
-
 
     //-----LEVEL 2-----//
     2: {
