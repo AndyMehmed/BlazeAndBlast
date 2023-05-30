@@ -124,6 +124,7 @@ let levels = {
             enemies.length = 0;
             ghosts.length = 0;
             bosses.lenght = 0;
+            items.lenght = 0;
             parsedCollisions = collisionsLevel1.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -192,7 +193,8 @@ let levels = {
         init: () => {
             enemies.length = 0;
             ghosts.length = 0;
-            bosses.lenght = 0;0;
+            bosses.lenght = 0;
+            items.lenght = 0;
             parsedCollisions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -302,6 +304,7 @@ let levels = {
             enemies.length = 0;
             ghosts.length = 0;
             bosses.lenght = 0;
+            items.lenght = 0;
             parsedCollisions = collisionsLevel3.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -551,6 +554,7 @@ let levels = {
             enemies.length = 0;
             ghosts.length = 0;
             bosses.lenght = 0;
+            items.lenght = 0;
             parsedCollisions = collisionsLevel4.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -710,7 +714,7 @@ function animate() {
     });
   
     // Draw the items
-    if (level === 1,2,3) {
+    if (level === 3) {
         items.forEach((item) => {
           item.draw();
         });
