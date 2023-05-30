@@ -21,6 +21,7 @@ const projectiles = [];
 const enemies = [];
 const ghosts = [];
 const bosses = [];
+var items = [];
 
 let parsedCollisions
 let collisionBlocks
@@ -137,8 +138,6 @@ let levels = {
             },
             imageSrc: './img/Maps/Level1.png',
             })
-
-
 
 
         // Create enemy instances
@@ -319,57 +318,49 @@ let levels = {
             imageSrc: './img/Maps/Level3.png',
             })
 
+            function addItem(x, y, imageSrc, frameRate, frameBuffer) {
+                var item = new Sprite({
+                  position: {
+                    x: x,
+                    y: y,
+                  },
+                  imageSrc: imageSrc,
+                  animations: {
+                    defaultAnimation: {
+                      imageSrc: imageSrc,
+                      frameRate: frameRate,
+                      frameBuffer: frameBuffer,
+                    },
+                  },
+                  frameRate: frameRate,
+                  frameBuffer: frameBuffer,
+                });
+                
+                items.push(item);
+              }
+              addItem(736, 506, './img/Items/Torch.png', 4, 16);
+              addItem(864, 506, './img/Items/Torch.png', 4, 16);
+              addItem(608, 506, './img/Items/Torch.png', 4, 16);
+              addItem(480, 506, './img/Items/Torch.png', 4, 16);
+              addItem(352, 506, './img/Items/Torch.png', 4, 16);
+              addItem(224, 506, './img/Items/Torch.png', 4, 16);
+              addItem(128, 106, './img/Items/Torch.png', 4, 16);
+              addItem(80, 25, './img/Items/Torch.png', 4, 16);
+              addItem(144, 25, './img/Items/Torch.png', 4, 16);
+              addItem(224, 25, './img/Items/Torch.png', 4, 16);
+              addItem(224, 25, './img/Items/Torch.png', 4, 16);
+              addItem(400, 25, './img/Items/Torch.png', 4, 16);
+              addItem(224, 106, './img/Items/Torch.png', 4, 16);
+              addItem(608, 106, './img/Items/Torch.png', 4, 16);
+              addItem(528, 25, './img/Items/Torch.png', 4, 16);
+              addItem(656, 25, './img/Items/Torch.png', 4, 16);
+              addItem(913, 160, './img/Items/Torch.png', 4, 16);
+              addItem(752, 106, './img/Items/Torch.png', 4, 16);
+              addItem(912, 25, './img/Items/Torch.png', 4, 16);
+              addItem(976, 25, './img/Items/Torch.png', 4, 16);
+              addItem(1040, 25, './img/Items/Torch.png', 4, 16);
+              addItem(840, 100, './img/Items/Spike_trap.png', 3, 60);
 
-            item = new Sprite({
-                position: {
-                    x: 976,
-                    y: 25,
-                },
-                imageSrc: './img/Items/Torch.png',
-                animations: {
-                    defaultAnimation: {
-                        imageSrc: './img/Items/Torch.png',
-                        frameRate: 4,
-                        
-                    },
-                },
-                frameRate: 4, // Specify the total number of frames in the animation
-                frameBuffer: 16,
-            });
-
-            item2 = new Sprite({
-                position: {
-                    x: 1040,
-                    y: 25,
-                },
-                imageSrc: './img/Items/Torch.png',
-                animations: {
-                    defaultAnimation: {
-                        imageSrc: './img/Items/Torch.png',
-                        frameRate: 4,
-                        
-                    },
-                },
-                frameRate: 4, // Specify the total number of frames in the animation
-                frameBuffer: 16,
-            });
-            
-            item3 = new Sprite({
-                position: {
-                    x: 840,
-                    y: 100,
-                },
-                imageSrc: './img/Items/Spike_trap.png',
-                animations: {
-                    defaultAnimation: {
-                        imageSrc: './img/Items/Spike_trap.png',
-                        frameRate: 4,
-                        
-                    },
-                },
-                frameRate: 3, // Specify the total number of frames in the animation
-                frameBuffer: 100,
-            });
 
             const enemy1 = new Enemy(100, 100, 20, 20, './img/enemies/spiritDown.png', {
                 // Animation configurations for enemy1
@@ -719,10 +710,10 @@ function animate() {
     });
   
     // Draw the items
-    if (level === 3) {
-      item.draw();
-      item2.draw();
-      item3.draw();
+    if (level === 1,2,3) {
+        items.forEach((item) => {
+          item.draw();
+        });
     }
   
     // Draw the boss
