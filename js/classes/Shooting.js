@@ -1,12 +1,12 @@
 class Projectile {
-  constructor(x, y, radius, color, velocity) {
+  constructor(x, y, radius, velocity, image) {
     this.x = x;
     this.y = y;
     this.radius = radius;
-    this.color = color;
     this.velocity = velocity;
     this.enemyHit = null; // Track the enemy being hit
     this.active = true; // Flag to indicate if the projectile is active
+    this.image = image;
   }
 
   checkCollision(enemy) {
@@ -24,10 +24,12 @@ class Projectile {
   }
 
   draw() {
-    c.beginPath();
-    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    c.fillStyle = this.color;
-    c.fill();
+    c.drawImage(
+      this.image,
+      this.x - this.radius,
+      this.y - this.radius,
+      this.radius * 4,
+      this.radius * 4);
   }
 
   update() {
@@ -48,17 +50,20 @@ addEventListener('click', (event) => {
     
 
     const velocity = {
-      x: Math.cos(angle) * 2,
-      y: Math.sin(angle) * 2
+      x: Math.cos(angle) * 1.75,
+      y: Math.sin(angle) * 1.75
     };
+
+    const image = new Image();
+    image.src = './img/weapons/Shuriken.png';
 
     projectiles.push(
       new Projectile(
         player.position.x + 12.5,
         player.position.y + 17.5,
         2,
-        'red',
-        velocity
+        velocity,
+        image
       )
     );
   }

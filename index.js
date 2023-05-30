@@ -28,7 +28,6 @@ let collisionBlocks
 let background
 let doors
 
-
 const player = new Player({
 
     imageSrc: './img/PlayerSprite/playerIdle.png',
@@ -525,7 +524,6 @@ let levels = {
                 loop: true
                 }
             });
-    
                 enemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8);
                 ghosts.push(ghost1, ghost2);
 
@@ -601,7 +599,6 @@ let levels = {
                 }
             });
     
-    
             const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
                 // Animation configurations for enemy2
                 idle: {
@@ -617,7 +614,6 @@ let levels = {
                 loop: true
                 }
             });
-
 
             const boss = new Boss(500, 300, 20, 20, './img/enemies/boss.png', {
                 // Animation configurations for Boss
@@ -635,13 +631,9 @@ let levels = {
                 }
             });
 
-
-
             enemies.push(enemy1, enemy2);
             ghosts.push(ghost1,);
             bosses.push(boss);
-
-
 
             doors = [
                 new Sprite({
@@ -767,13 +759,15 @@ function animate() {
         enemies.forEach((enemy, enemyIndex) => {
             if (projectile.checkCollision(enemy)) {
               // Projectile has hit the enemy
-              enemy.health -= 50; // Reduce enemy's health by a certain amount
+              
+              enemy.health -= 35; // Reduce enemy's health by a certain amount
 
               if (enemy.health <= 0) {
                 setTimeout(() => {
                   // Remove the enemy and the projectile
                   enemies.splice(enemyIndex, 1);
                   projectiles.splice(index, 1);
+                  clearInterval(enemy.damageTimer); // Reset the damageTimer
                 }, 0);
               } else {
                 setTimeout(() => {
@@ -794,6 +788,7 @@ function animate() {
                   // Remove the enemy and the projectile
                   bosses.splice(bossIndex, 1);
                   projectiles.splice(index, 1);
+                  clearInterval(boss.damageTimer); // Reset the damageTimer
                 }, 0);
               } else {
                 setTimeout(() => {
@@ -814,6 +809,7 @@ function animate() {
                   // Remove the ghost and the projectile
                   ghosts.splice(ghostIndex, 1);
                   projectiles.splice(index, 1);
+                  clearInterval(ghost.damageTimer); // Reset the damageTimer
                 }, 0);
               } else {
                 setTimeout(() => {
@@ -826,12 +822,12 @@ function animate() {
       
         // Calculate the distance traveled by the projectile
         const distanceTraveled = Math.sqrt(
-          Math.pow(projectile.x - player.position.x, 2) +
-          Math.pow(projectile.y - player.position.y, 2)
+          Math.pow(projectile.x - player.position.x - 12.5, 2) +
+          Math.pow(projectile.y - player.position.y - 17.5, 2)
         );
       
         // Check if the projectile has traveled beyond the maximum distance
-        if (distanceTraveled > 500) {
+        if (distanceTraveled > 120) {
           projectile.active = false;
         }
     });

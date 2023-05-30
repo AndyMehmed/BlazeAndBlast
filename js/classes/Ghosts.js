@@ -90,7 +90,7 @@ class Ghost {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         // Check if the distance is less than or equal to 100, indicating that the ghost should start following the player.
-        if (distance <= 200) {
+        if (distance <= 400) {
             this.followingPlayer = true;
         }
       
