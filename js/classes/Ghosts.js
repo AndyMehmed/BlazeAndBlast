@@ -16,7 +16,7 @@ class Ghost {
         x: 0,
         y: 0,
       };
-      this.speed = 0.3;
+      this.speed = 0.4;
       this.followingPlayer = false;
 
       this.damageTimer = null;

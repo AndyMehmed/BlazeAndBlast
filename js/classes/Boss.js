@@ -16,7 +16,7 @@ class Boss{
         x: 0,
         y: 0,
       };
-      this.speed = 0.3;
+      this.speed = 0.6;
       this.followingPlayer = false;
   
       this.damageTimer = null;
@@ -93,7 +93,7 @@ class Boss{
         const distance = Math.sqrt(dx * dx + dy * dy);
       
         // followingplayer makes the Enemies follow the player if within a certain distance
-        if (distance <= 100) {
+        if (distance <= 400) {
           this.followingPlayer = true;
         }
       

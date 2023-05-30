@@ -156,7 +156,7 @@ let levels = {
             }
         });
   
-        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/slime.png', {
+        const enemy2 = new Enemy(400, 200, 20, 20, './img/enemies/slime.png', {
             // Animation configurations for enemy2
             idle: {
             imageSrc: './img/enemies/slime.png',
@@ -702,7 +702,7 @@ function animate() {
     camera.y = player.position.y - canvas.height / 2 / camera.scale;
   
     // increase camera scale to zoom in
-    camera.scale = 4; // 300% zoom (The higher the more zoomed in)
+    camera.scale = 3; // 300% zoom (The higher the more zoomed in)
     camera.preRender();
   
     // Draw the background first
