@@ -572,53 +572,103 @@ let levels = {
             })
 
 
-            const enemy1 = new Enemy(500, 200, 20, 20, './img/enemies/spiritDown.png', {
+            const enemy1 = new Enemy(400, 100, 20, 20, './img/enemies/abomination.png', {
                 // Animation configurations for enemy1
                 idle: {
-                imageSrc: './img/enemies/spiritDown.png',
+                imageSrc: './img/enemies/abomination.png',
                 frameRate: 4,
                 frameBuffer: 2,
                 loop: true
                 },
                 run: {
-                imageSrc: './img/enemies/spiritDown.png',
+                imageSrc: './img/enemies/abomination.png',
                 frameRate: 4,
                 frameBuffer: 30,
                 loop: true
                 }
             });
       
-            const enemy2 = new Enemy(400, 200, 20, 20, './img/enemies/spiritDown.png', {
+            const enemy2 = new Enemy(400, 200, 20, 20, './img/enemies/abomination.png', {
                 // Animation configurations for enemy2
                 idle: {
-                imageSrc: './img/enemies/spiritDown.png',
+                imageSrc: './img/enemies/abomination.png',
                 frameRate: 4,
                 frameBuffer: 2,
                 loop: true
                 },
                 run: {
-                imageSrc: './img/enemies/spiritDown.png',
+                imageSrc: './img/enemies/abomination.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+
+            const enemy3 = new Enemy(600, 100, 20, 20, './img/enemies/abomination.png', {
+                // Animation configurations for enemy2
+                idle: {
+                imageSrc: './img/enemies/abomination.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/abomination.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+            const enemy4 = new Enemy(600, 200, 20, 20, './img/enemies/abomination.png', {
+                // Animation configurations for enemy2
+                idle: {
+                imageSrc: './img/enemies/abomination.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/abomination.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+            const enemy5 = new Enemy(500, 100, 20, 20, './img/enemies/abomination.png', {
+                // Animation configurations for enemy2
+                idle: {
+                imageSrc: './img/enemies/abomination.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/abomination.png',
+                frameRate: 4,
+                frameBuffer: 30,
+                loop: true
+                }
+            });
+
+            const enemy6 = new Enemy(500, 200, 20, 20, './img/enemies/abomination.png', {
+                // Animation configurations for enemy2
+                idle: {
+                imageSrc: './img/enemies/abomination.png',
+                frameRate: 4,
+                frameBuffer: 2,
+                loop: true
+                },
+                run: {
+                imageSrc: './img/enemies/abomination.png',
                 frameRate: 4,
                 frameBuffer: 30,
                 loop: true
                 }
             });
     
-            const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
-                // Animation configurations for enemy2
-                idle: {
-                imageSrc: './img/enemies/ghost.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/ghost.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
 
             const boss = new Boss(500, 300, 20, 20, './img/enemies/boss.png', {
                 // Animation configurations for Boss
@@ -636,8 +686,7 @@ let levels = {
                 }
             });
 
-            enemies.push(enemy1, enemy2);
-            ghosts.push(ghost1,);
+            enemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6);
             bosses.push(boss);
 
             doors = [
