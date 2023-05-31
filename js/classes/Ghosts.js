@@ -137,24 +137,6 @@ class Ghost {
           }
         }
       
-        // Calculate health bar width
-        const healthPercentage = this.health / this.maxHealth;
-        const healthBarWidth = this.width;
-        const remainingHealthBarWidth = healthBarWidth * healthPercentage;
-      
-        // Draw ghost health bar
-        const healthBarHeight = 5;
-        const healthBarX = this.position.x;
-        const healthBarY = this.position.y + this.height + 5;
-        const healthBarColor = 'red';
-      
-        // Draw the background of the health bar
-        c.fillStyle = 'green';
-        c.fillRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
-      
-        // Draw the remaining health bar based on the health percentage
-        c.fillStyle = healthBarColor;
-        c.fillRect(healthBarX, healthBarY, remainingHealthBarWidth, healthBarHeight);
   
       if (this.followingPlayer) {
         this.velocity.x = (dx / distance) * this.speed;
