@@ -287,153 +287,29 @@ let levels = {
 
             const enemy1 = new Spirit(100, 100, 20, 20, './img/enemies/spiritDown.png', );
       
-            const enemy2 = new Spirit(200, 200, 20, 20, './img/enemies/spiritDown.png', {
-                // Animation configurations for enemy2
-                idle: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
+            const enemy2 = new Spirit(200, 200, 20, 20, './img/enemies/spiritDown.png', );
     
     
-            const enemy3 = new Spirit(900, 380, 20, 20, './img/enemies/spiritDown.png', {
-                // Animation configurations for enemy1
-                idle: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
+            const enemy3 = new Spirit(900, 380, 20, 20, './img/enemies/spiritDown.png', );
 
 
-            const enemy4 = new Spirit(920, 380, 20, 20, './img/enemies/spiritDown.png', {
-                // Animation configurations for enemy1
-                idle: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
+            const enemy4 = new Spirit(920, 380, 20, 20, './img/enemies/spiritDown.png', );
 
 
-            const enemy5 = new Spirit(940, 380, 20, 20, './img/enemies/spiritDown.png', {
-                // Animation configurations for enemy1
-                idle: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
+            const enemy5 = new Spirit(940, 380, 20, 20, './img/enemies/spiritDown.png', );
 
 
-            const enemy6 = new Spirit(900, 360, 20, 20, './img/enemies/spiritDown.png', {
-                // Animation configurations for enemy1
-                idle: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
+            const enemy6 = new Spirit(900, 360, 20, 20, './img/enemies/spiritDown.png', );
 
-            const enemy7 = new Spirit(920, 360, 20, 20, './img/enemies/spiritDown.png', {
-                // Animation configurations for enemy1
-                idle: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
+            const enemy7 = new Spirit(920, 360, 20, 20, './img/enemies/spiritDown.png', );
 
-            const enemy8 = new Spirit(940, 360, 20, 20, './img/enemies/spiritDown.png', {
-                // Animation configurations for enemy1
-                idle: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
+            const enemy8 = new Spirit(940, 360, 20, 20, './img/enemies/spiritDown.png', );
 
-            const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', {
-                // Animation configurations for enemy2
-                idle: {
-                imageSrc: './img/enemies/ghost.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/ghost.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
+            const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/ghost.png', );
     
-            const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/ghost.png', {
-                // Animation configurations for enemy2
-                idle: {
-                imageSrc: './img/enemies/ghost.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/ghost.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
+            const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/ghost.png', );
+
+        
                 enemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8);
                 ghosts.push(ghost1, ghost2);
 
