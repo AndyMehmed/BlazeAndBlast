@@ -1,5 +1,5 @@
 class Boss{
-    constructor(x, y, width, height, imageSrc, animations, frameRate) {
+    constructor(x, y, width, height, imageSrc) {
       this.position = {
         x: x,
         y: y,
@@ -21,10 +21,8 @@ class Boss{
   
       this.damageTimer = null;
       this.damageInterval = 500;
-      this.animations = animations;
-      this.currentAnimation = null;
+      
       this.frameRate = 2;
-      this.currentFrame = 1;
       this.elapserFrames = 0;
   
       // Animation properties
@@ -39,8 +37,6 @@ class Boss{
 
     // Handle the hit animation
     handleHit() {
-      if (this.isHit) return;
-  
       this.isHit = true;  // set the hit flag
       this.image.src = './img/enemies/bossHit.png';  // switch to the hit sprite
       this.currentFrame = 0;  // start at the first frame

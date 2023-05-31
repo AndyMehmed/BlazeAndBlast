@@ -1,4 +1,4 @@
-class Enemy {
+class Spirit {
     constructor(x, y, width, height, imageSrc) {
       this.position = {
         x: x,
@@ -37,7 +37,7 @@ class Enemy {
 
     handleHit() {
       this.isHit = true;  // set the hit flag
-      this.image.src = './img/enemies/slimeHit.png';  // switch to the hit sprite
+      this.image.src = './img/enemies/spiritHit.png';  // switch to the hit sprite
       this.currentFrame = 0;  // start at the first frame
   }
   

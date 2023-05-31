@@ -20,6 +20,7 @@ canvas.height = innerHeight;
 const projectiles = [];
 const enemies = [];
 const ghosts = [];
+const spirits = [];
 const bosses = [];
 var items = [];
 
@@ -142,33 +143,12 @@ let levels = {
 
 
         // Create enemy instances
-        const enemy1 = new Enemy(900, 350, 20, 20, './img/enemies/slime.png', {
-            // Animation configurations for enemy1
-            idle: {
-            imageSrc: './img/enemies/spiritDown.png',
-            frameRate: 4,
-            loop: true
-            },
-            run: {
-            imageSrc: './img/enemies/spiritDown.png',
-            frameRate: 4,
-            loop: true
-            }
-        });
+        const enemy1 = new Enemy(900, 350, 20, 20, './img/enemies/slime.png', 
+            
+        );
   
-        const enemy2 = new Enemy(400, 200, 20, 20, './img/enemies/slime.png', {
-            // Animation configurations for enemy2
-            idle: {
-            imageSrc: './img/enemies/slime.png',
-            frameRate: 4,
-            loop: false
-            },
-            run: {
-            imageSrc: './img/enemies/slime.png',
-            frameRate: 4,
-            loop: true
-            }
-        });
+        const enemy2 = new Enemy(400, 200, 20, 20, './img/enemies/slime.png', 
+           );
 
             enemies.push(enemy1, enemy2);
     
@@ -192,9 +172,7 @@ let levels = {
     2: {
         init: () => {
             enemies.length = 0;
-            ghosts.length = 0;
-            bosses.lenght = 0;
-            items.lenght = 0;
+            items.length = 0;
             parsedCollisions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -214,73 +192,16 @@ let levels = {
 
 
             // Create enemy instances
-        const enemy1 = new Enemy(100, 100, 20, 20, './img/enemies/slime.png', {
-            // Animation configurations for enemy1
-            idle: {
-            imageSrc: './img/enemies/slime.png',
-            frameRate: 4,
-            frameBuffer: 2,
-            loop: true
-            },
-            run: {
-            imageSrc: './img/enemies/slime.png',
-            frameRate: 4,
-            frameBuffer: 30,
-            loop: true
-            }
-        });
+        const enemy1 = new Enemy(100, 200, 20, 20, './img/enemies/slime.png', );
   
-        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/slime.png', {
-            // Animation configurations for enemy2
-            idle: {
-            imageSrc: './img/enemies/slime.png',
-            frameRate: 4,
-            frameBuffer: 2,
-            loop: true
-            },
-            run: {
-            imageSrc: './img/enemies/slime.png',
-            frameRate: 4,
-            frameBuffer: 30,
-            loop: true
-            }
-        });
+        const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/slime.png', );
 
 
-        const ghost1 = new Ghost(400, 300, 20, 20, './img/enemies/slime.png', {
-            // Animation configurations for enemy2
-            idle: {
-            imageSrc: './img/enemies/slime.png',
-            frameRate: 4,
-            frameBuffer: 2,
-            loop: true
-            },
-            run: {
-            imageSrc: './img/enemies/slime.png',
-            frameRate: 4,
-            frameBuffer: 30,
-            loop: true
-            }
-        });
+        const enemy3 = new Enemy(400, 400, 20, 20, './img/enemies/slime.png', );
 
-        const ghost2 = new Ghost(500, 300, 20, 20, './img/enemies/slime.png', {
-            // Animation configurations for enemy2
-            idle: {
-            imageSrc: './img/enemies/slime.png',
-            frameRate: 4,
-            frameBuffer: 2,
-            loop: true
-            },
-            run: {
-            imageSrc: './img/enemies/slime.png',
-            frameRate: 4,
-            frameBuffer: 30,
-            loop: true
-            }
-        });
+        const enemy4 = new Enemy(500, 180, 20, 20, './img/enemies/slime.png', );
 
-            enemies.push(enemy1, enemy2);
-            ghosts.push(ghost1, ghost2);
+            enemies.push(enemy1, enemy2, enemy3, enemy4);
 
             doors = [
                 new Sprite({
@@ -301,10 +222,9 @@ let levels = {
     //-----LEVEL 3-----//
     3: {
         init: () => {
-            enemies.length = 0;
+            spirits.length = 0;
             ghosts.length = 0;
-            bosses.lenght = 0;
-            items.lenght = 0;
+            items.length = 0;
             parsedCollisions = collisionsLevel3.parse2D()
             collisionBlocks = parsedCollisions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -365,23 +285,9 @@ let levels = {
               addItem(840, 100, './img/Items/Spike_trap.png', 3, 60);
 
 
-            const enemy1 = new Enemy(100, 100, 20, 20, './img/enemies/spiritDown.png', {
-                // Animation configurations for enemy1
-                idle: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 2,
-                loop: true
-                },
-                run: {
-                imageSrc: './img/enemies/spiritDown.png',
-                frameRate: 4,
-                frameBuffer: 30,
-                loop: true
-                }
-            });
+            const enemy1 = new Spirit(100, 100, 20, 20, './img/enemies/spiritDown.png', );
       
-            const enemy2 = new Enemy(200, 200, 20, 20, './img/enemies/spiritDown.png', {
+            const enemy2 = new Spirit(200, 200, 20, 20, './img/enemies/spiritDown.png', {
                 // Animation configurations for enemy2
                 idle: {
                 imageSrc: './img/enemies/spiritDown.png',
@@ -398,7 +304,7 @@ let levels = {
             });
     
     
-            const enemy3 = new Enemy(900, 380, 20, 20, './img/enemies/spiritDown.png', {
+            const enemy3 = new Spirit(900, 380, 20, 20, './img/enemies/spiritDown.png', {
                 // Animation configurations for enemy1
                 idle: {
                 imageSrc: './img/enemies/spiritDown.png',
@@ -415,7 +321,7 @@ let levels = {
             });
 
 
-            const enemy4 = new Enemy(920, 380, 20, 20, './img/enemies/spiritDown.png', {
+            const enemy4 = new Spirit(920, 380, 20, 20, './img/enemies/spiritDown.png', {
                 // Animation configurations for enemy1
                 idle: {
                 imageSrc: './img/enemies/spiritDown.png',
@@ -432,7 +338,7 @@ let levels = {
             });
 
 
-            const enemy5 = new Enemy(940, 380, 20, 20, './img/enemies/spiritDown.png', {
+            const enemy5 = new Spirit(940, 380, 20, 20, './img/enemies/spiritDown.png', {
                 // Animation configurations for enemy1
                 idle: {
                 imageSrc: './img/enemies/spiritDown.png',
@@ -449,7 +355,7 @@ let levels = {
             });
 
 
-            const enemy6 = new Enemy(900, 360, 20, 20, './img/enemies/spiritDown.png', {
+            const enemy6 = new Spirit(900, 360, 20, 20, './img/enemies/spiritDown.png', {
                 // Animation configurations for enemy1
                 idle: {
                 imageSrc: './img/enemies/spiritDown.png',
@@ -465,7 +371,7 @@ let levels = {
                 }
             });
 
-            const enemy7 = new Enemy(920, 360, 20, 20, './img/enemies/spiritDown.png', {
+            const enemy7 = new Spirit(920, 360, 20, 20, './img/enemies/spiritDown.png', {
                 // Animation configurations for enemy1
                 idle: {
                 imageSrc: './img/enemies/spiritDown.png',
@@ -481,7 +387,7 @@ let levels = {
                 }
             });
 
-            const enemy8 = new Enemy(940, 360, 20, 20, './img/enemies/spiritDown.png', {
+            const enemy8 = new Spirit(940, 360, 20, 20, './img/enemies/spiritDown.png', {
                 // Animation configurations for enemy1
                 idle: {
                 imageSrc: './img/enemies/spiritDown.png',

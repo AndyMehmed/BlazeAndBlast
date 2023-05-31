@@ -38,8 +38,6 @@ class Ghost {
 
      // Handle the hit animation
      handleHit() {
-      if (this.isHit) return;
-  
       this.isHit = true;  // set the hit flag
       this.image.src = './img/enemies/ghostHit.png';  // switch to the hit sprite
       this.currentFrame = 0;  // start at the first frame
