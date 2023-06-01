@@ -19,10 +19,6 @@ Array.prototype.createObjectsFrom2D = function () {
                     },
                     width: 16,
                     height: 16,
-                    draw(c) {
-                        c.fillStyle = 'red';
-                        c.fillRect(this.position.x, this.position.y, this.width, this.height);
-                    },
                 })
             }
         })

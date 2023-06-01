@@ -20,59 +20,7 @@
     <canvas id="myCanvas"></canvas>
   </div>
 
-
-  <script>
-    // Create an AudioContext instance
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-    // Load the gunshot sound
-    const gunshotSound = 'gunshot.mp3dd';
-    let gunshotBuffer = null; // Stores the audio buffer
-
-    // Function to load and play the gunshot sound
-    function loadGunshotSound() {
-      const request = new XMLHttpRequest();
-      request.open('GET', gunshotSound, true);
-      request.responseType = 'arraybuffer';
-
-      // Decode the audio data and play the sound
-      request.onload = function () {
-        audioContext.decodeAudioData(request.response, function (buffer) {
-          gunshotBuffer = buffer;
-          playGunshotSound();
-        });
-      };
-
-      request.send();
-    }
-
-    // Function to play the gunshot sound with adjustable volume
-    function playGunshotSound(volume = 1) {
-      if (!gunshotBuffer) {
-        return; // Audio buffer not yet loaded
-      }
-
-      const source = audioContext.createBufferSource();
-      source.buffer = gunshotBuffer;
-
-      // Create a gain node to control the volume
-      const gainNode = audioContext.createGain();
-      gainNode.gain.value = volume;
-
-      // Connect the nodes
-      source.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-
-    // Add event listener for mouse click
-    addEventListener('click', () => {
-      playGunshotSound(0.1); // Adjust the volume here (0.5 = 50% volume)
-    });
-
-    // Call the function to load the gunshot sound
-    loadGunshotSound();
-  }
-  </script>
-
+  <!-- Load the JavaScript files/classes -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"
     integrity="sha512-Mf/xUqfWvDIr+1B6zfnIDIiG7XHzyP/guXUWgV6PgaQoIFeXkJQR5XWh9fqAiCiRCpemabt3naV4jhDWVnuYDQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -95,11 +43,12 @@
 
   <script src="js/classes/Spirit.js"></script>
 
+  <script src="js/classes/Abomination.js"></script>
+
   <script src="js/classes/Shooting.js"></script>
 
   <script src="js/eventlisteners.js"></script>
 
   <script src="index.js"></script>
-
 
 </body>

@@ -1,4 +1,4 @@
-// Function which checks wich keys are being pressed to do what the function wants.
+// Function that checks what key is being pressed and then moves the player in the direction being pressed.
 window.addEventListener('keydown', (event) => {
     if (player.preventInput) return;
     switch (event.key) {
