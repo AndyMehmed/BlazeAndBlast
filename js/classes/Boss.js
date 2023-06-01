@@ -4,9 +4,9 @@ class Boss {
       x: x,
       y: y,
     };
-    this.width = 80;
-    this.height = 80;
-    this.image = new Image();
+    this.width = 80; // Set the width of the boss object to 80 units
+    this.height = 80;  // Set the height of the boss object to 80 units
+    this.image = new Image(); // Create a new Image object to hold the boss's sprite or image
     this.image.onload = () => {
       this.imageLoaded = true;
       this.frameWidth = this.image.width / this.frameCount; // Width of each frame
@@ -16,11 +16,16 @@ class Boss {
       x: 0,
       y: 0,
     };
+
+    // Set the movement speed of the boss
     this.speed = 0.6;
+
+    // Flag indicating whether the boss is following the player
     this.followingPlayer = false;
 
-    this.damageTimer = null;
-    this.damageInterval = 800;
+    // Initialize properties for damage timing and intervals
+    this.damageTimer = null; // Reference to the damage timer
+    this.damageInterval = 800; // Time interval between each damage dealt to the player
 
     this.frameRate = 2;
     this.elapserFrames = 0;

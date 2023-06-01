@@ -4,9 +4,9 @@ class Spirit {
       x: x,
       y: y,
     };
-    this.width = width;
-    this.height = height;
-    this.image = new Image();
+    this.width = width; // Set the width of the spirit object to the provided width
+    this.height = height; // Set the height of the spirit object to the provided height
+    this.image = new Image();  // Create a new Image object to hold the spirit's sprite or image
     this.image.onload = () => {
       this.imageLoaded = true;
       this.frameWidth = this.image.width / this.frameCount; // Width of each frame
@@ -16,14 +16,15 @@ class Spirit {
       x: 0,
       y: 0,
     };
-    this.speed = 0.5;
-    this.followingPlayer = false;
+    this.speed = 0.5; // Set the speed at which the spirit moves
+    this.followingPlayer = false; // Set the initial state of the spirit's behavior to not follow the player
 
-    this.damageTimer = null;
-    this.damageInterval = 500;
+    this.damageTimer = null; // Initialize the damage timer as null
+    this.damageInterval = 500; // Set the interval between each damage inflicted by the spirit
 
-    this.frameRate = 2;
-    this.elapserFrames = 0;
+    // Animation properties
+    this.frameRate = 2; // Set the frame rate for the spirit's animation
+    this.elapserFrames = 0; // Initialize the frame counter
 
     // Animation properties
     this.currentFrame = 1;
