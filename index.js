@@ -404,8 +404,6 @@ function gameOver() {
     // Draw the game-over image
     c.drawImage(gameOverImage, 0, 0, canvas.width, canvas.height);
   }
-
-  // You could add more Game-Over logic here, such as a button to restart the game.
 }
 
 function animate() {
@@ -419,7 +417,7 @@ function animate() {
   camera.y = player.position.y - canvas.height / 2 / camera.scale;
 
   // increase camera scale to zoom in
-  camera.scale = 2; // Zoom
+  camera.scale = 2; // Zoom in/out
   camera.preRender();
 
   // Draw the background first
