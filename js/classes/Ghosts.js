@@ -16,7 +16,7 @@ class Ghost {
         x: 0,
         y: 0,
       };
-      this.speed = 0.3;
+      this.speed = 0.4;
       this.followingPlayer = false;
 
       this.damageTimer = null;
@@ -28,10 +28,20 @@ class Ghost {
       // Animation properties
       this.currentFrame = 0;
       this.frameCount = 4; // Number of frames in the animation
-  
+      
+      this.originalSprite = imageSrc;  // save the original sprite 
+      this.isHit = false;
+
       // Health properties
       this.health = 100;
     }
+
+     // Handle the hit animation
+     handleHit() {
+      this.isHit = true;  // set the hit flag
+      this.image.src = './img/enemies/ghostHit.png';  // switch to the hit sprite
+      this.currentFrame = 0;  // start at the first frame
+  }
   
     drawAnimation() {
       if (!this.imageLoaded) return;
@@ -63,10 +73,19 @@ class Ghost {
     updateFrames() {
       this.elapserFrames++; // Increment the frame counter
   
-      if (this.elapserFrames % (10 * this.frameRate) === 0) {
-        this.currentFrame = (this.currentFrame + 1) % this.frameCount;
+      if (this.isHit) {
+          // If we're playing the hit animation and we've reached the last frame
+          if (this.elapserFrames % (10 * this.frameRate) === 0) {
+              this.currentFrame = (this.currentFrame + 1) % this.frameCount;
+              if (this.currentFrame == 0) {
+                  this.isHit = false;  // Reset the hit flag
+                  this.image.src = this.originalSprite;  // switch back to the original sprite
+              }
+          }
+      } else if (this.elapserFrames % (10 * this.frameRate) === 0) {
+          this.currentFrame = (this.currentFrame + 1) % this.frameCount;
       }
-    }
+  }
   
     draw() {
       if (this.imageLoaded) {
@@ -118,24 +137,6 @@ class Ghost {
           }
         }
       
-        // Calculate health bar width
-        const healthPercentage = this.health / this.maxHealth;
-        const healthBarWidth = this.width;
-        const remainingHealthBarWidth = healthBarWidth * healthPercentage;
-      
-        // Draw ghost health bar
-        const healthBarHeight = 5;
-        const healthBarX = this.position.x;
-        const healthBarY = this.position.y + this.height + 5;
-        const healthBarColor = 'red';
-      
-        // Draw the background of the health bar
-        c.fillStyle = 'green';
-        c.fillRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
-      
-        // Draw the remaining health bar based on the health percentage
-        c.fillStyle = healthBarColor;
-        c.fillRect(healthBarX, healthBarY, remainingHealthBarWidth, healthBarHeight);
   
       if (this.followingPlayer) {
         this.velocity.x = (dx / distance) * this.speed;

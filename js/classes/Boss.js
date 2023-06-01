@@ -1,5 +1,5 @@
 class Boss{
-    constructor(x, y, width, height, imageSrc, animations, frameRate) {
+    constructor(x, y, width, height, imageSrc) {
       this.position = {
         x: x,
         y: y,
@@ -21,18 +21,26 @@ class Boss{
   
       this.damageTimer = null;
       this.damageInterval = 800;
-      this.animations = animations;
-      this.currentAnimation = null;
+      
       this.frameRate = 2;
-      this.currentFrame = 1;
       this.elapserFrames = 0;
   
       // Animation properties
       this.currentFrame = 1;
       this.frameCount = 8; // Number of frames in the animation
+
+      this.originalSprite = imageSrc;  // save the original sprite 
+      this.isHit = false;
   
       this.health = 200; // Starting health value
     }
+
+    // Handle the hit animation
+    handleHit() {
+      this.isHit = true;  // set the hit flag
+      this.image.src = './img/enemies/bossHit.png';  // switch to the hit sprite
+      this.currentFrame = 0;  // start at the first frame
+  }
   
     drawAnimation() {
       if (!this.imageLoaded) return;
@@ -64,10 +72,19 @@ class Boss{
     updateFrames() {
       this.elapserFrames++; // Increment the frame counter
   
-      if (this.elapserFrames % (10 * this.frameRate) === 0) {
-        this.currentFrame = (this.currentFrame + 1) % this.frameCount;
+      if (this.isHit) {
+          // If we're playing the hit animation and we've reached the last frame
+          if (this.elapserFrames % (10 * this.frameRate) === 0) {
+              this.currentFrame = (this.currentFrame + 1) % this.frameCount;
+              if (this.currentFrame == 0) {
+                  this.isHit = false;  // Reset the hit flag
+                  this.image.src = this.originalSprite;  // switch back to the original sprite
+              }
+          }
+      } else if (this.elapserFrames % (10 * this.frameRate) === 0) {
+          this.currentFrame = (this.currentFrame + 1) % this.frameCount;
       }
-    }
+  }
   
     draw() {
         if (this.imageLoaded) {
@@ -83,8 +100,6 @@ class Boss{
             );
           }
         }
-      
-        this.drawHealthBar(); // Call the drawHealthBar() method
       }
   
       update(player) {
@@ -121,24 +136,6 @@ class Boss{
             }
           }
       
-        // Calculate health bar width
-        const healthPercentage = this.health / this.maxHealth;
-        const healthBarWidth = this.width;
-        const remainingHealthBarWidth = healthBarWidth * healthPercentage;
-      
-        // Draw enemy health bar
-        const healthBarHeight = 5;
-        const healthBarX = this.position.x;
-        const healthBarY = this.position.y + this.height + 5;
-        const healthBarColor = 'red';
-      
-        // Draw the background of the health bar
-        c.fillStyle = 'green';
-        c.fillRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
-      
-        // Draw the remaining health bar based on the health percentage
-        c.fillStyle = healthBarColor;
-        c.fillRect(healthBarX, healthBarY, remainingHealthBarWidth, healthBarHeight);
       
   
       if (this.followingPlayer) {
