@@ -4,9 +4,9 @@ class Boss {
       x: x,
       y: y,
     };
-    this.width = 80; // Set the width of the boss object to 80 units
-    this.height = 80;  // Set the height of the boss object to 80 units
-    this.image = new Image(); // Create a new Image object to hold the boss's sprite or image
+    this.width = 80; // Set the width of the boss
+    this.height = 80;  // Set the height of the boss
+    this.image = new Image();
     this.image.onload = () => {
       this.imageLoaded = true;
       this.frameWidth = this.image.width / this.frameCount; // Width of each frame
@@ -17,15 +17,11 @@ class Boss {
       y: 0,
     };
 
-    // Set the movement speed of the boss
-    this.speed = 0.5;
-
-    // Flag indicating whether the boss is following the player
+    this.speed = 0.5; // Set the speed of the boss
     this.followingPlayer = false;
 
-    // Initialize properties for damage timing and intervals
-    this.damageTimer = null; // Reference to the damage timer
-    this.damageInterval = 800; // Time interval between each damage dealt to the player
+    this.damageTimer = null;
+    this.damageInterval = 800;
 
     this.frameRate = 2;
     this.elapserFrames = 0;
@@ -37,14 +33,14 @@ class Boss {
     this.originalSprite = imageSrc;  // save the original sprite 
     this.isHit = false;
 
-    this.health = 200; // Starting health value
+    this.health = 200; // Sets the health to 100
   }
 
   // Handle the hit animation
   handleHit() {
-    this.isHit = true;  // set the hit flag
-    this.image.src = './img/enemies/bossHit.png';  // switch to the hit sprite
-    this.currentFrame = 0;  // start at the first frame
+    this.isHit = true;
+    this.image.src = './img/enemies/bossHit.png'; // switch to the hit sprite
+    this.currentFrame = 0; // start at the first frame
   }
 
   drawAnimation() {
@@ -120,7 +116,7 @@ class Boss {
       player.position.y < this.position.y + this.height
     ) {
       if (!this.damageTimer) {
-        player.health -= 20; // Player takes damage
+        player.health -= 40; // Player takes 40% damage
         document.querySelector('#playerHealth').style.width = player.health + '%'; //Animates the html div #playerHealth when taking damage
 
         // Start the damage timer after the first hit

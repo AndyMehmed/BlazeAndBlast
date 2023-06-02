@@ -16,7 +16,7 @@ class Abomination {
         x: 0,
         y: 0,
       };
-      this.speed = 0.5;
+      this.speed = 0.5; // Set the speed of the abomination enemies
       this.followingPlayer = false;
   
       this.damageTimer = null;
@@ -32,11 +32,12 @@ class Abomination {
       this.originalSprite = imageSrc;  // save the original sprite 
       this.isHit = false;
   
-      this.health = 100; // Starting health value
+      this.health = 100; // Sets the health to 100
     }
   
+    //Hit function to switch sprite, indicating that the enemy has been hit
     handleHit() {
-      this.isHit = true;  // set the hit flag
+      this.isHit = true;
       this.image.src = './img/enemies/abominationHit.png';  // switch to the hit sprite
       this.currentFrame = 0;  // start at the first frame
     }

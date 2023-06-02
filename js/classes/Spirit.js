@@ -4,9 +4,9 @@ class Spirit {
       x: x,
       y: y,
     };
-    this.width = width; // Set the width of the spirit object to the provided width
-    this.height = height; // Set the height of the spirit object to the provided height
-    this.image = new Image();  // Create a new Image object to hold the spirit's sprite or image
+    this.width = width;
+    this.height = height;
+    this.image = new Image();
     this.image.onload = () => {
       this.imageLoaded = true;
       this.frameWidth = this.image.width / this.frameCount; // Width of each frame
@@ -16,15 +16,14 @@ class Spirit {
       x: 0,
       y: 0,
     };
-    this.speed = 0.5; // Set the speed at which the spirit moves
-    this.followingPlayer = false; // Set the initial state of the spirit's behavior to not follow the player
+    this.speed = 0.5; // Set the speed of the spirit enemies
+    this.followingPlayer = false;
 
-    this.damageTimer = null; // Initialize the damage timer as null
-    this.damageInterval = 500; // Set the interval between each damage inflicted by the spirit
+    this.damageTimer = null;
+    this.damageInterval = 500;
 
-    // Animation properties
-    this.frameRate = 2; // Set the frame rate for the spirit's animation
-    this.elapserFrames = 0; // Initialize the frame counter
+    this.frameRate = 2;
+    this.elapserFrames = 0;
 
     // Animation properties
     this.currentFrame = 1;
@@ -33,11 +32,12 @@ class Spirit {
     this.originalSprite = imageSrc;  // save the original sprite 
     this.isHit = false;
 
-    this.health = 100; // Starting health value
+    this.health = 100; // Set the health to 100
   }
-
+    
+  //Hit function to switch sprite, indicating that the enemy has been hit
   handleHit() {
-    this.isHit = true;  // set the hit flag
+    this.isHit = true;
     this.image.src = './img/enemies/spiritHit.png';  // switch to the hit sprite
     this.currentFrame = 0;  // start at the first frame
   }

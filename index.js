@@ -416,7 +416,6 @@ function animate() {
   camera.x = player.position.x - canvas.width / 2 / camera.scale;
   camera.y = player.position.y - canvas.height / 2 / camera.scale;
 
-  // increase camera scale to zoom in
   camera.scale = 2; // Zoom in/out
   camera.preRender();
 
