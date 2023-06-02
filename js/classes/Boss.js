@@ -18,7 +18,7 @@ class Boss {
     };
 
     // Set the movement speed of the boss
-    this.speed = 0.6;
+    this.speed = 0.5;
 
     // Flag indicating whether the boss is following the player
     this.followingPlayer = false;
