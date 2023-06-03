@@ -4,8 +4,8 @@ class Ghost {
       x: x,
       y: y,
     };
-    this.width = width;
-    this.height = height;
+    this.width = width; // set the width of the ghosts
+    this.height = height; // set  the height of the ghosts
     this.image = new Image();
     this.image.onload = () => {
       this.imageLoaded = true;
@@ -20,7 +20,7 @@ class Ghost {
     this.followingPlayer = false;
 
     this.damageTimer = null;
-    this.damageInterval = 500;
+    this.damageInterval = 500; //How often the damage is ticking when colliding with player
 
     this.frameRate = 2;
     this.elapserFrames = 0;

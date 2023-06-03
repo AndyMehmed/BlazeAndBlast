@@ -21,7 +21,7 @@ class Boss {
     this.followingPlayer = false;
 
     this.damageTimer = null;
-    this.damageInterval = 800;
+    this.damageInterval = 800; //How often the damage is ticking when colliding with player
 
     this.frameRate = 2;
     this.elapserFrames = 0;
