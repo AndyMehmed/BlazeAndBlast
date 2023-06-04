@@ -7,6 +7,7 @@ class Sprite {
             this.width = this.image.width / this.frameRate;
             this.height = this.image.height;
         };
+        // All function below are describing the deifferent animation functions and basically the name describes itself
         this.image.src = imageSrc;
         this.loaded = false;
         this.frameRate = frameRate;
@@ -18,6 +19,7 @@ class Sprite {
         this.autoplay = autoplay;
         this.currentAnimation = null;
 
+        // Looks if there is any existing animation property and then loops over every itteration from the "animations" object in our code
         if (this.animations) {
             for (let key in this.animations) {
                 const image = new Image();
@@ -27,6 +29,7 @@ class Sprite {
         }
     }
 
+    // A draw method that draws all of our sprites when called upon other places in the code
     draw() {
         if (!this.loaded) return;
 
@@ -38,7 +41,7 @@ class Sprite {
             width: this.width,
             height: this.height,
         };
-
+    // Here the images are beeing drawn based on the set parameters
         c.drawImage(
             this.image,
             cropbox.position.x,
@@ -54,10 +57,13 @@ class Sprite {
         this.updateFrames();
     }
 
+    //Self explanitory
     play() {
         this.autoplay = true;
     }
 
+    //Updates the frames of our animations based on the set parameters 'autoplay', 'framebuffer' etc.
+    //And when the certain conditions are met the onComplete function is run to make sure its all correct. 
     updateFrames() {
         if (!this.autoplay) return;
         this.elapserFrames++;
