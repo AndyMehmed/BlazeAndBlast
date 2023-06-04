@@ -28,6 +28,7 @@ let collisionBlocks
 let background
 let doors
 
+//Images created to make the player look like he is moving and not just a static image
 const player = new Player({
 
   imageSrc: './img/PlayerSprite/playerIdle.png',
