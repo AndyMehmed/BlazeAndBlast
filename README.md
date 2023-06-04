@@ -13,3 +13,5 @@ The goal is to advance through the levels by killing the monsters and finding th
 Note that the throwing stars being used to kill enemies has a delay but can be shot as soon as the last throwing star is gone, meaning the closer the enemy is, the more often you can throw the stars.
 
 If any bugs or glitches occur like the player gets outside the map or the screen is pitch black, reset the game by pressing F5 or the refresh button on the browser.
+
+BlazeAndBlast's Repository: https://github.com/JeNordahl/BlazeAndBlast.git 
