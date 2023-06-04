@@ -102,7 +102,7 @@ const player = new Player({
             level++
 
             //REMOVE BEFORE ADDING MORE LEVELS
-            if (level === 5) level = 1
+            if (level === 6) level = 1
             levels[level].init()
             player.switchSprite('idleRight')
             player.preventInput = false
@@ -396,22 +396,34 @@ const overlay = {
   opacity: 0,
 }
 
-function gameOver() {
-  // Load the game over image
+//Function for gameover and victory 
+function gameOver(victory) {
+  // Load the appropriate image based on the win or death status
+  const imageSrc = victory ? './img/win.jpg' : './img/game.over.png';
   const gameOverImage = new Image();
-  gameOverImage.src = './img/game.over.png';
+  gameOverImage.src = imageSrc;
 
   gameOverImage.onload = function () {
-    // Draw the game-over image
+    // Draw the appropriate image
     c.drawImage(gameOverImage, 0, 0, canvas.width, canvas.height);
   }
 }
 
+// Game over
 function animate() {
   if (player.health <= 0) {
-    gameOver();
+    gameOver(false); 
     return;
   }
+
+  // Victory
+  if (level === 5) {
+    gameOver(true); 
+    return;
+  }
+
+
+
   window.requestAnimationFrame(animate);
 
   camera.x = player.position.x - canvas.width / 2 / camera.scale;
